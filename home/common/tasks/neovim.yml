@@ -59,6 +59,14 @@
       - neovim
       - neovim_standalone
 
+- name: Change nvimrc remote repo
+  ansible.builtin.shell: |
+      cd {{playbook_dir}}/Nvimrc
+      git remote set-url origin git@github.com:immoralJellyfish/Nvimrc.git
+  tags:
+      - neovim
+      - neovim_standalone
+
 - name: Ensure neovim config clean
   ansible.builtin.file:
       dest: '{{ XDG_CONFIG_HOME }}/nvim'

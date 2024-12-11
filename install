@@ -140,17 +140,6 @@ function setup_arch(){
         sudo pacman -Sy --noconfirm git
     fi
 
-    if ! command -v $AUR > /dev/null 2>&1; then
-        sudo pacman -Sy --noconfirm base-devel
-
-        [[  -d $HOME/aur ]] || git clone --quiet https://aur.archlinux.org/$AUR.git $HOME/aur
-
-        cd $HOME/aur
-        makepkg -si --noconfirm
-
-        cd $CURRENT_DIR
-    fi
-
     if [[ $ISPYTHON == "$ERROR" ]] ; then
         sudo pacman -Sy --noconfirm python
     fi
@@ -161,6 +150,17 @@ function setup_arch(){
 
     if [[ $ISSTOW == "$ERROR" ]] ; then
         sudo pacman -Sy --noconfirm stow
+    fi
+
+    if ! command -v $AUR > /dev/null 2>&1; then
+        sudo pacman -Sy --noconfirm base-devel
+
+        [[  -d $HOME/aur ]] || git clone --quiet https://aur.archlinux.org/$AUR.git $HOME/aur
+
+        cd $HOME/aur
+        makepkg -si --noconfirm
+
+        cd $CURRENT_DIR
     fi
 }
 
@@ -232,7 +232,7 @@ case "$1" in
         clean
         exit 0
         ;;
-    *)
+    help)
         echo -e
         echo -e "Usage: <empty|ansible argument|checkhealth|clean>"
         echo -e

@@ -19,12 +19,10 @@
       value: '{{ item.value }}'
       no_extra_spaces: true
   loop:
-      - {option: 'INTEL_GPU_MIN_FREQ_ON_AC', value: 500}
-      - {option: 'INTEL_GPU_MIN_FREQ_ON_BAT', value: 500}
-      - {option: 'START_CHARGE_THRESH_BAT0', value: 85}
-      - {option: 'STOP_CHARGE_THRESH_BAT0', value: 90}
-      - {option: 'START_CHARGE_THRESH_BAT1', value: 85}
-      - {option: 'STOP_CHARGE_THRESH_BAT1', value: 90}
+      - {option: 'START_CHARGE_THRESH_BAT0', value: 75}
+      - {option: 'STOP_CHARGE_THRESH_BAT0', value: 80}
+      - {option: 'START_CHARGE_THRESH_BAT1', value: 75}
+      - {option: 'STOP_CHARGE_THRESH_BAT1', value: 80}
       - {option: 'RESTORE_THRESHOLDS_ON_BAT', value: 1}
   tags:
       - tlp
