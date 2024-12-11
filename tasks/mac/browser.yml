@@ -1,0 +1,24 @@
+- name: Installing browser for mac
+  community.general.homebrew:
+      state: 'latest'
+      name:
+          - firefox
+          - chromium
+  tags:
+      - browser
+      - apps
+
+- name: Cleaning browser config
+  ansible.builtin.file:
+      dest: '{{ HOME }}/Library/Application Support/Firefox'
+      state: 'absent'
+  tags:
+      - personal
+
+- name: Link browser config
+  ansible.builtin.file:
+      src: '{{ playbook_dir }}/Personal/firefox'
+      dest: '{{ HOME }}/Library/Application Support/Firefox'
+      state: 'link'
+  tags:
+      - personal

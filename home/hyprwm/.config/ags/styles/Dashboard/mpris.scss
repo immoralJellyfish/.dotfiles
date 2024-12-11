@@ -1,0 +1,76 @@
+.mpris {
+    padding: $gap-xs;
+
+    .head {
+        min-height: calc($font-size * 1.8);
+        padding-bottom: $gap-s;
+
+        .title {
+            font-size: calc($font-size * 1.2);
+        }
+    }
+
+    .players {
+        .media_player {
+            background-color: $base;
+            padding: $gap-s;
+            border-radius: $radius;
+            border: 0.1em solid $charcoal;
+
+            .cover_art {
+                min-width: calc($font-size * 5);
+                min-height: calc($font-size * 5);
+                border-radius: $radius;
+                background-size: cover;
+                background-position: center;
+                margin-right: $gap-s;
+            }
+
+            .title {
+                label {
+                    margin-right: $gap-s;
+                    font-weight: bold;
+                }
+            }
+
+            .artist {
+                color: $overlay0;
+            }
+
+            .actions {
+                button {
+                    background-color: $surface0;
+                    margin: 0 $gap-xs;
+                    label {
+                        font-size: calc($font-size/1.2);
+                    }
+                    &:hover {
+                        background-color: $primary;
+                        label {
+                            color: $crust;
+                        }
+                    }
+                }
+            }
+
+            scale {
+                padding: 0;
+                margin: 0.4rem 0;
+
+                highlight {
+                    background: $primary;
+                    border-radius: calc($font-size/2.5);
+                }
+
+                trough {
+                    min-height: calc($font-size/2.5);
+                    border-radius: calc($font-size/2.5);
+                }
+
+                slider {
+                    all: unset;
+                }
+            }
+        }
+    }
+}

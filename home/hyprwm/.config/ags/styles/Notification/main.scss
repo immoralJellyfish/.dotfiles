@@ -1,0 +1,7 @@
+@import './popup.scss';
+
+window {
+    &.notification {
+        all: unset;
+    }
+}

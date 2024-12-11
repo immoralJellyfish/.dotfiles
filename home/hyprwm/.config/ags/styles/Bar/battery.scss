@@ -1,0 +1,33 @@
+.battery {
+    @include Button;
+
+    label {
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+    &.warning:not(.charging) {
+        label {
+            animation-name: warning;
+            animation-duration: 0.6s;
+        }
+    }
+
+    &.critical:not(.charging) {
+        label {
+            animation-name: critical;
+            animation-duration: 0.3s;
+        }
+    }
+
+    .percentage {
+        margin-right: $gap-xs;
+    }
+
+    .icon {
+        font-weight: 600;
+        font-size: calc($font-size * 1.2);
+        margin-right: $gap-xs;
+    }
+}

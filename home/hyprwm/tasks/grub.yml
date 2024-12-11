@@ -1,0 +1,47 @@
+- name: Downloading grub catppuccin theme
+  ansible.builtin.git:
+      repo: 'https://github.com/catppuccin/grub.git'
+      dest: '{{ HOME }}/grub-catppuccin'
+      depth: 1
+      recursive: true
+      update: false
+  tags:
+      - grub
+      - hyprwm
+
+- name: Installing grub catppuccin theme
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/grub-catppuccin
+      cp -R src/*mocha* /usr/share/grub/themes/
+  tags:
+      - grub
+      - hyprwm
+
+- name: Customizing grub catppuccin theme
+  become: true
+  ansible.builtin.shell: |
+      sed -i '/+ label {/,/}/ { /top =/ { s/^ *top = [^%]*%/top = 15%/ } }' /usr/share/grub/themes/catppuccin-mocha-grub-theme/theme.txt
+  tags:
+      - grub
+      - hyprwm
+
+- name: Setting grub catppuccin theme
+  become: true
+  ansible.builtin.ini_file:
+      path: '/etc/default/grub'
+      create: 'yes'
+      option: 'GRUB_THEME'
+      value: '"/usr/share/grub/themes/catppuccin-mocha-grub-theme/theme.txt"'
+      no_extra_spaces: true
+      backup: true
+  tags:
+      - grub
+      - hyprwm
+
+- name: Rebuild grub configuration
+  become: true
+  ansible.builtin.shell: 'grub-mkconfig -o /boot/grub/grub.cfg'
+  tags:
+      - grub
+      - hyprwm

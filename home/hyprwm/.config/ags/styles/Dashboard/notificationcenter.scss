@@ -1,0 +1,50 @@
+.notification_center {
+    padding: $gap-xs;
+
+    .head {
+        min-height: calc($font-size * 1.8);
+        padding-bottom: $gap-s;
+
+        .title {
+            font-size: calc($font-size * 1.2);
+        }
+
+        .action {
+            @include Button;
+            min-width: calc($font-size * 1.8);
+            padding: 0;
+            background: $base;
+            border: 0.1em solid $charcoal;
+            margin-left: $gap-xs;
+
+            label {
+                font-size: calc($font-size/1.2);
+            }
+
+            &:hover {
+                background: $charcoal;
+            }
+        }
+    }
+
+    .notifications {
+        .notification_popup {
+            @include NotificationPopup;
+
+            > box {
+                margin: 0;
+                margin-top: $gap;
+                min-width: unset;
+                background-color: $base;
+
+                .actions {
+                    .actions_row {
+                        button {
+                            background-color: $surface0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

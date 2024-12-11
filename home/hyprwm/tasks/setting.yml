@@ -1,0 +1,23 @@
+- name: Generate xdg user dirs
+  ansible.builtin.shell: 'xdg-user-dirs-update --force'
+  tags:
+      - xdg-user-dirs
+      - hyprwm
+
+- name: Create bookmarks in xdg-user-dirs
+  ansible.builtin.lineinfile:
+      path: '{{ XDG_CONFIG_HOME }}/gtk-3.0/bookmarks'
+      state: present
+      create: yes
+      line: '{{ item.line }}'
+      regexp: "^{{ item.line.replace('/', '\\/') }}$"
+  loop:
+      - {line: 'file:///home/{{ USER }}/Downloads'}
+      - {line: 'file:///home/{{ USER }}/Music'}
+      - {line: 'file:///home/{{ USER }}/Pictures'}
+      - {line: 'file:///home/{{ USER }}/Public'}
+      - {line: 'file:///home/{{ USER }}/Templates'}
+      - {line: 'file:///home/{{ USER }}/Videos'}
+  tags:
+      - xdg-user-dirs
+      - hyprwm

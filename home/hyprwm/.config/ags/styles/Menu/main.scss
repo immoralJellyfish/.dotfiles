@@ -1,0 +1,29 @@
+@import './toggle.scss';
+@import './dialog.scss';
+
+.menu {
+    @include Window;
+
+    .line {
+        margin: $gap-s 0;
+        border: 0.08em solid $charcoal;
+    }
+
+    .menu_group {
+        .menu_item {
+            border-radius: $radius-s;
+            label {
+                padding: calc($gap-s/2) $gap-s;
+                &:nth-child(2) {
+                    color: $surface1;
+                }
+            }
+            &:hover {
+                background-color: $primary;
+                label {
+                    color: $crust;
+                }
+            }
+        }
+    }
+}

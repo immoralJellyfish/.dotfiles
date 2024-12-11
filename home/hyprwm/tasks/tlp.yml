@@ -1,0 +1,41 @@
+- name: Installing tlp for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - tlp
+          - tp_smapi
+  tags:
+      - tlp
+      - hyprwm
+
+- name: Setting tlp config
+  become: true
+  ansible.builtin.ini_file:
+      path: '/etc/tlp.conf'
+      create: 'yes'
+      option: '{{ item.option }}'
+      value: '{{ item.value }}'
+      no_extra_spaces: true
+  loop:
+      - {option: 'INTEL_GPU_MIN_FREQ_ON_AC', value: 500}
+      - {option: 'INTEL_GPU_MIN_FREQ_ON_BAT', value: 500}
+      - {option: 'START_CHARGE_THRESH_BAT0', value: 85}
+      - {option: 'STOP_CHARGE_THRESH_BAT0', value: 90}
+      - {option: 'START_CHARGE_THRESH_BAT1', value: 85}
+      - {option: 'STOP_CHARGE_THRESH_BAT1', value: 90}
+      - {option: 'RESTORE_THRESHOLDS_ON_BAT', value: 1}
+  tags:
+      - tlp
+      - hyprwm
+
+- name: Enabling tlp using systemd
+  become: true
+  ansible.builtin.systemd:
+      name: 'tlp'
+      scope: 'system'
+      enabled: true
+  tags:
+      - tlp
+      - hyprwm

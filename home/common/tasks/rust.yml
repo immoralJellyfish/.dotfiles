@@ -1,0 +1,26 @@
+- name: Installing rustup rust toolchain
+  ansible.builtin.shell: |
+      [[ -d {{ HOME }}/.cargo ]] || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --quiet -y || true
+  tags:
+      - rust
+      - anyrun
+      - neovim
+
+- name: Setting rust environment
+  ansible.builtin.blockinfile:
+      path: '{{ HOME }}/{{ item }}'
+      state: 'present'
+      create: 'yes'
+      prepend_newline: true
+      marker: '#--------- {mark} ---------#'
+      marker_begin: 'StartRust'
+      marker_end: 'EndRust'
+      block: |
+          [[ -r "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env" > /dev/null 2> /dev/null || true
+  loop:
+      - .zshrc
+      - .bashrc
+  tags:
+      - rust
+      - anyrun
+      - neovim

@@ -1,0 +1,49 @@
+- name: Downloading n node version manager
+  ansible.builtin.git:
+      repo: 'https://github.com/tj/n.git'
+      dest: '{{ HOME }}/nnode'
+      update: true
+      depth: 1
+  tags:
+      - node
+      - ags
+      - neovim
+
+- name: Installing node using n node version manager
+  ansible.builtin.shell: |
+      export N_PREFIX={{ HOME }}/.node
+      export N_CACHE_PREFIX={{ HOME }}/.node
+      export PATH={{ HOME }}/.node/n/bin:$PATH
+      export PATH={{ HOME }}/.node/bin:$PATH
+
+      cd {{ HOME }}/nnode 
+      make PREFIX={{ HOME }}/.node/n install
+      n lts
+      npm config set prefix $HOME/.node
+      npm install -g pnpm ts-node
+  tags:
+      - node
+      - ags
+      - neovim
+
+- name: Setting node environment
+  ansible.builtin.blockinfile:
+      path: '{{ HOME }}/{{ item }}'
+      state: 'present'
+      create: 'yes'
+      prepend_newline: true
+      marker: '#--------- {mark} ---------#'
+      marker_begin: 'StartNode'
+      marker_end: 'EndNode'
+      block: |
+          export N_PREFIX="$HOME/.node"
+          export N_CACHE_PREFIX="$HOME/.node"
+          export PATH="$HOME/.node/n/bin:$PATH"
+          export PATH="$HOME/.node/bin:$PATH"
+  loop:
+      - .zshrc
+      - .bashrc
+  tags:
+      - node
+      - ags
+      - neovim

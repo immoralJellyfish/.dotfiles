@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+monitors_count=$(hyprctl monitors -j | jq length)
+
+function lid_on(){
+    hyprctl keyword monitor "eDP-1,preferred,auto,1"
+    hyprctl dispatch dpms on
+}
+
+function lid_off(){
+    if (( "$monitors_count" > 1 )); then
+        hyprctl keyword monitor "eDP-1, disable"
+    else
+        loginctl lock-session
+        hyprctl dispatch dpms off
+        hyprlock && loginctl unlock-session
+    fi
+}
+
+case "$1" in
+    "on") lid_on ;;
+    "off") lid_off ;;
+esac
+
+

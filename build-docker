@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+docker build -f ./deb.Dockerfile . -t john
+docker build -f arch.Dockerfile . -t johnbtw

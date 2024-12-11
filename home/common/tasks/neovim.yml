@@ -1,0 +1,104 @@
+- name: Installing neovim dependencies for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - gettext
+          - tree-sitter-cli
+          - luarocks
+  when: ansible_facts.distribution == ARCH
+  tags:
+      - neovim
+      - neovim_standalone
+
+- name: Installing neovim dependencies for ubuntu
+  become: true
+  ansible.builtin.apt:
+      update_cache: true
+      allow_downgrade: true
+      state: 'latest'
+      name:
+          - gettext
+          - tree-sitter-cli
+          - luarocks
+  when: ansible_facts.distribution == UBUNTU
+  tags:
+      - neovim
+      - neovim_standalone
+
+- name: Installing neovim dependencies for mac
+  community.general.homebrew:
+      state: 'latest'
+      name:
+          - gettext
+          - tree-sitter
+          - luarocks
+  when: ansible_facts.distribution == MAC
+  tags:
+      - neovim
+      - neovim_standalone
+
+- name: Downloading neovim package repository
+  ansible.builtin.git:
+      repo: 'https://github.com/{{ item.repo }}'
+      dest: '{{ item.dest }}'
+      version: '{{ item.version | default(omit) }}'
+      recursive: true
+      update: false
+      accept_hostkey: true
+      depth: 1
+  loop:
+      - {repo: 'neovim/neovim', dest: '{{ HOME }}/neovim', version: 'stable'}
+      - {
+            repo: 'immoralJellyfish/nvimrc',
+            dest: '{{ playbook_dir }}/Nvimrc',
+            version: 'main',
+        }
+  tags:
+      - neovim
+      - neovim_standalone
+
+- name: Ensure neovim config clean
+  ansible.builtin.file:
+      dest: '{{ XDG_CONFIG_HOME }}/nvim'
+      state: 'absent'
+  tags:
+      - neovim
+      - neovim_standalone
+
+- name: Link nvimrc to config
+  ansible.builtin.file:
+      src: '{{ playbook_dir }}/Nvimrc'
+      dest: '{{ XDG_CONFIG_HOME }}/nvim'
+      state: 'link'
+  tags:
+      - neovim
+      - neovim_standalone
+
+- name: Clean neovim build package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/neovim
+      make distclean
+  tags:
+      - neovim
+      - neovim_standalone
+
+- name: Building neovim package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/neovim
+      make deps
+      make CMAKE_BUILD_TYPE=Release
+  tags:
+      - neovim
+      - neovim_standalone
+
+- name: Installing neovim package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/neovim
+      make install
+  tags:
+      - neovim
+      - neovim_standalone

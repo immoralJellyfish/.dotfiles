@@ -1,0 +1,42 @@
+@import './styles/lib/colors.scss';
+
+$font-size: 1rem;
+$gap-xs: 0.4em;
+$gap-s: 0.6em;
+$gap-m: 0.8em;
+$gap: 1em;
+$gap-l: 1.2em;
+$gap-xl: 1.4em;
+
+$radius-xs: 0.1em;
+$radius-s: 0.3em;
+$radius: 0.5em;
+$radius-m: 0.7em;
+$radius-l: 0.9em;
+
+$bar-height: 1.8em;
+$bar-padding: calc($gap-s/2);
+$bar-inner-height: calc($bar-height - $bar-padding);
+
+$shadow: 0 0 $gap-m calc($gap-s / 2) rgba(#000000, 0.6);
+$primary: $lavender;
+
+@keyframes warning {
+    from {
+        color: rgba($color: $yellow, $alpha: 0.5);
+    }
+
+    to {
+        color: rgba($color: $yellow, $alpha: 1);
+    }
+}
+
+@keyframes critical {
+    from {
+        color: rgba($color: $red, $alpha: 0.5);
+    }
+
+    to {
+        color: rgba($color: $red, $alpha: 1);
+    }
+}

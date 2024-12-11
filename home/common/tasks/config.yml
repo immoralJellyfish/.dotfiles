@@ -1,0 +1,66 @@
+- name: Finding common dotfiles file
+  ansible.builtin.find:
+      paths: '{{ playbook_dir }}/home/common'
+      file_type: 'file'
+      hidden: true
+  register: common_dotfiles_file
+  tags:
+      - common
+
+- name: Finding common dotfiles folder
+  ansible.builtin.find:
+      paths: '{{ playbook_dir }}/home/common/{{ item }}'
+      file_type: 'any'
+      hidden: true
+  loop:
+      - .config
+      - .scripts
+  register: common_dotfiles_folder
+  tags:
+      - common
+
+- name: Cleaning common dotfiles file
+  ansible.builtin.file:
+      dest: '{{ HOME }}/{{ item.path | basename }}'
+      state: 'absent'
+  loop: '{{ common_dotfiles_file.files }}'
+  loop_control:
+      label: '{{ item.path }}'
+  tags:
+      - common
+
+- name: Cleaning common dotfiles folder
+  ansible.builtin.file:
+      dest: "{{ HOME }}/{{ item.1.path.split('/')[-2:] | join('/') }}"
+      state: 'absent'
+  loop: "{{ common_dotfiles_folder.results | subelements('files', skip_missing=true) }}"
+  loop_control:
+      label: "{{ HOME }}/{{ item.1.path.split('/')[-2:] | join('/') }}"
+  when:
+      - item.1.path != './common/.config'
+      - item.1.path != './common/.scripts'
+  tags:
+      - common
+
+- name: Linking common dotfiles using stow
+  ansible.builtin.shell: |
+      cd {{ playbook_dir }}/home
+
+      stow common -t {{ HOME }}
+  tags:
+      - common
+
+- name: Removing wallpaper home
+  ansible.builtin.file:
+      dest: '{{ HOME }}/.wallpaper'
+      state: 'absent'
+  tags:
+      - common
+
+- name: Link wallpaper home
+  ansible.builtin.file:
+      src: '{{ playbook_dir }}/Wallpaper'
+      dest: '{{ HOME }}/.wallpaper'
+      state: 'link'
+  tags:
+      - common

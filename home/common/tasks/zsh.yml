@@ -1,0 +1,44 @@
+- name: Installing zsh for arch
+  become: true
+  community.general.pacman:
+      state: 'latest'
+      update_cache: true
+      name: 'zsh'
+  when: ansible_facts.distribution == ARCH
+  tags:
+      - zsh
+
+- name: Installing zsh for ubuntu
+  become: true
+  ansible.builtin.apt:
+      update_cache: true
+      allow_downgrade: true
+      state: 'latest'
+      name: 'zsh'
+  when: ansible_facts.distribution == UBUNTU
+  tags:
+      - zsh
+
+- name: Installing zsh using for mac
+  community.general.homebrew:
+      state: 'latest'
+      name: 'zsh'
+  when: ansible_facts.distribution == MAC
+  tags:
+      - zsh
+
+- name: Identifying zsh path
+  ansible.builtin.shell: 'which zsh'
+  register: zsh_path
+  changed_when: false
+  tags:
+      - zsh
+
+- name: Changing default shell to zsh
+  become: true
+  ansible.builtin.user:
+      name: '{{ ansible_user_id }}'
+      shell: '{{ zsh_path.stdout }}'
+  when: zsh_path.stdout != ""
+  tags:
+      - zsh

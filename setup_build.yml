@@ -1,0 +1,67 @@
+- name: Installing common build package for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - make
+          - cmake
+          - meson
+          - ninja
+          - ccache
+          - gettext
+          - git
+          - curl
+          - wget
+          - zip
+          - tar
+          - unzip
+          - unrar
+          - p7zip
+  when: ansible_facts.distribution == ARCH
+
+- name: Installing common build package for mac os
+  community.general.homebrew:
+      state: 'latest'
+      name:
+          - make
+          - cmake
+          - meson
+          - ninja
+          - ccache
+          - git
+          - curl
+          - wget
+          - zip
+          - gnu-tar
+          - unzip
+          - rar
+          - p7zip
+  when: ansible_facts.distribution == MAC
+
+- name: Installing common build package for ubuntu
+  become: true
+  ansible.builtin.apt:
+      update_cache: true
+      allow_downgrade: true
+      state: 'latest'
+      name:
+          - build-essential
+          - make
+          - cmake
+          - cmake-extras
+          - extra-cmake-modules
+          - meson
+          - ninja-build
+          - ccache
+          - gettext
+          - gettext-base
+          - git
+          - curl
+          - wget
+          - zip
+          - tar
+          - unzip
+          - unrar
+          - p7zip
+  when: ansible_facts.distribution == UBUNTU

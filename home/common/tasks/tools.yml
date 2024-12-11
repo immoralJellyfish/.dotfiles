@@ -1,0 +1,46 @@
+- name: Installing common tools for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - fd
+          - ripgrep
+          - awk
+          - jq
+  when: ansible_facts.distribution == ARCH
+  tags:
+      - tools
+      - neovim
+      - hyprland
+
+- name: Installing common tools for ubuntu
+  become: true
+  ansible.builtin.apt:
+      update_cache: true
+      allow_downgrade: true
+      state: 'latest'
+      name:
+          - fd-find
+          - ripgrep
+          - jq
+          - gawk
+  when: ansible_facts.distribution == UBUNTU
+  tags:
+      - tools
+      - neovim
+      - hyprland
+
+- name: Installing common tools for mac
+  community.general.homebrew:
+      state: 'latest'
+      name:
+          - fd
+          - ripgrep
+          - jq
+          - awk
+  when: ansible_facts.distribution == MAC
+  tags:
+      - tools
+      - neovim
+      - hyprland

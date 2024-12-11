@@ -1,0 +1,31 @@
+.systemtray_toggle {
+    background-color: $base;
+    border: 0.08em solid $charcoal;
+    border-radius: $bar-height;
+    padding: $bar-padding;
+
+    .systemtray_item {
+        min-height: $bar-inner-height;
+        min-width: $bar-inner-height;
+        margin-left: calc($gap-xs / 2);
+
+        icon {
+            font-size: calc($font-size/1.1);
+        }
+    }
+
+    .toggle {
+        min-height: $bar-inner-height;
+        min-width: $bar-inner-height;
+        border-radius: $bar-inner-height;
+        background-color: $charcoal;
+
+        &.active,
+        &:hover {
+            background-color: $primary;
+            label {
+                color: $crust;
+            }
+        }
+    }
+}

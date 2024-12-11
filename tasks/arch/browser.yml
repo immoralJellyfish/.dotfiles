@@ -1,0 +1,33 @@
+- name: Installing browser for archlinux
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - firefox
+          - chromium
+  tags:
+      - browser
+      - apps
+
+- name: Cleaning browser config
+  ansible.builtin.file:
+      dest: '{{ HOME }}/.mozilla/firefox'
+      state: 'absent'
+  tags:
+      - personal
+
+- name: Ensure .mozilla dir exist
+  ansible.builtin.file:
+      dest: '{{ HOME }}/.mozilla'
+      state: 'directory'
+  tags:
+      - personal
+
+- name: Link mozilla firefox config
+  ansible.builtin.file:
+      src: '{{ playbook_dir }}/Personal/firefox'
+      dest: '{{ HOME }}/.mozilla/firefox'
+      state: 'link'
+  tags:
+      - personal

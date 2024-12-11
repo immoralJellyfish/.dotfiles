@@ -1,0 +1,21 @@
+- name: Installing bluetooth packages for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'present'
+      name:
+          - bluez
+          - blueman
+  when: ansible_facts.distribution == ARCH
+  tags:
+      - ags
+      - hyprwm
+
+- name: Enabling bluetooth with systemd
+  become: true
+  ansible.builtin.systemd:
+      enabled: true
+      name: 'bluetooth'
+  tags:
+      - ags
+      - hyprwm

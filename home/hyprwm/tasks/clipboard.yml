@@ -1,0 +1,45 @@
+- name: Downloading wl-clipboard package
+  ansible.builtin.git:
+      repo: 'https://github.com/bugaevc/wl-clipboard.git'
+      dest: '{{ HOME }}/wlclipboard'
+      depth: 1
+      recursive: true
+      update: false
+  tags:
+      - clipboard
+      - hyprwm
+
+- name: Building wl-clipboard package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/wlclipboard 
+      meson setup build
+      cd build
+      ninja
+  tags:
+      - clipboard
+      - hyprwm
+
+- name: Downloading cliphist package
+  ansible.builtin.shell: 'go install go.senan.xyz/cliphist@latest'
+  tags:
+      - clipboard
+      - hyprwm
+
+- name: Installing wl-clipboard package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/wlclipboard/build
+      meson install
+  tags:
+      - clipboard
+      - hyprwm
+
+- name: Installing cliphist package
+  become: true
+  ansible.builtin.copy:
+      src: '{{ GOPATH.stdout }}/bin/cliphist'
+      dest: '/usr/local/bin'
+      mode: 0755
+  tags:
+      - clipboard
+      - hyprwm

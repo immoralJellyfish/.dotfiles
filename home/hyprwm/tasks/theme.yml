@@ -1,0 +1,56 @@
+- name: Installing theme packages for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - qt5ct
+          - qt6ct
+          - kvantum
+          - nwg-look
+  tags:
+      - theme
+      - hyprwm
+
+- name: Downloading catppuccin colloid theme
+  ansible.builtin.git:
+      repo: 'https://github.com/vinceliuice/Colloid-gtk-theme.git'
+      dest: '{{ HOME }}/gtk-theme'
+      depth: 1
+      update: true
+  tags:
+      - theme
+      - hyprwm
+
+- name: Ensure necessary directory
+  ansible.builtin.file:
+      dest: '{{ item }}'
+      state: 'directory'
+  loop:
+      - '{{ XDG_DATA_HOME }}/themes'
+      - '{{ XDG_DATA_HOME }}/icons'
+      - '{{ XDG_CONFIG_HOME }}/gtk-4.0'
+  tags:
+      - theme
+      - hyprwm
+
+- name: Installing catppuccin theme and icon
+  ansible.builtin.shell: |
+      {{ HOME }}/gtk-theme/install.sh -d {{ XDG_DATA_HOME }}/themes -t purple -c dark -s compact -l --tweaks catppuccin black
+      wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="{{ XDG_DATA_HOME }}/icons" sh
+  tags:
+      - theme
+      - hyprwm
+
+- name: Applying gtk desktop interface theme
+  ansible.builtin.shell: |
+      gsettings set org.gnome.desktop.interface gtk-theme 'Colloid-Purple-Dark-Compact-Catppuccin'
+      gsettings set org.gnome.desktop.wm.preferences theme 'Colloid-Purple-Dark-Compact-Catppuccin'
+      gsettings set org.gnome.desktop.interface color-scheme prefer-dark 
+      gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+      gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+      gsettings set org.gnome.desktop.interface font-name 'Inter Display Semi-Bold 14'
+      gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font 14'
+  tags:
+      - theme
+      - hyprwm

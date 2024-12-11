@@ -1,0 +1,20 @@
+- name: Downloading nerd-fonts
+  ansible.builtin.shell: |
+      [[ -d {{ HOME }}/nerdfonts ]] || git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git {{ HOME }}/nerdfonts
+
+      cd {{ HOME }}/nerdfonts
+
+      git sparse-checkout add patched-fonts/JetBrainsMono
+      git sparse-checkout add patched-fonts/FiraCode
+  tags:
+      - nerdfonts
+
+- name: Installing nerdfont mono for linux
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/nerdfonts
+
+      ./install.sh -S JetBrainsMono FiraCode
+      ./install.sh -S -p JetBrainsMono FiraCode
+  tags:
+      - nerdfonts

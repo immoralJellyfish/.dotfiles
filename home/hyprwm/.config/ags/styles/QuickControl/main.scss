@@ -1,0 +1,207 @@
+@use 'sass:color';
+
+@import './toggle.scss';
+@import './control_list.scss';
+
+.quickcontrol {
+    @include Window;
+    min-width: calc($font-size * 18);
+    padding: $gap-s;
+
+    .toggler {
+        .toggle {
+            &:nth-child(1) {
+                > box {
+                    margin-right: calc($gap-xs / 2);
+                }
+            }
+
+            &:nth-child(2) {
+                > box {
+                    margin-left: calc($gap-xs / 2);
+                }
+            }
+            > box {
+                border-radius: $radius-m;
+                transition: 0.3s;
+
+                > button {
+                    background-color: $base;
+                    border-top: 0.08em solid $charcoal;
+                    border-right: 0.08em solid $charcoal;
+                    border-bottom: 0.08em solid $charcoal;
+                    border-radius: 0;
+
+                    box {
+                        label {
+                            color: $primary;
+                            &:nth-child(1) {
+                                font-size: calc($font-size * 1.2);
+                            }
+                            &:nth-child(2) {
+                                font-size: calc($font-size / 1.2);
+                            }
+                        }
+                    }
+
+                    &:nth-child(1) {
+                        padding: $gap-s;
+                        border-right: 0.08em solid $charcoal;
+                        border-top-left-radius: $radius-m;
+                        border-bottom-left-radius: $radius-m;
+
+                        &:hover {
+                            background-color: color.adjust(
+                                $primary,
+                                $lightness: -8%
+                            );
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        padding: calc($gap-xs / 2);
+                        border-top-right-radius: $radius-m;
+                        border-bottom-right-radius: $radius-m;
+
+                        &:hover {
+                            background-color: color.adjust(
+                                $primary,
+                                $lightness: -8%
+                            );
+                        }
+                    }
+                }
+            }
+
+            &.active,
+            &:hover {
+                > box {
+                    button {
+                        background-color: $primary;
+                        label {
+                            color: $crust;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .slider_control {
+        margin-top: $gap-s;
+        background-color: $base;
+        border: 0.08em solid $charcoal;
+        border-radius: $radius-m;
+
+        .control {
+            border-radius: $radius-m;
+
+            > box {
+                min-height: calc($font-size * 3.5);
+                padding-right: $gap-l;
+
+                .icon {
+                    border-radius: $radius-m;
+                    margin-right: $gap-xs;
+                    min-width: calc($font-size * 3.5);
+
+                    label {
+                        padding: 0 $gap-xs;
+
+                        &:nth-child(1) {
+                            font-size: calc($font-size * 1.2);
+                        }
+
+                        &:nth-child(2) {
+                            font-size: calc($font-size / 1.2);
+                        }
+
+                        &.disconnected {
+                            color: rgba($primary, 0.5);
+                        }
+                    }
+
+                    &:hover {
+                        background-color: $lavender;
+
+                        label {
+                            color: $crust;
+                        }
+                    }
+                }
+
+                .indicator {
+                    margin-bottom: calc($gap-xs / 2);
+                }
+
+                scale {
+                    margin-bottom: $gap-xs;
+                    trough {
+                        min-height: calc($font-size/1.8);
+                        border-radius: $font-size;
+                        background-color: $charcoal;
+                    }
+
+                    highlight {
+                        background: $primary;
+                        border-radius: calc($font-size/1.8);
+                    }
+
+                    slider {
+                        border-radius: 50%;
+                        border: none;
+                        background: transparent;
+                        box-shadow: none;
+                        min-height: calc($font-size/1.8);
+                        min-width: calc($font-size/1.8);
+                    }
+
+                    &:hover {
+                        slider {
+                            transition: 0.3s;
+                            background-color: $primary;
+                            box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.5);
+                            border: 0.2em solid $primary;
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                background-color: $charcoal;
+                box {
+                    scale {
+                        trough {
+                            background-color: $overlay0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .control_sublist {
+            margin: 0 $gap-l;
+
+            button {
+                margin: $gap-s 0;
+                padding: $gap-xs;
+                border-radius: $radius;
+                background-color: $charcoal;
+
+                &.active,
+                &:hover {
+                    background-color: $primary;
+                    label {
+                        color: $crust;
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            > box {
+                background-color: $charcoal;
+            }
+        }
+    }
+}

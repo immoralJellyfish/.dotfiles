@@ -1,0 +1,98 @@
+- name: Installing ags dependencies for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'present'
+      name:
+          - vala
+          - gjs
+          - dart-sass
+          - gtk3
+          - json-glib
+          - gobject-introspection
+          - gtk-layer-shell
+          - libdbusmenu-gtk3
+          - libappindicator-gtk3
+          - upower
+          - wireplumber
+  when: ansible_facts.distribution == ARCH
+  tags:
+      - ags
+      - ags_standanlone
+      - hyprwm
+
+- name: Downloading ags & astal package
+  ansible.builtin.git:
+      repo: 'https://github.com/aylur/{{ item.repo }}.git'
+      dest: '{{ HOME }}/{{ item.repo }}'
+      depth: 1
+      recursive: true
+      version: '{{ item.version }}'
+  loop:
+      - repo: astal
+        version: 'main'
+      - repo: ags
+        version: 'main'
+  tags:
+      - ags
+      - ags_standanlone
+      - hyprwm
+
+- name: Building & installing astal package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/astal/{{ item }}
+      meson setup --reconfigure --prefix /usr build
+      meson install -C build
+  loop:
+      - lib/astal/io
+      - lib/astal/gtk3
+      - lib/battery
+      - lib/bluetooth
+      - lib/hyprland
+      - lib/network
+      - lib/notifd
+      - lib/wireplumber
+      - lib/mpris
+      - lib/tray
+      - lang/gjs
+  tags:
+      - ags
+      - ags_standanlone
+      - hyprwm
+
+- name: Downloading ags package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/ags
+      go install -ldflags "\
+          -X 'main.gtk4LayerShell=$(pkg-config --variable=libdir gtk4-layer-shell-0)/libgtk4-layer-shell.so' \
+          -X 'main.astalGjs=$(pkg-config --variable=srcdir astal-gjs)'"
+  tags:
+      - ags
+      - ags_standanlone
+      - hyprwm
+
+- name: Installing ags package
+  become: true
+  ansible.builtin.copy:
+      src: '{{ GOPATH.stdout }}/bin/ags'
+      dest: '/usr/local/bin'
+      mode: 0755
+  tags:
+      - ags
+      - ags_standanlone
+      - hyprwm
+
+- name: Generating ags types
+  ansible.builtin.shell: |
+      export PREFIX={{ HOME }}/.node/n
+      export N_PREFIX={{ HOME }}/.node
+      export N_CACHE_PREFIX={{ HOME }}/.node
+      export PATH={{ HOME }}/.node/n/bin:$PATH
+      export PATH={{ HOME }}/.node/bin:$PATH
+
+      ags types
+  tags:
+      - ags
+      - ags_standanlone
+      - hyprwm

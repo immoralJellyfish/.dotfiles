@@ -1,0 +1,31 @@
+.workspace {
+    background-color: $base;
+    padding: $bar-padding;
+    margin: 0 $bar-padding;
+    border: 0.08em solid $charcoal;
+    border-radius: $bar-height;
+
+    .workspace_item {
+        min-height: $bar-inner-height;
+        min-width: $bar-inner-height;
+        border-radius: $bar-inner-height;
+        label {
+            color: rgba($primary, 0.5);
+            font-size: calc($font-size/1.1);
+        }
+
+        &.occupied {
+            label {
+                color: $primary;
+            }
+        }
+
+        &:hover,
+        &.focused {
+            background-color: $primary;
+            label {
+                color: $crust;
+            }
+        }
+    }
+}

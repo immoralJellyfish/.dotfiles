@@ -1,0 +1,57 @@
+.control_list {
+    @include Window;
+    padding: $gap-m $gap-s;
+    min-width: calc($font-size * 18);
+
+    .head {
+        .back,
+        .setting,
+        .scan {
+            padding: calc($gap-s/2);
+            border-radius: $radius-m;
+
+            &:hover {
+                background-color: $lavender;
+
+                label {
+                    color: $crust;
+                }
+            }
+        }
+    }
+
+    scrollable {
+        min-height: calc($font-size * 20);
+
+        .list_item {
+            padding: $gap-xs $gap-s;
+            border-radius: $radius;
+            margin-top: $gap-s;
+
+            .icon {
+                font-size: calc($font-size * 1.2);
+                margin-right: $gap-xs;
+            }
+
+            box {
+                label {
+                    &:nth-child(3),
+                    &:nth-child(4) {
+                        margin-left: $gap-s;
+                    }
+                }
+            }
+
+            &:hover,
+            &.active {
+                background-color: $lavender;
+
+                box {
+                    label {
+                        color: $crust;
+                    }
+                }
+            }
+        }
+    }
+}

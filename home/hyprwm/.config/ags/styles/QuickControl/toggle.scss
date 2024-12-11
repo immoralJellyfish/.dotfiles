@@ -1,0 +1,32 @@
+.quickcontrol_toggle {
+    @include Button;
+
+    label {
+        font-weight: 800;
+
+        &.low,
+        &.disconnected {
+            color: rgba($primary, 0.6);
+        }
+
+        &.medium {
+            color: rgba($primary, 0.8);
+        }
+
+        &.high {
+            color: rgba($primary, 1);
+        }
+
+        &.warning {
+            color: $yellow;
+        }
+
+        &.overamplified {
+            color: $red;
+        }
+
+        &:nth-child(2) {
+            margin: 0 $gap-xs;
+        }
+    }
+}

@@ -1,0 +1,52 @@
+- name: Installing flameshot dependencies
+  become: true
+  ansible.builtin.apt:
+      update_cache: true
+      state: 'latest'
+      name:
+          - xdg-desktop-portal-gnome
+          - grim
+          - slurp
+          - libkf5guiaddons-dev
+          - qtbase5-dev
+          - qttools5-dev-tools
+          - qttools5-dev
+          - libqt5dbus5
+          - libqt5network5
+          - libqt5core5a
+          - libqt5widgets5
+          - libqt5gui5
+          - libqt5svg5-dev
+  tags:
+      - flameshot
+      - apps
+
+- name: Downloading flameshot package repository
+  ansible.builtin.git:
+      repo: 'https://github.com/flameshot-org/flameshot.git'
+      dest: '{{ HOME }}/flameshot'
+      depth: 1
+      recursive: true
+  tags:
+      - flameshot
+      - apps
+
+- name: Building flameshot for linux
+  ansible.builtin.shell: |
+      cd {{ HOME }}/flameshot
+      mkdir build
+      cd build
+      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DUSE_WAYLAND_CLIPBOARD=true -DUSE_WAYLAND_GRIM=ON ../
+      make
+  tags:
+      - flameshot
+      - apps
+
+- name: Installing flameshot
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/flameshot
+      cmake --install build
+  tags:
+      - flameshot
+      - apps

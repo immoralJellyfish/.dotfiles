@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -e
+
+[[ -n $HYPRLAND_DEBUG_CONF ]] && exit 0
+USAGE="\
+    Import environment variables
+Usgae: $0 <command>
+Commands:
+tmux         import to tmux server
+system       import to systemd and dbus user session
+help         print this help
+"
+
+_envs=($(env | cut -d '=' -f 1))
+
+case "$1" in
+    system)
+        dbus-update-activation-environment --systemd "${_envs[@]}"
+        ;;
+    tmux)
+        for v in "${_envs[@]}"; do
+            if [[ -n ${!v} ]]; then
+                tmux setenv -g "$v" "${!v}"
+                tmux set-option -g update-environment "$v"
+            fi
+        done
+        ;;
+    help)
+        echo -n "$USAGE"
+        exit 0
+        ;;
+    *)
+        echo "operation required"
+        echo "use \"$0 help\" to see usage help"
+        exit 1
+        ;;
+esac

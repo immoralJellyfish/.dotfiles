@@ -1,0 +1,46 @@
+- name: Installing flameshot dependencies for archlinux
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - qt5-base
+          - qt5-tools
+          - qt5-svg
+          - kguiaddons
+          - kguiaddons5
+          - grim
+          - slurp
+  tags:
+      - flameshot
+      - apps
+
+- name: Downloading flameshot package repository
+  ansible.builtin.git:
+      repo: 'https://github.com/flameshot-org/flameshot.git'
+      dest: '{{ HOME }}/flameshot'
+      depth: 1
+      recursive: true
+  tags:
+      - flameshot
+      - apps
+
+- name: Building flameshot
+  ansible.builtin.shell: |
+      cd {{ HOME }}/flameshot
+      mkdir build
+      cd build
+      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DUSE_WAYLAND_CLIPBOARD=true -DUSE_WAYLAND_GRIM=ON ../
+      make
+  tags:
+      - flameshot
+      - apps
+
+- name: Installing flameshot
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/flameshot
+      cmake --install build
+  tags:
+      - flameshot
+      - apps

@@ -1,0 +1,49 @@
+- name: Ensure ssh directory exist
+  ansible.builtin.file:
+      dest: '{{ HOME }}/.ssh'
+      mode: 0700
+      state: 'directory'
+  tags:
+      - ssh
+      - personal
+
+- name: Copy private ssh key
+  ansible.builtin.copy:
+      src: '{{ item }}'
+      dest: '{{ HOME }}/.ssh/{{ item | basename }}'
+      mode: 0600
+  loop: "{{ lookup('fileglob', '{{ playbook_dir }}/.ssh/*', wantlist=true) | difference(lookup('fileglob', '{{ playbook_dir }}/.ssh/*.pub', wantlist=true)) }}"
+  tags:
+      - ssh
+      - personal
+
+- name: Copy public ssh key
+  ansible.builtin.copy:
+      src: '{{ item }}'
+      dest: '{{ HOME }}/.ssh/{{ item | basename }}'
+      mode: 0644
+  loop: "{{ lookup('fileglob', '{{ playbook_dir }}/.ssh/*.pub', wantlist=true) }}"
+  tags:
+      - ssh
+      - personal
+
+- name: Authorize public ssh key
+  ansible.posix.authorized_key.authorized_key:
+      key: "{{ lookup('file', item) }}"
+      state: 'present'
+      user: '{{ USER }}'
+  loop: "{{ lookup('fileglob', '{{ HOME }}/.ssh/*.pub', wantlist=true) }}"
+  tags:
+      - ssh
+      - personal
+
+- name: Downloading personal repository
+  ansible.builtin.git:
+      repo: 'git@github.com:immoralJellyfish/Personal.git'
+      dest: '{{ playbook_dir }}/Personal'
+      recursive: true
+      accept_hostkey: true
+      update: false
+      depth: 1
+  tags:
+      - personal

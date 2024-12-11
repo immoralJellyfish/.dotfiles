@@ -1,0 +1,32 @@
+- name: Installing hyprland package dependencies for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - qt5-wayland
+          - qt6-wayland
+          - socat
+          - xwaylandvideobridge
+          - playerctl
+          - brightnessctl
+
+          - thunar-archive-plugin
+          - xdg-user-dirs
+          - gvfs
+          - gvfs-mtp
+          - ffmpegthumbnailer
+          - tumbler
+          - webp-pixbuf-loader
+          - network-manager-applet
+          - mpv-mpris
+
+          - thunar
+          - ristretto
+          - mousepad
+          - okular
+          - file-roller
+          - nm-connection-editor
+          - pavucontrol
+  tags:
+      - hyprwm

@@ -1,0 +1,37 @@
+- name: Installing common app for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - kitty
+          - mpv
+          - android-file-transfer
+  when: ansible_facts.distribution == ARCH
+  tags:
+      - apps
+
+- name: Installing common app for ubuntu
+  become: true
+  ansible.builtin.apt:
+      update_cache: true
+      state: 'latest'
+      name:
+          - kitty
+          - mpv
+          - android-file-transfer
+  when: ansible_facts.distribution == UBUNTU
+  tags:
+      - apps
+
+- name: Installing common app for mac
+  community.general.homebrew:
+      state: 'latest'
+      name:
+          - kitty
+          - stolendata-mpv
+          - caffeine
+          - whoozle-android-file-transfer
+  when: ansible_facts.distribution == MAC
+  tags:
+      - apps

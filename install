@@ -1,0 +1,267 @@
+#!/usr/bin/env bash
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/pipx-venv/bin:$PATH"
+export DEBIAN_FRONTEND=noninteractive
+export NONINTERACTIVE=1
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC="\033[0m"
+
+OK="${GREEN}Ok${NC}"
+ERROR="${RED}ERROR${NC}"
+
+AUR=yay
+CURRENT_DIR=$(pwd)
+ISPYTHON=$ERROR
+ISPIPX=$ERROR
+ISANSIBLE=$ERROR
+ISGIT=$ERROR
+ISSTOW=$ERROR
+
+set -e
+
+if [[ -f /etc/os-release ]]; then
+    . /etc/os-release
+fi
+
+if [[ -n "$ID_LIKE" ]]; then
+    OS=$(echo $ID_LIKE | cut -d " " -f 1 | tr '[:upper:]' '[:lower:]')
+fi
+
+if [[ -n "$ID" ]]; then
+    OS=$(echo $ID | tr '[:upper:]' '[:lower:]')
+fi
+
+if [[ $(uname) == 'Darwin' ]]; then
+    OS='mac'
+fi
+
+if command -v git > /dev/null 2>&1; then
+    ISGIT=$OK
+fi
+
+if command -v python > /dev/null 2>&1 || command -v python3 > /dev/null 2>&1; then
+    ISPYTHON=$OK
+
+    if command -v pipx > /dev/null 2>&1; then
+        ISPIPX=$OK
+    fi
+
+    if command -v ansible > /dev/null 2>&1; then
+        ISANSIBLE=$OK
+    fi
+fi
+
+if command -v stow > /dev/null 2>&1; then
+    ISSTOW=$OK
+fi
+
+PLAYBOOK="local.$OS.yml"
+ARGS="--ask-become "
+
+function clean(){
+    files=(
+        "aur"
+        "*hypr*"
+        "astal"
+        "ags"
+        "anyrun"
+        "fcitx-catppuccin"
+        "grub-catppuccin"
+        "flameshot"
+        "gtk-theme"
+        "neovim"
+        "nnode"
+        "sddm-theme.zip"
+        "nsfv"
+        "wlclipboard"
+        "nerdfonts"
+    )
+
+    for file in ${files[@]}; do
+        echo "Removing $HOME/$file"
+        sudo rm -rf $HOME/$file
+    done
+}
+
+function checkhealth(){
+    echo -e
+
+    printf "Operating System: "
+    echo -e "${GREEN}$OS${NC}"
+
+    printf "Python: "
+    printf "$ISPYTHON"
+    if [[ $ISPYTHON == "$OK" ]];then
+        echo -e " [$(python --version)]"
+    else
+        echo -e
+    fi
+
+    printf "Pipx: "
+    printf "$ISPIPX"
+    if [[ $ISPIPX == "$OK" ]];then
+        echo -e " [$(pipx --version)]"
+    else
+        echo -e
+    fi
+
+    printf "Ansible: "
+    printf "$ISANSIBLE"
+    if [[ $ISANSIBLE == "$OK" ]];then
+        echo -e " [$(ansible --version | grep -oP '(?<=core )[0-9.]+')]"
+    else
+        echo -e
+    fi
+
+    printf "Git: "
+    printf "$ISGIT"
+    if [[ $ISGIT == "$OK" ]];then
+        echo -e " [$(git --version)]"
+    else
+        echo -e
+    fi
+
+    printf "Stow: "
+    printf "$ISSTOW"
+    if [[ $ISSTOW == "$OK" ]];then
+        echo -e " [$(stow --version)]"
+    else
+        echo -e
+    fi
+
+    echo -e
+}
+
+function setup_arch(){
+    if [[ $ISGIT == "$ERROR" ]] ; then
+        sudo pacman -Sy --noconfirm git
+    fi
+
+    if ! command -v $AUR > /dev/null 2>&1; then
+        sudo pacman -Sy --noconfirm base-devel
+
+        [[  -d $HOME/aur ]] || git clone --quiet https://aur.archlinux.org/$AUR.git $HOME/aur
+
+        cd $HOME/aur
+        makepkg -si --noconfirm
+
+        cd $CURRENT_DIR
+    fi
+
+    if [[ $ISPYTHON == "$ERROR" ]] ; then
+        sudo pacman -Sy --noconfirm python
+    fi
+
+    if [[ $ISPIPX == "$ERROR" ]] ; then
+        sudo pacman -Sy --noconfirm python-pipx
+    fi
+
+    if [[ $ISSTOW == "$ERROR" ]] ; then
+        sudo pacman -Sy --noconfirm stow
+    fi
+}
+
+function setup_ubuntu(){
+    if [[ $ISPYTHON == "$ERROR" ]] ; then
+        sudo add-apt-repository universe
+        sudo apt-get -y update
+        sudo apt-get -y install python3 python-is-python3
+    fi
+
+    if [[ $ISPIPX == "$ERROR" ]] ; then
+        sudo apt-get -y update
+        sudo apt-get -y install pipx
+    fi
+
+    if [[ $ISSTOW == "$ERROR" ]] ; then
+        sudo apt-get -y update
+        sudo apt-get -y install stow
+    fi
+
+    if [[ $ISGIT == "$ERROR" ]] ; then
+        sudo apt-get -y update
+        sudo apt-get -y install git
+    fi
+}
+
+function setup_mac(){
+    pmset noidle &
+
+    if ! command -v brew > /dev/null 2>&1; then
+        sudo -v
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    fi
+
+    if [[ $ISPYTHON == "$ERROR" ]] ; then
+        brew install python3
+    fi
+
+    if [[ $ISPIPX == "$ERROR" ]] ; then
+        brew install pipx
+    fi
+
+    if [[ $STOW == "$ERROR" ]] ; then
+        brew install stow
+    fi
+
+    if [[ $ISGIT == "$ERROR" ]] ; then
+        brew install git
+    fi
+}
+
+case "$1" in
+    "")
+        case $OS in
+            "arch") setup_arch ;;
+            "ubuntu") setup_ubuntu ;;
+            "mac") setup_mac ;;
+            *)
+                echo "Not supported yet"
+                exit 1
+                ;;
+        esac
+        ;;
+    checkhealth)
+        checkhealth
+        exit 0
+        ;;
+    clean)
+        clean
+        exit 0
+        ;;
+    *)
+        echo -e
+        echo -e "Usage: <empty|ansible argument|checkhealth|clean>"
+        echo -e
+        echo -e "empty: without argument to install all"
+        echo -e "ansible argument: pass ansible argument"
+        echo -e "checkhealth: to check dependencies"
+        echo -e "clean: clean all downloaded repo or files"
+        echo -e
+        exit 0
+        ;;
+esac
+
+clear
+if ! command -v ansible > /dev/null 2>&1; then
+    pipx install --include-deps ansible
+    sleep 1
+fi
+
+if (( $# <= 0 )); then
+    ARGS+="--ask-vault-password "
+fi
+
+if [[ -n "$WSL_DISTRO_NAME" ]]; then
+    ARGS+="--skip-tags apps --skip-tags hyprwm "
+fi
+
+clear
+ansible-playbook $PLAYBOOK $ARGS ${@}
+
+if [[ ! "$(git remote -v)" =~ (git@github) ]];then
+    git remote set-url origin git@github.com:immoralJellyfish/.dotfiles.git
+fi

@@ -1,0 +1,19 @@
+- name: Installing font for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - inter-font
+          - noto-fonts-emoji
+          - otf-font-awesome
+          - ttf-dejavu
+          - ttf-liberation
+          - adobe-source-han-sans-jp-fonts
+          - adobe-source-han-sans-kr-fonts
+          - adobe-source-han-sans-cn-fonts
+          - adobe-source-han-serif-jp-fonts
+          - adobe-source-han-serif-kr-fonts
+          - adobe-source-han-serif-cn-fonts
+  tags:
+      - hyprland

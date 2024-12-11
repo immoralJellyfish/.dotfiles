@@ -1,0 +1,80 @@
+- name: Installing common package for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - tmux
+          - btop
+          - fastfetch
+          - bat
+          - eza
+          - fzf
+          - trash-cli
+          - less
+          - tldr
+          - man
+  when: ansible_facts.distribution == ARCH
+  tags:
+      - common
+
+- name: Adding eza ppa repository for ubuntu
+  become: true
+  ansible.builtin.shell: |
+      mkdir -p /etc/apt/keyrings
+
+      wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | gpg --dearmor --yes -o /etc/apt/keyrings/gierens.gpg
+      echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | tee /etc/apt/sources.list.d/gierens.list
+      chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+
+      apt update -y
+  when: ansible_facts.distribution == UBUNTU
+  tags:
+      - common
+
+- name: Adding fastfetch ppa repository for ubuntu
+  become: true
+  ansible.builtin.apt_repository:
+      repo: 'ppa:zhangsongcui3371/fastfetch'
+      validate_certs: false
+  when: ansible_facts.distribution == UBUNTU
+  tags:
+      - common
+
+- name: Installing common packages for ubuntu
+  become: true
+  ansible.builtin.apt:
+      update_cache: true
+      state: 'latest'
+      name:
+          - tmux
+          - btop
+          - fastfetch
+          - bat
+          - eza
+          - fzf
+          - trash-cli
+          - less
+          - tldr
+          - man
+  when: ansible_facts.distribution == UBUNTU
+  tags:
+      - common
+
+- name: Installing common package for mac
+  community.general.homebrew:
+      state: 'latest'
+      name:
+          - tmux
+          - btop
+          - fastfetch
+          - bat
+          - eza
+          - fzf
+          - trash-cli
+          - less
+          - tldr
+          - man-db
+  when: ansible_facts.distribution == MAC
+  tags:
+      - common

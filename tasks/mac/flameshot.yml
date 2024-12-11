@@ -1,0 +1,7 @@
+- name: Installing flameshot for mac
+  community.general.homebrew:
+      state: 'latest'
+      name: 'flameshot'
+  tags:
+      - flameshot
+      - apps

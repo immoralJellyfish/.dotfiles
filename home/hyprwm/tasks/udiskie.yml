@@ -1,0 +1,59 @@
+- name: Installing udiskie for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name: udiskie
+  tags:
+      - udiskie
+      - hyprwm
+
+- name: Setting udiskie mountpoint
+  become: true
+  ansible.builtin.lineinfile:
+      path: /etc/tmpfiles.d/media.conf
+      state: 'present'
+      create: 'yes'
+      regexp: '^D\s*\/media.*root'
+      line: 'D /media 0755 root root 0 -'
+  tags:
+      - udiskie
+      - hyprwm
+
+- name: Setting udiskie rules
+  become: true
+  ansible.builtin.lineinfile:
+      path: '/etc/udev/rules.d/99-udisks2.rules'
+      state: 'present'
+      create: 'yes'
+      regexp: '^ENV{ID_FS_USAGE}=='
+      line: 'ENV{ID_FS_USAGE}=="filesystem|other|crypto", ENV{UDISKS_FILESYSTEM_SHARED}="1"'
+  tags:
+      - udiskie
+      - hyprwm
+
+- name: Setting udiskie mount options
+  become: true
+  ansible.builtin.ini_file:
+      path: '/etc/udisks2/mount_options.conf'
+      create: 'yes'
+      section: 'defaults'
+      option: '{{ item.option }}'
+      value: '{{ item.value }}'
+  loop:
+      - {
+            option: 'exfat_defaults',
+            value: 'uid=$UID,gid=$GID,iocharset=utf8,errors=remount-ro,sync',
+        }
+      - {
+            option: 'exfat_allow',
+            value: 'uid=$UID,gid=$GID,flush,dmask,errors,fmask,iocharset,namecase,umask,sync',
+        }
+      - {option: 'ntfs:ntfs3_defaults', value: 'uid=\$UID,gid=\$GID'}
+      - {
+            option: 'ntfs:ntfs3_allow',
+            value: 'uid=$UID,gid=$GID,flush,umask,dmask,fmask,iocharset,discard,nodiscard,sparse,nosparse,hidden,nohidden,sys_immutable,nosys_immutable,showmeta,noshowmeta,prealloc,noprealloc,hide_dot_files,nohide_dot_files,windows_names,nocase,case',
+        }
+  tags:
+      - udiskie
+      - hyprwm

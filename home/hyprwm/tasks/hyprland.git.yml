@@ -1,0 +1,95 @@
+- name: Installing hyprland packages for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - wayland
+          - wayland-protocols
+          - xorg-xwayland
+          - mesa
+          - systemd-libs
+          - gcc-libs
+          - glib2
+          - glibc
+          - glslang
+          - cairo
+          - seatd
+          - pixman
+          - tomlplusplus
+          - pango
+          - xcb-proto
+          - xcb-util
+          - xcb-util-errors
+          - xcb-util-image
+          - xcb-util-keysyms
+          - xcb-util-renderutil
+          - xcb-util-wm
+          - libdisplay-info
+          - libdrm
+          - libglvnd
+          - libinput
+          - libliftoff
+          - libx11
+          - libxcb
+          - libxcomposite
+          - libxcursor
+          - libxfixes
+          - libxkbcommon
+          - libxrender
+          # aquamarine
+          - pugixml
+          - libglvnd
+          # hyprlock
+          - pam
+          # hypridle
+          - sdbus-cpp
+          # hyprcursor
+          - libzip
+          - librsvg
+  tags:
+      - hyprland
+      - hyprwm
+
+- name: Downloading hyprland packages
+  ansible.builtin.git:
+      repo: 'https://github.com/{{ item.repo }}.git'
+      dest: '{{ HOME }}/{{ item.dest }}'
+      depth: 1
+      recursive: true
+      update: false
+  loop:
+      - {repo: hyprwm/hyprutils, dest: hyprutils}
+      - {repo: hyprwm/hyprlang, dest: hyprlang}
+      - {repo: hyprwm/hyprwayland-scanner, dest: hyprwayscanner}
+      - {repo: hyprwm/hyprcursor, dest: hyprcursor}
+      - {repo: hyprwm/aquamarine, dest: hypraquamarine}
+      - {repo: hyprwm/Hyprland, dest: hyprland}
+      - {repo: hyprwm/hyprpaper, dest: hyprpaper}
+      - {repo: hyprwm/hypridle, dest: hypridle}
+      - {repo: hyprwm/hyprlock, dest: hyprlock}
+      - {repo: hyprwm/xdg-desktop-portal-hyprland, dest: hyprxdp}
+  tags:
+      - hyprland
+      - hyprwm
+
+- name: Building & installing hyprland packages
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/{{ item }}
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+      cmake --install ./build
+  loop:
+      - hyprutils
+      - hyprlang
+      - hyprwayscanner
+      - hyprcursor
+      - hypraquamarine
+      - hyprland
+      - hyprpaper
+      - hypridle
+      - hyprlock
+  tags:
+      - hyprland
+      - hyprwm

@@ -1,0 +1,29 @@
+.system-info {
+    .item {
+        margin-right: $gap-s;
+
+        .icon {
+            min-height: $bar-height;
+            min-width: $bar-height;
+            margin-right: $gap-s;
+            border-radius: 50%;
+            background-color: $base;
+            border: 0.08em solid $charcoal;
+            font-size: calc($font-size/1.2);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+    }
+
+    eventbox {
+        &:hover {
+            .item {
+                .icon {
+                    background-color: $lavender;
+                    color: $crust;
+                    border-color: $lavender;
+                }
+            }
+        }
+    }
+}

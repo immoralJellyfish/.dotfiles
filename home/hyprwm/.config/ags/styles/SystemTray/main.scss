@@ -1,0 +1,10 @@
+@import './toggle.scss';
+
+.system_tray {
+    @include Window;
+
+    .systemtray_item {
+        @include Button;
+        padding: $gap-xs;
+    }
+}

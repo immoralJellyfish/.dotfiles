@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+DIRS=("Desktop" "Documents" "Downloads" "Pictures" "Public" "Templates" "Videos")
+DEFAULT_PATH=file://$HOME
+BOOKMARK_PATH=$XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
+xdg-user-dirs-update
+xdg-user-dirs-update --force
+
+for i in ${!DIRS[@]}; do
+    if (($i == 0)); then
+        echo "$DEFAULT_PATH/${DIRS[$i]}" > $BOOKMARK_PATH
+    else
+        echo "$DEFAULT_PATH/${DIRS[$i]}" >> $BOOKMARK_PATH
+    fi
+done

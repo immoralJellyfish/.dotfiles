@@ -1,0 +1,8 @@
+USER: "{{ lookup('env', 'USER') }}"
+HOME: "{{ lookup('env', 'HOME') }}"
+XDG_CONFIG_HOME: '{{ HOME }}/.config'
+XDG_CACHE_HOME: '{{ HOME }}/.cache'
+XDG_DATA_HOME: '{{ HOME }}/.local/share'
+MAC: 'MacOSX'
+ARCH: 'Archlinux'
+UBUNTU: 'Ubuntu'

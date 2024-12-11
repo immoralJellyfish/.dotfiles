@@ -1,0 +1,7 @@
+- name: Download forbidden installsripts
+  ansible.builtin.file:
+      src: '{{ playbook_dir}}/archscripts'
+      dest: '{{ HOME }}/.archscripts'
+      state: 'link'
+  tags:
+      - personal

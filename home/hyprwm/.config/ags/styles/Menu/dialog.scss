@@ -1,0 +1,32 @@
+.dialog {
+    @include Window;
+    min-width: calc($font-size * 24);
+    padding: $gap;
+
+    .summary {
+        margin-bottom: $gap-xs;
+        font-size: calc($font-size * 1.4);
+    }
+
+    .desc {
+        margin-bottom: $gap-xs;
+        color: $overlay0;
+    }
+
+    .action {
+        margin-top: $gap-s;
+
+        button {
+            background-color: $charcoal;
+            padding: $gap-xs 0;
+            border-radius: $radius;
+
+            &:hover {
+                background-color: $lavender;
+                label {
+                    color: $crust;
+                }
+            }
+        }
+    }
+}

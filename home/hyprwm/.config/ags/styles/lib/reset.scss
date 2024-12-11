@@ -1,0 +1,51 @@
+* {
+    font-weight: 600;
+    border-width: 0;
+    color: $primary;
+}
+
+window {
+    min-height: 0;
+    font-family:
+        Inter Display,
+        JetBrainsMono NFP Medium;
+    font-size: $font-size;
+    border: none;
+    border-radius: 0px;
+    box-shadow: unset;
+    background-image: unset;
+    background-color: transparent;
+    text-shadow: unset;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+    background-color: unset;
+    box-shadow: unset;
+    transition: 0.3s;
+
+    &:active {
+        box-shadow: unset;
+        background-image: unset;
+    }
+
+    &:focus {
+        box-shadow: unset;
+        background-image: unset;
+    }
+}
+
+menu * {
+    font-weight: 400;
+    color: $text;
+}
+
+tooltip * {
+    font-weight: 400;
+}
+
+scale {
+    padding: 0;
+}

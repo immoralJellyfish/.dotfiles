@@ -1,0 +1,81 @@
+- name: Installing go for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name: go
+  when: ansible_facts.distribution == ARCH
+  tags:
+      - go
+      - ags
+      - clipboard
+      - neovim
+
+- name: Adding go ppa for ubuntu repository
+  become: true
+  ansible.builtin.apt_repository:
+      repo: 'ppa:longsleep/golang-backports'
+      validate_certs: false
+  when: ansible_facts.distribution == UBUNTU
+  tags:
+      - go
+      - ags
+      - clipboard
+      - neovim
+
+- name: Installing go for ubuntu
+  become: true
+  ansible.builtin.apt:
+      update_cache: true
+      allow_downgrade: true
+      state: 'latest'
+      name: golang-go
+  when: ansible_facts.distribution == UBUNTU
+  tags:
+      - go
+      - ags
+      - clipboard
+      - neovim
+
+- name: Installing go for mac
+  community.general.homebrew:
+      state: 'latest'
+      name: go
+  when: ansible_facts.distribution == MAC
+  tags:
+      - go
+      - ags
+      - clipboard
+      - neovim
+
+- name: Setting go environment
+  ansible.builtin.blockinfile:
+      path: '{{ HOME }}/{{ item }}'
+      state: 'present'
+      create: 'yes'
+      prepend_newline: true
+      marker: '#--------- {mark} ---------#'
+      marker_begin: 'StartGO'
+      marker_end: 'EndGO'
+      block: |
+          eval $(go env)
+          export PATH=$HOME/$GOTPATH/bin:$PATH
+  loop:
+      - .zshrc
+      - .bashrc
+  tags:
+      - go
+      - ags
+      - clipboard
+      - neovim
+
+- name: Declaring gopath variable
+  ansible.builtin.shell: |
+      eval $(go env)
+      echo $GOPATH
+  register: GOPATH
+  tags:
+      - go
+      - ags
+      - clipboard
+      - neovim

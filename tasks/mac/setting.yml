@@ -1,0 +1,233 @@
+- name: Change defaults mac
+  community.general.osx_defaults: '{{ item }}'
+  loop:
+      - domain: 'com.apple.WindowManager'
+        key: 'EnableStandardClickToShowDesktop'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'com.apple.loginwindow'
+        key: 'TALLogoutSavesState'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'com.apple.loginwindow'
+        key: 'autoLoginUser'
+        type: 'boolean'
+        value: true
+        state: 'present'
+
+      - domain: 'FXEnableExtensionChangeWarning'
+        key: 'DSDontWriteNetworkStores'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'NSGlobalDomain'
+        key: 'DSDontWriteUSBStores'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'NSGlobalDomain'
+        key: 'AppleShowAllExtensions'
+        type: 'boolean'
+        value: true
+        state: 'present'
+
+      - domain: 'com.apple.finder'
+        key: 'AppleShowAllFiles'
+        type: 'boolean'
+        value: true
+        state: 'present'
+
+      - domain: 'com.apple.dock'
+        key: 'size-immutable'
+        type: 'boolean'
+        value: true
+        state: 'present'
+
+      - domain: 'com.apple.dock'
+        key: 'mineffect'
+        type: 'string'
+        value: 'scale'
+        state: 'present'
+
+      - domain: 'com.apple.dock'
+        key: 'show-recents'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'com.apple.dock'
+        key: 'minimize-to-application'
+        type: 'boolean'
+        value: true
+        state: 'present'
+
+      - domain: 'com.apple.dock'
+        key: 'show-process-indicators'
+        type: 'boolean'
+        value: true
+        state: 'present'
+
+      - domain: 'com.apple.dock'
+        key: 'enable-spring-load-actions-on-all-items'
+        type: 'boolean'
+        value: true
+        state: 'present'
+
+      - domain: 'com.apple.dock'
+        key: 'launchanim'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'com.apple.dock'
+        key: 'expose-animation-duration'
+        type: 'float'
+        value: 0.1
+        state: 'present'
+
+      - domain: 'com.apple.dock'
+        key: 'autohide-time-modifier'
+        type: 'float'
+        value: 0
+        state: 'present'
+
+      - domain: 'com.apple.dock'
+        key: 'autohide-delay'
+        type: 'float'
+        value: 0
+        state: 'present'
+
+      - domain: 'com.apple.screencapture'
+        key: 'location'
+        type: 'string'
+        value: '{{ HOME }}/Pictures'
+        state: 'present'
+
+      - domain: 'com.apple.systempreferences'
+        key: 'NSQuitAlwaysKeepsWindows'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'com.apple.WindowManager'
+        key: 'GloballyEnabled'
+        type: 'boolean'
+        value: 'false'
+        state: 'present'
+
+      - domain: 'com.apple.SoftwareUpdate'
+        key: 'AutomaticDownload'
+        type: 'integer'
+        value: 0
+        state: 'present'
+
+      - domain: 'com.apple.SoftwareUpdate'
+        key: 'AutomaticCheckEnabled'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'com.apple.LaunchServices'
+        key: 'LSQuarantine'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'com.apple.AppleMultitouchTrackpad'
+        key: 'Clicking'
+        type: 'integer'
+        value: 1
+        state: 'present'
+
+      - domain: 'com.apple.driver.AppleBluetoothMultitouch.trackpad'
+        key: 'Clicking'
+        type: 'integer'
+        value: 1
+        state: 'present'
+
+      - domain: 'NSGlobalDomain'
+        key: 'com.apple.mouse.tapBehavior'
+        type: 'integer'
+        value: 1
+        state: 'present'
+
+      - domain: 'NSGlobalDomain'
+        host: '-currentHost'
+        key: 'com.apple.mouse.tapBehavior'
+        type: 'integer'
+        value: 1
+        state: 'present'
+
+      - domain: 'NSGlobalDomain'
+        key: 'KeyRepeat'
+        type: 'integer'
+        value: 1
+        state: 'present'
+
+      - domain: 'NSGlobalDomain'
+        key: 'KeyRepeat'
+        type: 'integer'
+        value: 2
+        state: 'present'
+
+      - domain: 'NSGlobalDomain'
+        key: 'InitialKeyRepeat'
+        type: 'integer'
+        value: 15
+        state: 'present'
+
+      - domain: 'com.microsoft.VSCode'
+        key: 'ApplePressAndHoldEnabled'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'com.microsoft.VSCodeInsiders'
+        key: 'ApplePressAndHoldEnabled'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'com.microsoft.vscodium'
+        key: 'ApplePressAndHoldEnabled'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'NSGlobalDomain'
+        key: 'ApplePressAndHoldEnabled'
+        type: 'boolean'
+        value: false
+        state: 'present'
+
+      - domain: 'NSGlobalDomain'
+        key: 'AppleFontSmoothing'
+        type: 'integer'
+        value: 1
+        state: 'absent'
+  tags:
+      - common
+
+- name: Some other setting, bear with me
+  become: true
+  ansible.builtin.shell: |
+      pmset -a lidwake 1
+      pmset -a autorestart 1
+      pmset -a displaysleep 15
+      pmset -c sleep 0
+      pmset -b sleep 5
+      pmset -a standbydelay 86400
+      pmset -a autorestart 1
+      pmset -a hibernatemode 0
+
+      killall Dock
+      killall Finder
+      killall WindowManager
+  tags:
+      - common

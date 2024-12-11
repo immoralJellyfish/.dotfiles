@@ -1,0 +1,9 @@
+.menu_toggle {
+    @include Button;
+    padding: 0 $gap-s;
+    margin-right: $gap-xs;
+
+    label {
+        font-size: calc($font-size * 1.4);
+    }
+}

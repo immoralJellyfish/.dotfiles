@@ -1,0 +1,27 @@
+- hosts: localhost
+  gather_facts: true
+  vars_files:
+      - ./variables.yml
+  pre_tasks:
+      - import_tasks: ./setup_directory.yml
+      - import_tasks: ./setup_personal.yml
+      - import_tasks: ./setup_build.yml
+  tasks:
+      - import_tasks: ./home/common/tasks/config.yml
+      - import_tasks: ./home/common/tasks/tools.yml
+      - import_tasks: ./home/common/tasks/packages.yml
+      - import_tasks: ./home/common/tasks/node.yml
+      - import_tasks: ./home/common/tasks/php.yml
+      - import_tasks: ./home/common/tasks/go.yml
+      - import_tasks: ./home/common/tasks/rust.yml
+      - import_tasks: ./home/common/tasks/neovim.yml
+      - import_tasks: ./home/common/tasks/zsh.yml
+      - import_tasks: ./home/common/tasks/git.yml
+      - import_tasks: ./home/common/tasks/apps.yml
+      - import_tasks: ./home/common/tasks/nerdfont.yml
+
+      - import_tasks: ./tasks/mac/flameshot.yml
+      - import_tasks: ./tasks/mac/browser.yml
+
+      - import_tasks: ./home/common/tasks/setting.yml
+      - import_tasks: ./tasks/mac/setting.yml

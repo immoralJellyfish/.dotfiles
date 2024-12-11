@@ -1,0 +1,77 @@
+- name: Installing git neccesary package for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - glab
+          - github-cli
+  when: ansible_facts.distribution == ARCH
+  tags:
+      - git
+
+- name: Installing git neccesary package for ubuntu
+  become: true
+  ansible.builtin.apt:
+      update_cache: true
+      allow_downgrade: true
+      state: 'latest'
+      name:
+          - glab
+          - gh
+  when: ansible_facts.distribution == UBUNTU
+  tags:
+      - git
+
+- name: Installing git neccesary package for mac
+  community.general.homebrew:
+      state: 'latest'
+      name:
+          - glab
+          - gh
+  when: ansible_facts.distribution == MAC
+  tags:
+      - git
+
+- name: Git setting configuration
+  community.general.git_config:
+      name: '{{ item.name }}'
+      scope: '{{ item.scope }}'
+      value: '{{ item.value }}'
+  loop:
+      - {name: 'push.autoSetupRemote', scope: 'global', value: true}
+      - {name: 'safe.directory', scope: 'global', value: '*'}
+      - {name: 'helpers.credential', scope: 'global', value: 'store'}
+      - {name: 'init.defaultBranch', scope: 'global', value: 'main'}
+  tags:
+      - git
+
+- name: Git setting personal username
+  community.general.git_config:
+      name: 'user.name'
+      scope: 'global'
+      value: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          39323339313533643661333131393639306637656635366365666661613637353963303862386435
+          3165343966616165343263343566633163366139633637650a626630386337633937653539396237
+          38666365333563653763653931363032643838373263383237323734643732643762643962623439
+          6566343235313532340a396631303536306239303139613734303234646566316333363537616134
+          3037
+  tags:
+      - git
+      - personal
+
+- name: Git setting personal email
+  community.general.git_config:
+      name: 'user.email'
+      scope: 'global'
+      value: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          37326530663932613730663138636330663266303333646234323061383665356539383238353965
+          6631366135353638356538343132613162363066613437330a333866313337663035333534363463
+          66336266636239386464326364346235653538386533623434303332326461633638336334353236
+          6639653866366536610a623130623635383538326236353339356264326132343131356434633561
+          34643836313661353638666561383337363062623163356333613461313337343132
+  tags:
+      - git
+      - personal

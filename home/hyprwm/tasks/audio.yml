@@ -1,0 +1,47 @@
+- name: Installing audio package for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - pipewire
+          - pipewire-audio
+          - pipewire-pulse
+          - pipewire-jack
+          - pipewire-alsa
+          - webkit2gtk
+  tags:
+      - audio
+      - hyprwm
+
+- name: Downloading Noise supressor for voice repository
+  ansible.builtin.git:
+      repo: 'https://github.com/werman/noise-suppression-for-voice.git'
+      dest: '{{ HOME }}/nsfv'
+      depth: 1
+      recursive: true
+      update: false
+  tags:
+      - audio
+      - nsfv
+      - hyprwm
+
+- name: Building noise supressor for voice
+  ansible.builtin.shell: |
+      cd {{ HOME }}/nsfv
+      cmake -Bbuild -H. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr
+      cmake --build ./build --config Release --target all -j$(nproc)
+  tags:
+      - audio
+      - nsfv
+      - hyprwm
+
+- name: Installing noise supressor for voice
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/nsfv
+      cmake --install ./build
+  tags:
+      - audio
+      - nsfv
+      - hyprwm

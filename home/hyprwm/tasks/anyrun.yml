@@ -1,0 +1,44 @@
+- name: Downloading anyrun package
+  ansible.builtin.git:
+      repo: 'https://github.com/Kirottu/anyrun.git'
+      dest: '{{ HOME }}/anyrun'
+      recursive: true
+      depth: 1
+  tags:
+      - anyrun
+      - anyrun_standalone
+      - hyprwm
+
+- name: Building anyrun packages
+  ansible.builtin.shell: |
+      export PATH={{ HOME }}/.cargo/bin:$PATH
+      mkdir -p {{ XDG_CONFIG_HOME }}/anyrun/plugins
+
+      cd {{ HOME }}/anyrun
+      cargo build --release
+      cargo install --path anyrun/
+  tags:
+      - anyrun
+      - anyrun_standalone
+      - hyprwm
+
+- name: Copying anyrun plugins
+  ansible.builtin.copy:
+      src: '{{ item }}'
+      dest: '{{ XDG_CONFIG_HOME }}/anyrun/plugins/{{ item | basename }}'
+  loop: "{{ lookup('fileglob', '{{ HOME }}/anyrun/target/release/*.so', wantlist=true) }}"
+  tags:
+      - anyrun
+      - anyrun_standalone
+      - hyprwm
+
+- name: Installing anyrun package
+  become: true
+  ansible.builtin.copy:
+      src: '{{ HOME }}/.cargo/bin/anyrun'
+      dest: '/usr/local/bin'
+      mode: 0755
+  tags:
+      - anyrun
+      - anyrun_standalone
+      - hyprwm

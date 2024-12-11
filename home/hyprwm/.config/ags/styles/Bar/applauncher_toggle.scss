@@ -1,0 +1,8 @@
+.applauncher_toggle {
+    @include Button;
+
+    label {
+        font-size: calc($font-size * 1.2);
+        font-weight: 800;
+    }
+}

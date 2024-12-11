@@ -1,0 +1,337 @@
+2024-09-24 20:47:51,641 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:51,683 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:51,811 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:51,823 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:51,919 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:51,971 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:52,008 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:52,020 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:52,024 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:52,030 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:52,035 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:52,040 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:52,080 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:52,276 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:52,317 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:52,383 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:53,547 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:53,889 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:53,889 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:53,913 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:54,237 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:54,362 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:54,588 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:56,026 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:57,304 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:58,026 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:58,041 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:58,450 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:47:59,795 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:00,157 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:04,346 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:04,475 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:05,097 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:05,137 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:05,175 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:05,303 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:05,347 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:05,585 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:06,040 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:06,221 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:06,797 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:07,025 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:07,744 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:08,111 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:08,599 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:15,593 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:16,114 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:16,464 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:16,508 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:16,638 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:16,644 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:17,461 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:17,539 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:17,546 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:17,649 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:17,657 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:17,696 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:17,701 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:17,717 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:17,725 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:17,732 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:17,740 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:18,045 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:18,864 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:19,944 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:22,607 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:22,639 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:23,183 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:24,922 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:27,607 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:28,378 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:29,807 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:30,444 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:30,481 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:30,531 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:32,286 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:34,007 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:34,017 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:37,198 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:37,797 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:38,693 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:39,339 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:39,966 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:44,689 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:45,008 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:45,138 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:52,638 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:55,005 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:58,919 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:48:59,331 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:02,030 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:03,802 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:04,273 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:04,578 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:06,598 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:13,959 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:14,246 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:14,301 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:14,307 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:14,347 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:14,452 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:14,647 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:14,706 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:14,794 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:14,817 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:14,823 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:14,904 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:15,766 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,116 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,160 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,166 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,203 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,210 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,236 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,240 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,246 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,365 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,441 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,446 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,452 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,518 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,527 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,536 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,606 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,614 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,623 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,631 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,639 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,645 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,646 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,655 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,765 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,771 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:16,776 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:17,467 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:17,688 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:18,861 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:19,434 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:24,743 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:24,767 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:24,922 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:26,519 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:26,701 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:26,902 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:26,932 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:27,125 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:27,214 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:27,219 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:27,228 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:27,237 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:27,247 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:27,252 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:29,066 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:29,742 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:29,755 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:30,162 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:30,858 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:33,552 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:34,397 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:34,445 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:34,461 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:34,866 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:34,998 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:35,020 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:36,732 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:41,183 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:41,849 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:42,930 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:45,639 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:45,814 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:46,151 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:46,156 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:47,199 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:47,483 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:47,599 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:48,189 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:51,361 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:51,745 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:52,171 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:52,768 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:55,392 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:57,576 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:49:58,646 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:50:03,667 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:50:04,850 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:50:13,636 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:50:51,595 - Persepolis - INFO - Download Error - GID: 50933334a67dee16
+2024-09-24 20:50:51,749 - Persepolis - ERROR - Download failed - GID : 50933334a67dee16- Message : Connection error
+2024-09-24 20:50:52,825 - Persepolis - INFO - persepolis_lib is closed!
+2024-09-24 20:50:59,379 - Persepolis - INFO - Server supports multi thread downloading!
+2024-09-24 20:51:05,902 - Persepolis - INFO - Download starts! - GID:50933334a67dee16
+2024-09-24 20:51:07,676 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:51:13,274 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:51:15,264 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:51:15,651 - Persepolis - ERROR - Connection error - HTTPSConnectionPool(host='ocs-dl.fra1.cdn.digitaloceanspaces.com', port=443): Read timed out.
+2024-09-24 20:51:48,909 - Persepolis - INFO - Download complete. - GID: 50933334a67dee16
+2024-09-24 20:51:48,955 - Persepolis - INFO - Download complete - GID : 50933334a67dee16
+2024-09-24 20:51:49,384 - Persepolis - INFO - persepolis_lib is closed!
+2024-09-24 20:57:10,970 - Persepolis - INFO - Please wait ...
+2024-09-24 20:57:11,763 - Persepolis - INFO - Persepolis closed!
+Persepolis Download Manager, 2024/09/24 21:05:32
+2024-09-24 21:05:32,043 - Persepolis - INFO - chrome: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-24 21:05:32,043 - Persepolis - INFO - 
+2024-09-24 21:05:32,047 - Persepolis - INFO - chromium: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-24 21:05:32,048 - Persepolis - INFO - 
+2024-09-24 21:05:32,052 - Persepolis - INFO - opera: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-24 21:05:32,052 - Persepolis - INFO - 
+2024-09-24 21:05:32,057 - Persepolis - INFO - vivaldi: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-24 21:05:32,057 - Persepolis - INFO - 
+2024-09-24 21:05:32,065 - Persepolis - INFO - firefox: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-24 21:05:32,065 - Persepolis - INFO - 
+2024-09-24 21:05:32,073 - Persepolis - INFO - brave: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-24 21:05:32,073 - Persepolis - INFO - 
+2024-09-24 21:05:32,577 - Persepolis - INFO - yt-dlp version: 2024.08.06
+2024-09-24 21:05:32,744 - Persepolis - INFO - Persepolis path is:
+	/usr/bin/persepolis
+2024-09-24 21:05:32,744 - Persepolis - INFO - Persepolis is run as installed python madule.
+2024-09-24 21:05:32,907 - Persepolis - INFO - Persepolis will use ffmpeg that installed on user's system.
+2024-09-24 21:05:32,907 - Persepolis - INFO - 
+**********
+ffmpeg version n7.0.2 Copyright (c) 2000-2024 the FFmpeg developers
+built with gcc 14.2.1 (GCC) 20240910 configuration: --prefix=/usr
+--disable-debug --disable-static --disable-stripping --enable-amf
+--enable-avisynth --enable-cuda-llvm --enable-lto --enable-fontconfig
+--enable-frei0r --enable-gmp --enable-gnutls --enable-gpl --enable-
+ladspa --enable-libaom --enable-libass --enable-libbluray --enable-
+libbs2b --enable-libdav1d --enable-libdrm --enable-libdvdnav --enable-
+libdvdread --enable-libfreetype --enable-libfribidi --enable-libgsm
+--enable-libharfbuzz --enable-libiec61883 --enable-libjack --enable-
+libjxl --enable-libmodplug --enable-libmp3lame --enable-
+libopencore_amrnb --enable-libopencore_amrwb --enable-libopenjpeg
+--enable-libopenmpt --enable-libopus --enable-libplacebo --enable-
+libpulse --enable-librav1e --enable-librsvg --enable-librubberband
+--enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libsrt
+--enable-libssh --enable-libsvtav1 --enable-libtheora --enable-libv4l2
+--enable-libvidstab --enable-libvmaf --enable-libvorbis --enable-
+libvpl --enable-libvpx --enable-libwebp --enable-libx264 --enable-
+libx265 --enable-libxcb --enable-libxml2 --enable-libxvid --enable-
+libzimg --enable-libzmq --enable-nvdec --enable-nvenc --enable-opencl
+--enable-opengl --enable-shared --enable-vapoursynth --enable-version3
+--enable-vulkan libavutil      59.  8.100 / 59.  8.100 libavcodec
+61.  3.100 / 61.  3.100 libavformat    61.  1.100 / 61.  1.100
+libavdevice    61.  1.100 / 61.  1.100 libavfilter    10.  1.100 / 10.
+1.100 libswscale      8.  1.100 /  8.  1.100 libswresample   5.  1.100
+/  5.  1.100 libpostproc    58.  1.100 / 58.  1.100
+**********
+
+2024-09-24 21:05:32,907 - Persepolis - INFO - python version: 3.12.6 (main, Sep  8 2024, 13:18:56) [GCC 14.2.1 20240805]
+2024-09-24 21:05:32,907 - Persepolis - INFO - QT version: 6.7.2
+2024-09-24 21:05:32,907 - Persepolis - INFO - PySide version: 6.7.2
+2024-09-24 21:05:32,907 - Persepolis - INFO - Operating system: Linux
+2024-09-24 21:05:32,907 - Persepolis - INFO - Desktop env.: Hyprland
+===================================================
+Persepolis Download Manager, 2024/09/25 05:54:48
+2024-09-25 05:54:48,278 - Persepolis - INFO - chrome: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-25 05:54:48,278 - Persepolis - INFO - 
+2024-09-25 05:54:48,280 - Persepolis - INFO - chromium: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-25 05:54:48,280 - Persepolis - INFO - 
+2024-09-25 05:54:48,282 - Persepolis - INFO - opera: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-25 05:54:48,282 - Persepolis - INFO - 
+2024-09-25 05:54:48,285 - Persepolis - INFO - vivaldi: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-25 05:54:48,285 - Persepolis - INFO - 
+2024-09-25 05:54:48,287 - Persepolis - INFO - firefox: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-25 05:54:48,287 - Persepolis - INFO - 
+2024-09-25 05:54:48,289 - Persepolis - INFO - brave: Json file is created successfully.
+persepolis executer file is created successfully.
+
+2024-09-25 05:54:48,290 - Persepolis - INFO - 
+2024-09-25 05:54:48,735 - Persepolis - INFO - yt-dlp version: 2024.08.06
+2024-09-25 05:54:49,032 - Persepolis - INFO - Persepolis path is:
+	/usr/bin/persepolis
+2024-09-25 05:54:49,032 - Persepolis - INFO - Persepolis is run as installed python madule.
+2024-09-25 05:54:49,203 - Persepolis - INFO - Persepolis will use ffmpeg that installed on user's system.
+2024-09-25 05:54:49,203 - Persepolis - INFO - 
+**********
+ffmpeg version n7.0.2 Copyright (c) 2000-2024 the FFmpeg developers
+built with gcc 14.2.1 (GCC) 20240910 configuration: --prefix=/usr
+--disable-debug --disable-static --disable-stripping --enable-amf
+--enable-avisynth --enable-cuda-llvm --enable-lto --enable-fontconfig
+--enable-frei0r --enable-gmp --enable-gnutls --enable-gpl --enable-
+ladspa --enable-libaom --enable-libass --enable-libbluray --enable-
+libbs2b --enable-libdav1d --enable-libdrm --enable-libdvdnav --enable-
+libdvdread --enable-libfreetype --enable-libfribidi --enable-libgsm
+--enable-libharfbuzz --enable-libiec61883 --enable-libjack --enable-
+libjxl --enable-libmodplug --enable-libmp3lame --enable-
+libopencore_amrnb --enable-libopencore_amrwb --enable-libopenjpeg
+--enable-libopenmpt --enable-libopus --enable-libplacebo --enable-
+libpulse --enable-librav1e --enable-librsvg --enable-librubberband
+--enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libsrt
+--enable-libssh --enable-libsvtav1 --enable-libtheora --enable-libv4l2
+--enable-libvidstab --enable-libvmaf --enable-libvorbis --enable-
+libvpl --enable-libvpx --enable-libwebp --enable-libx264 --enable-
+libx265 --enable-libxcb --enable-libxml2 --enable-libxvid --enable-
+libzimg --enable-libzmq --enable-nvdec --enable-nvenc --enable-opencl
+--enable-opengl --enable-shared --enable-vapoursynth --enable-version3
+--enable-vulkan libavutil      59.  8.100 / 59.  8.100 libavcodec
+61.  3.100 / 61.  3.100 libavformat    61.  1.100 / 61.  1.100
+libavdevice    61.  1.100 / 61.  1.100 libavfilter    10.  1.100 / 10.
+1.100 libswscale      8.  1.100 /  8.  1.100 libswresample   5.  1.100
+/  5.  1.100 libpostproc    58.  1.100 / 58.  1.100
+**********
+
+2024-09-25 05:54:49,203 - Persepolis - INFO - python version: 3.12.6 (main, Sep  8 2024, 13:18:56) [GCC 14.2.1 20240805]
+2024-09-25 05:54:49,203 - Persepolis - INFO - QT version: 6.7.2
+2024-09-25 05:54:49,203 - Persepolis - INFO - PySide version: 6.7.2
+2024-09-25 05:54:49,203 - Persepolis - INFO - Operating system: Linux
+2024-09-25 05:54:49,203 - Persepolis - INFO - Desktop env.: Hyprland
+2024-09-25 06:04:00,202 - Persepolis - ERROR - Error - 'content-length'
+2024-09-25 06:04:00,203 - Persepolis - INFO - persepolis_lib is closed!
+2024-09-25 06:04:03,038 - Persepolis - ERROR - Download failed - GID : a82f9fd070fbc01f- Message : error
+2024-09-25 06:04:04,317 - Persepolis - ERROR - Error - 'content-length'
+2024-09-25 06:04:04,318 - Persepolis - INFO - persepolis_lib is closed!
+2024-09-25 06:04:07,040 - Persepolis - ERROR - Download failed - GID : db90bdaeadc30223- Message : error
+2024-09-25 06:04:08,237 - Persepolis - ERROR - Error - 'content-length'
+2024-09-25 06:04:08,238 - Persepolis - INFO - persepolis_lib is closed!

@@ -1,0 +1,34 @@
+.calendar {
+    min-height: $bar-inner-height;
+    padding: $bar-padding $gap-m;
+    background-color: $base;
+    border: 0.08em solid $charcoal;
+    border-radius: $bar-height;
+
+    .notification {
+        margin-left: $gap-s;
+        .count {
+            margin-left: $gap-xs;
+        }
+    }
+
+    .date {
+        color: rgba($primary, 0.8);
+        font-size: calc($font-size/1.1);
+    }
+
+    .separator {
+        margin: 0 $gap-l;
+        font-size: calc($font-size/2);
+        font-weight: 800;
+        color: rgba($primary, 0.8);
+    }
+
+    &.active,
+    &:hover {
+        background-color: $primary;
+        label {
+            color: $crust;
+        }
+    }
+}

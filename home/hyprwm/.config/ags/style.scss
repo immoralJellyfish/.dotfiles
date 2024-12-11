@@ -1,0 +1,15 @@
+@import './styles/lib/variables.scss';
+@import './styles/lib/mixins.scss';
+@import './styles/lib/reset.scss';
+
+@import './styles/SystemTray/main.scss';
+@import './styles/QuickControl/main.scss';
+@import './styles/Menu/main.scss';
+@import './styles/Notification/main.scss';
+@import './styles/Dashboard/main.scss';
+@import './styles/Bar/main.scss';
+
+.padding {
+    // background-color: red;
+    // border: 1px solid black;
+}

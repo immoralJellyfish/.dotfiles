@@ -1,0 +1,8 @@
+<network>
+  <name>Bridge</name>
+  <uuid>b7005dec-be1a-fe9a-338a-0cb1301dfcfd</uuid>
+  <forward mode='route'/>
+  <bridge name='virbr100' stp='on' delay='0' />
+  <ip address='10.10.120.1' netmask='255.255.255.0'>
+  </ip>
+</network>

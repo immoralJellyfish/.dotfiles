@@ -1,0 +1,52 @@
+- name: Finding hyprland dotfiles file
+  ansible.builtin.find:
+      paths: '{{ playbook_dir }}/home/hyprwm'
+      file_type: 'file'
+      hidden: true
+  register: hyprland_dotfiles_file
+  tags:
+      - hyprwm
+
+- name: Finding hyprland dotfiles .config
+  ansible.builtin.find:
+      paths: '{{ playbook_dir }}/home/{{ item }}'
+      file_type: 'any'
+      hidden: true
+  register: hyprland_dotfiles_folder
+  loop:
+      - hyprwm/.config
+      - hyprwm/.scripts
+  tags:
+      - hyprwm
+
+- name: Cleaning hyprland dotfiles file
+  ansible.builtin.file:
+      dest: '{{ HOME }}/{{ item.path | basename }}'
+      state: 'absent'
+  loop: '{{ hyprland_dotfiles_file.files }}'
+  loop_control:
+      label: '{{ item.path }}'
+  tags:
+      - hyprwm
+
+- name: Cleaning hyprland dotfiles .config
+  ansible.builtin.file:
+      dest: "{{ HOME }}/{{ item.1.path.split('/')[-2:] | join('/') }}"
+      state: 'absent'
+      follow: false
+  loop: "{{ hyprland_dotfiles_folder.results | subelements('files', skip_missing=true) }}"
+  loop_control:
+      label: "{{ HOME }}/{{ item.1.path.split('/')[-2:] | join('/') }}"
+  when:
+      - item.1.path != './hyprwm/.config'
+      - item.1.path != './hyprwm/.scripts'
+  tags:
+      - hyprwm
+
+- name: Linking hyprland dotfiles using stow
+  ansible.builtin.shell: |
+      cd {{ playbook_dir }}/home
+
+      stow hyprwm -t {{ HOME }}
+  tags:
+      - hyprwm

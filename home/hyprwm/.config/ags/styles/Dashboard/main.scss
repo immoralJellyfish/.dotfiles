@@ -1,0 +1,28 @@
+.dashboard {
+    @include Window;
+
+    @import './mpris.scss';
+    @import './notificationcenter.scss';
+
+    min-height: calc($font-size * 30);
+
+    scrollable {
+        min-width: calc($font-size * 20);
+
+        scrollbar {
+            background-color: transparent;
+        }
+
+        slider {
+            background-color: $primary;
+            background: transparent;
+        }
+    }
+
+    .separator {
+        // min-width: 0.1em;
+        // background-color: $charcoal;
+        border-radius: 0.1em;
+        margin: 0 $gap-l;
+    }
+}
