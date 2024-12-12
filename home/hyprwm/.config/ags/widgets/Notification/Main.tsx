@@ -73,10 +73,13 @@ export default function Notification() {
 
     return (
         <window
+            name="notification"
+            namespace="notification"
             className="notification"
-            exclusivity={Astal.Exclusivity.NORMAL}
+            exclusivity={Astal.Exclusivity.EXCLUSIVE}
             anchor={RIGHT | BOTTOM}
             valign={Gtk.Align.END}
+            layer={Astal.Layer.TOP}
         >
             <box vertical>{bind(notifs)}</box>
         </window>
