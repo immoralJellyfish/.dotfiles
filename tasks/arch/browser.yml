@@ -1,4 +1,4 @@
-- name: Installing browser for archlinux
+- name: Installing browser for arch
   become: true
   community.general.pacman:
       update_cache: true

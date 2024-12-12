@@ -3,7 +3,6 @@
 
     .head {
         min-height: calc($font-size * 1.8);
-        padding-bottom: $gap-s;
 
         .title {
             font-size: calc($font-size * 1.2);
@@ -12,6 +11,7 @@
 
     .players {
         .media_player {
+            margin-top: $gap-s;
             background-color: $base;
             padding: $gap-s;
             border-radius: $radius;

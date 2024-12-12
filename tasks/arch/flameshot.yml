@@ -1,4 +1,4 @@
-- name: Installing flameshot dependencies for archlinux
+- name: Installing flameshot dependencies for arch
   become: true
   community.general.pacman:
       update_cache: true
