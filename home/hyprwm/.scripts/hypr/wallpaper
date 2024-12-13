@@ -16,22 +16,22 @@ function apply(){
         WPP_PATH="$WPP_DEFAULT_DIR/$WPP_PATH"
     fi
 
-    # if [[ $WPP_PATH == '' ]]; then
-    #     case $(date +%H) in
-    #         05 | 06 | 07 | 08 | 09 | 10)
-    #             WPP_PATH="$WPP_DEFAULT_DIR/monochrome"
-    #             ;;
-    #         11 | 12 | 13 | 14 | 15 | 16)
-    #             WPP_PATH="$WPP_DEFAULT_DIR/dark"
-    #             ;;
-    #         17 | 18 | 19 | 20 | 21 | 22)
-    #             WPP_PATH="$WPP_DEFAULT_DIR/green"
-    #             ;;
-    #         23 | 00 | 01 | 02 | 03 | 04)
-    #             WPP_PATH="$WPP_DEFAULT_DIR/bright"
-    #             ;;
-    #     esac
-    # fi
+    if [[ $WPP_PATH == '' ]]; then
+        case $(date +%H) in
+            05 | 06 | 07 | 08 | 09 | 10)
+                WPP_PATH="$WPP_DEFAULT_DIR/monochrome"
+                ;;
+            11 | 12 | 13 | 14 | 15 | 16)
+                WPP_PATH="$WPP_DEFAULT_DIR/pastel"
+                ;;
+            17 | 18 | 19 | 20 | 21 | 22)
+                WPP_PATH="$WPP_DEFAULT_DIR/green"
+                ;;
+            23 | 00 | 01 | 02 | 03 | 04)
+                WPP_PATH="$WPP_DEFAULT_DIR/dark"
+                ;;
+        esac
+    fi
 
     for t in ${monitors[@]}; do
         if [[ -d $WPP_PATH ]]; then
