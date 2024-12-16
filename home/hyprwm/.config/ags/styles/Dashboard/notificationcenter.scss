@@ -2,8 +2,8 @@
     padding: $gap-xs;
 
     .head {
-        min-height: calc($font-size * 1.8);
-        padding-bottom: $gap-s;
+        min-height: calc($font-size * 2);
+        padding-bottom: $gap-xs;
 
         .title {
             font-size: calc($font-size * 1.2);
@@ -11,10 +11,10 @@
 
         .action {
             @include Button;
-            min-width: calc($font-size * 1.8);
+            min-width: calc($font-size * 2);
             padding: 0;
             background: $base;
-            border: 0.1em solid $charcoal;
+            border: 0.08em solid $charcoal;
             margin-left: $gap-xs;
 
             label {

@@ -256,7 +256,7 @@ if (( $# <= 0 )); then
 fi
 
 if [[ -n "$WSL_DISTRO_NAME" ]]; then
-    ARGS+="--skip-tags apps --skip-tags hyprwm "
+    ARGS+="--skip-tags apps --skip-tags hyprland "
 fi
 
 clear

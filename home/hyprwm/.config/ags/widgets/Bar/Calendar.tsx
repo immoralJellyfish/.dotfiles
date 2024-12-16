@@ -12,7 +12,7 @@ const date = Variable<string>('').poll(
 
 const time = Variable<string>('').poll(
     1000,
-    () => GLib.DateTime.new_now_local().format('%I:%M %p')!,
+    () => GLib.DateTime.new_now_local().format('%H:%M')!,
 )
 
 const NotificationService = AstalNotifd.get_default()

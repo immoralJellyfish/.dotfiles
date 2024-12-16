@@ -13,6 +13,7 @@ import Microphone from './Microphone'
 import {setNetworkControlState} from './Network'
 import Speaker from './Speaker'
 import {WifiIcon, WiredIcon} from './Toggle'
+import {networkIcons} from '../../lib/Variables'
 
 let NetworkService: AstalNetwork.Network | null
 let WirePlumberService: AstalWp.Wp | null
@@ -170,8 +171,8 @@ const NetworkToggle = () => {
                                                 return state >
                                                     AstalNetwork.State
                                                         .CONNECTED_LOCAL
-                                                    ? '󰣺'
-                                                    : '󰣼'
+                                                    ? networkIcons.default
+                                                    : networkIcons.disconnected
                                             },
                                         )}
                                     />

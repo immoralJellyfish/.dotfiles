@@ -1,0 +1,314 @@
+- name: Installing hyprland build depedencies for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name:
+          - wayland
+          - wayland-protocols
+          - xorg-xwayland
+          - cpio
+          - mesa
+          - systemd-libs
+          - gcc-libs
+          - glib2
+          - glibc
+          - glslang
+          - cairo
+          - seatd
+          - pixman
+          - tomlplusplus
+          - pango
+          - xcb-proto
+          - xcb-util
+          - xcb-util-errors
+          - xcb-util-image
+          - xcb-util-keysyms
+          - xcb-util-renderutil
+          - xcb-util-wm
+          - libdisplay-info
+          - libdrm
+          - libglvnd
+          - libinput
+          - libliftoff
+          - libx11
+          - libxcb
+          - libxcomposite
+          - libxcursor
+          - libxfixes
+          - libxkbcommon
+          - libxrender
+          # aquamarine
+          - pugixml
+          - libglvnd
+          # hyprlock
+          - pam
+          # hypridle
+          - sdbus-cpp
+          # hyprcursor
+          - libzip
+          - librsvg
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Downloading hyprland packages repo
+  ansible.builtin.git:
+      repo: 'https://github.com/{{ item.repo }}.git'
+      dest: '{{ HOME }}/{{ item.dest }}'
+      depth: 1
+      recursive: true
+      update: false
+      version: '{{ item.version | default(omit) }}'
+  loop:
+      - {repo: hyprwm/hyprutils, dest: hyprutils, version: v0.2.6}
+      - {repo: hyprwm/hyprlang, dest: hyprlang, version: v0.6.0}
+      - {
+            repo: hyprwm/hyprwayland-scanner,
+            dest: hyprwayscanner,
+            version: v0.4.2,
+        }
+      - {repo: hyprwm/aquamarine, dest: hypraquamarine, version: v0.5.1}
+      - {repo: hyprwm/hyprgraphics, dest: hyprgraphics, version: v0.1.1}
+      - {repo: hyprwm/hyprcursor, dest: hyprcursor, version: v0.1.10}
+      - {repo: hyprwm/Hyprland, dest: hyprland, version: v0.45.2}
+      - {repo: hyprwm/hyprpaper, dest: hyprpaper, version: v0.7.2}
+      - {repo: hyprwm/hypridle, dest: hypridle, version: v0.1.5}
+      - {repo: hyprwm/hyprlock, dest: hyprlock, version: v0.5.0}
+      - {
+            repo: hyprwm/xdg-desktop-portal-hyprland,
+            dest: hyprxdp,
+            version: v1.3.8,
+        }
+  tags:
+      - hyprwm
+      - hyprland
+
+# --- Hyprutils -- #
+- name: Building hyprutils package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprutils
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Installing hyprutils package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprutils
+      cmake --install ./build
+  tags:
+      - hyprwm
+      - hyprland
+
+# --- Hyprlang -- #
+- name: Building hyprlang package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprlang
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Installing hyprlang package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprlang
+      cmake --install ./build
+  tags:
+      - hyprwm
+      - hyprland
+
+# --- Hyprwayscanner -- #
+- name: Building hypr-wayland-scanner package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprwayscanner
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Installing hypr-wayland-scanner package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprwayscanner
+      cmake --install ./build
+  tags:
+      - hyprwm
+      - hyprland
+
+# --- Hypraquamarine -- #
+- name: Building aquamarine package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hypraquamarine
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Installing aquamarine package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hypraquamarine
+      cmake --install ./build
+  tags:
+      - hyprwm
+      - hyprland
+
+# -- Hyprgraphics -- #
+- name: Building hyprgraphics package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprgraphics
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Installing hyprgraphics pakage
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprgraphics
+      cmake --install build
+  tags:
+      - hyprwm
+      - hyprland
+
+# --- Hyprcursor -- #
+- name: Building hyprcursor package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprcursor
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Installing hyprcursor package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprcursor
+      cmake --install ./build
+  tags:
+      - hyprwm
+      - hyprland
+
+# --- Hyprland -- #
+- name: Building hyprland package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprland
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Installing hyprland package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprland
+      cmake --install ./build
+      sudo make installheaders
+  tags:
+      - hyprwm
+      - hyprland
+
+# --- Hyprpaper -- #
+- name: Building hyprpaper package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprpaper
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Installing hyprpaper package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprpaper
+      cmake --install ./build
+  tags:
+      - hyprwm
+      - hyprland
+
+# --- Hyprlock -- #
+- name: Building hyprlock package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprlock
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Installing hyprlock package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprlock
+      cmake --install ./build
+  tags:
+      - hyprwm
+      - hyprland
+
+# --- Hypridle -- #
+- name: Building hypridle package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hypridle
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Installing hypridle package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hypridle
+      cmake --install ./build
+  tags:
+      - hyprwm
+      - hyprland
+
+# --- XDG Desktop Portal Hyprland -- #
+- name: Building xdg-desktop-portal-hyprland package
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprxdp
+      cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+      cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Installing xdg-desktop-portal-hyprland package
+  become: true
+  ansible.builtin.shell: |
+      cd {{ HOME }}/hyprxdp
+      cmake --install ./build
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Downloading hyprland plugins
+  ansible.builtin.git:
+      repo: https://github.com/hyprwm/hyprland-plugins.git
+      dest: '{{ HOME }}/.plugins'
+      depth: 1
+      recursive: true
+      version: v0.45.0
+  tags:
+      - hyprwm
+      - hyprland
+
+- name: Building hyprland plugins
+  ansible.builtin.shell: |
+      cd {{ HOME }}/.plugins
+      make -C borders-plus-plus all
+  tags:
+      - hypwm
+      - hyprland

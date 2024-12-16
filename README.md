@@ -2,8 +2,10 @@
 
 # !!! IF IT AIN'T BROKE DON'T FIX IT, ME 😠
 
+### ⚠ Highly tailored for my personal used, this command below should be okay
+
 ```
-install --ask-become --skip personal
+./install --ask-become --skip-tags personal
 ```
 
 ### TODO

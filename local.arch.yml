@@ -7,39 +7,39 @@
       - import_tasks: ./setup_personal.yml
       - import_tasks: ./setup_build.yml
   tasks:
-      - import_tasks: ./home/hyprwm/tasks/audio.yml
-      - import_tasks: ./home/hyprwm/tasks/bluetooth.yml
+      - import_tasks: ./tasks/_hyprwm/audio.yml
+      - import_tasks: ./tasks/_hyprwm/bluetooth.yml
 
-      - import_tasks: ./home/common/tasks/config.yml
-      - import_tasks: ./home/common/tasks/tools.yml
-      - import_tasks: ./home/common/tasks/packages.yml
-      - import_tasks: ./home/common/tasks/node.yml
-      - import_tasks: ./home/common/tasks/php.yml
-      - import_tasks: ./home/common/tasks/go.yml
-      - import_tasks: ./home/common/tasks/rust.yml
-      - import_tasks: ./home/common/tasks/neovim.yml
-      - import_tasks: ./home/common/tasks/zsh.yml
-      - import_tasks: ./home/common/tasks/git.yml
-      - import_tasks: ./home/common/tasks/apps.yml
-      - import_tasks: ./home/common/tasks/nerdfont.yml
+      - import_tasks: ./tasks/_common/config.yml
+      - import_tasks: ./tasks/_common/tools.yml
+      - import_tasks: ./tasks/_common/packages.yml
+      - import_tasks: ./tasks/_common/node.yml
+      - import_tasks: ./tasks/_common/php.yml
+      - import_tasks: ./tasks/_common/go.yml
+      - import_tasks: ./tasks/_common/rust.yml
+      - import_tasks: ./tasks/_common/neovim.yml
+      - import_tasks: ./tasks/_common/zsh.yml
+      - import_tasks: ./tasks/_common/git.yml
+      - import_tasks: ./tasks/_common/apps.yml
+      - import_tasks: ./tasks/_common/nerdfont.yml
 
-      - import_tasks: ./home/hyprwm/tasks/config.yml
-      - import_tasks: ./home/hyprwm/tasks/packages.yml
-      - import_tasks: ./home/hyprwm/tasks/hyprland.yml
-      - import_tasks: ./home/hyprwm/tasks/ags.yml
-      - import_tasks: ./home/hyprwm/tasks/anyrun.yml
-      - import_tasks: ./home/hyprwm/tasks/clipboard.yml
-      - import_tasks: ./home/hyprwm/tasks/tlp.yml
-      - import_tasks: ./home/hyprwm/tasks/fcitx.yml
-      - import_tasks: ./home/hyprwm/tasks/udiskie.yml
-      - import_tasks: ./home/hyprwm/tasks/font.yml
-      - import_tasks: ./home/hyprwm/tasks/theme.yml
-      - import_tasks: ./home/hyprwm/tasks/sddm.yml
-      - import_tasks: ./home/hyprwm/tasks/grub.yml
+      - import_tasks: ./tasks/_hyprwm/config.yml
+      - import_tasks: ./tasks/_hyprwm/packages.yml
+      - import_tasks: ./tasks/_hyprwm/hyprland.git.yml
+      - import_tasks: ./tasks/_hyprwm/ags.yml
+      - import_tasks: ./tasks/_hyprwm/anyrun.yml
+      - import_tasks: ./tasks/_hyprwm/clipboard.yml
+      - import_tasks: ./tasks/_hyprwm/tlp.yml
+      - import_tasks: ./tasks/_hyprwm/fcitx.yml
+      - import_tasks: ./tasks/_hyprwm/udiskie.yml
+      - import_tasks: ./tasks/_hyprwm/font.yml
+      - import_tasks: ./tasks/_hyprwm/theme.yml
+      - import_tasks: ./tasks/_hyprwm/sddm.yml
+      - import_tasks: ./tasks/_hyprwm/grub.yml
 
       - import_tasks: ./tasks/arch/flameshot.yml
       - import_tasks: ./tasks/arch/browser.yml
 
-      - import_tasks: ./home/common/tasks/setting.yml
-      - import_tasks: ./home/hyprwm/tasks/setting.yml
+      - import_tasks: ./tasks/_hyprwm/setting.yml
+      - import_tasks: ./tasks/_common/setting.yml
       - import_tasks: ./tasks/arch/setting.yml

@@ -3,9 +3,7 @@
   community.general.pacman:
       update_cache: true
       state: 'latest'
-      name:
-          - tlp
-          - tp_smapi
+      name: tlp
   tags:
       - tlp
       - hyprwm

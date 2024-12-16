@@ -11,7 +11,7 @@
 
 - name: Building anyrun packages
   ansible.builtin.shell: |
-      export PATH={{ HOME }}/.cargo/bin:$PATH
+      [[ -r "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env" > /dev/null 2> /dev/null || true
       mkdir -p {{ XDG_CONFIG_HOME }}/anyrun/plugins
 
       cd {{ HOME }}/anyrun

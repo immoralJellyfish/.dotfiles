@@ -14,5 +14,7 @@
           - hypridle
           - hyprlock
           - xdg-desktop-portal-hyprland
+          - cpio
   tags:
       - hypwm
+      - hyprland

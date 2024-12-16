@@ -18,7 +18,7 @@ $bar-height: 1.8em;
 $bar-padding: calc($gap-s/2);
 $bar-inner-height: calc($bar-height - $bar-padding);
 
-$shadow: 0 0 $gap-m calc($gap-s / 2) rgba(#000000, 0.6);
+$shadow: 0 0 $gap-xs rgba(#000000, 0.8);
 $primary: $lavender;
 
 @keyframes warning {

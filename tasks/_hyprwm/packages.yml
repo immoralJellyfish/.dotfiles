@@ -11,6 +11,14 @@
           - playerctl
           - brightnessctl
 
+          - thunar
+          - ristretto
+          - mousepad
+          - okular
+          - file-roller
+          - nm-connection-editor
+          - pavucontrol
+
           - thunar-archive-plugin
           - xdg-user-dirs
           - gvfs
@@ -20,13 +28,5 @@
           - webp-pixbuf-loader
           - network-manager-applet
           - mpv-mpris
-
-          - thunar
-          - ristretto
-          - mousepad
-          - okular
-          - file-roller
-          - nm-connection-editor
-          - pavucontrol
   tags:
       - hyprwm

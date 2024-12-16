@@ -93,8 +93,16 @@ export default function Menu() {
                             }}
                         />
                         <MenuItem
+                            keybind="󰘳 + 󱁐"
+                            label="Applications"
+                            onClick={() => {
+                                execAsync(['bash', '-c', 'anyrun'])
+                                setMenuState(false)
+                            }}
+                        />
+                        <MenuItem
                             keybind="󰘳 + A"
-                            label="File Manager"
+                            label="Files"
                             onClick={() => {
                                 execAsync([
                                     'bash',
@@ -162,7 +170,7 @@ export default function Menu() {
                     <Line />
                     <box vertical={true} className="menu_group">
                         <MenuItem
-                            keybind="󰘳 + x"
+                            keybind="󰘳 + X"
                             label="Lock Screen"
                             onClick={() => {
                                 execAsync([

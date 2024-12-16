@@ -201,8 +201,8 @@ const QuickControlToggle = () => {
                                     (state) => {
                                         return state >
                                             AstalNetwork.State.CONNECTED_LOCAL
-                                            ? '󰣺'
-                                            : '󰣼'
+                                            ? networkIcons.default
+                                            : networkIcons.disconnected
                                     },
                                 )}
                             />

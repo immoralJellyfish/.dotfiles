@@ -1,6 +1,6 @@
-import { Binding, GLib } from 'astal'
-import { Astal, Gtk } from 'astal/gtk3'
-import { type EventBox } from 'astal/gtk3/widget'
+import {Binding, GLib} from 'astal'
+import {Astal, Gtk} from 'astal/gtk3'
+import {type EventBox} from 'astal/gtk3/widget'
 import AstalNotifd from 'gi://AstalNotifd'
 
 const isIcon = (icon: string) => !!Astal.Icon.lookup_icon(icon)
@@ -11,7 +11,7 @@ const time = (time: number, format = '%H:%M') =>
     GLib.DateTime.new_from_unix_local(time).format(format)!
 
 const urgency = (n: AstalNotifd.Notification) => {
-    const { LOW, NORMAL, CRITICAL } = AstalNotifd.Urgency
+    const {LOW, NORMAL, CRITICAL} = AstalNotifd.Urgency
     // match operator when?
     switch (n.urgency) {
         case LOW:
@@ -42,7 +42,7 @@ const NotificationPopup = (props: NotificationProps) => {
         onHoverLost,
         setup,
     } = props
-    const { START, CENTER, END } = Gtk.Align
+    const {START, CENTER, END} = Gtk.Align
 
     let actions: AstalNotifd.Action[][] = []
     let start = 0
@@ -106,7 +106,7 @@ const NotificationPopup = (props: NotificationProps) => {
                 <box className="content">
                     {n.image && fileExists(n.image) && (
                         <box
-                            valign={START}
+                            valign={CENTER}
                             className="image"
                             css={`
                                 background-image: url('${n.image}');
@@ -116,7 +116,7 @@ const NotificationPopup = (props: NotificationProps) => {
                     {n.image && isIcon(n.image) && (
                         <box
                             expand={false}
-                            valign={START}
+                            valign={CENTER}
                             className="icon-image"
                         >
                             <icon
@@ -157,7 +157,7 @@ const NotificationPopup = (props: NotificationProps) => {
                         {actions.map((actionsRow) => {
                             return (
                                 <box className="actions_row" spacing={6}>
-                                    {actionsRow.map(({ label, id }) => (
+                                    {actionsRow.map(({label, id}) => (
                                         <button
                                             hexpand
                                             onClicked={() => {

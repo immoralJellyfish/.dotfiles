@@ -8,11 +8,15 @@ export const batteryIcons: {[key: number]: string} = {
 }
 
 export const networkIcons: {
+    disconnected: string
+    default: string
     wired: {[key: string | number]: string}
     wireless: {[key: string | number]: string}
 } = {
+    disconnected: '',
+    default: '',
     wired: {
-        disconnected: '󰣼',
+        disconnected: '',
         default: '󰈀',
     },
     wireless: {

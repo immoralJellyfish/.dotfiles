@@ -56,11 +56,11 @@
 
             .image,
             .icon-image {
-                border: 0.08em solid $charcoal;
-                margin-right: 0.5rem;
+                border: 0.06em solid $charcoal;
+                margin-right: $gap-s;
                 border-radius: $radius;
-                min-width: calc($font-size * 5);
-                min-height: calc($font-size * 5);
+                min-width: calc($font-size * 3);
+                min-height: calc($font-size * 3);
                 background-size: cover;
                 background-position: center;
             }

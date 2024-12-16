@@ -1,4 +1,4 @@
-- name: Installing browser for mac
+- name: Installing default browser
   community.general.homebrew:
       state: 'latest'
       name:

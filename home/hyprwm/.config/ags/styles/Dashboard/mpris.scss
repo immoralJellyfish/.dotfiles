@@ -2,7 +2,8 @@
     padding: $gap-xs;
 
     .head {
-        min-height: calc($font-size * 1.8);
+        min-height: calc($font-size * 2);
+        padding-bottom: $gap-xs;
 
         .title {
             font-size: calc($font-size * 1.2);
@@ -14,7 +15,7 @@
             margin-top: $gap-s;
             background-color: $base;
             padding: $gap-s;
-            border-radius: $radius;
+            border-radius: $radius-m;
             border: 0.1em solid $charcoal;
 
             .cover_art {

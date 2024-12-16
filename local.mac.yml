@@ -7,21 +7,21 @@
       - import_tasks: ./setup_personal.yml
       - import_tasks: ./setup_build.yml
   tasks:
-      - import_tasks: ./home/common/tasks/config.yml
-      - import_tasks: ./home/common/tasks/tools.yml
-      - import_tasks: ./home/common/tasks/packages.yml
-      - import_tasks: ./home/common/tasks/node.yml
-      - import_tasks: ./home/common/tasks/php.yml
-      - import_tasks: ./home/common/tasks/go.yml
-      - import_tasks: ./home/common/tasks/rust.yml
-      - import_tasks: ./home/common/tasks/neovim.yml
-      - import_tasks: ./home/common/tasks/zsh.yml
-      - import_tasks: ./home/common/tasks/git.yml
-      - import_tasks: ./home/common/tasks/apps.yml
-      - import_tasks: ./home/common/tasks/nerdfont.yml
+      - import_tasks: ./tasks/_common/config.yml
+      - import_tasks: ./tasks/_common/tools.yml
+      - import_tasks: ./tasks/_common/packages.yml
+      - import_tasks: ./tasks/_common/node.yml
+      - import_tasks: ./tasks/_common/php.yml
+      - import_tasks: ./tasks/_common/go.yml
+      - import_tasks: ./tasks/_common/rust.yml
+      - import_tasks: ./tasks/_common/neovim.yml
+      - import_tasks: ./tasks/_common/zsh.yml
+      - import_tasks: ./tasks/_common/git.yml
+      - import_tasks: ./tasks/_common/apps.yml
+      - import_tasks: ./tasks/_common/nerdfont.yml
 
       - import_tasks: ./tasks/mac/flameshot.yml
       - import_tasks: ./tasks/mac/browser.yml
 
-      - import_tasks: ./home/common/tasks/setting.yml
+      - import_tasks: ./home/_common/tasks/setting.yml
       - import_tasks: ./tasks/mac/setting.yml

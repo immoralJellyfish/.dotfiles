@@ -16,7 +16,7 @@ function BarPanel(monitor: Gdk.Monitor) {
             namespace="astal_bar"
             className="window_bar"
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
-            layer={Astal.Layer.BOTTOM}
+            layer={Astal.Layer.TOP}
             anchor={
                 Astal.WindowAnchor.BOTTOM |
                 Astal.WindowAnchor.LEFT |
@@ -41,7 +41,6 @@ function BarPanel(monitor: Gdk.Monitor) {
                 <box halign={Gtk.Align.END}>
                     <QuickControlToggle />
                     <Battery />
-                    <AppLauncherToggle />
                 </box>
             </centerbox>
         </window>

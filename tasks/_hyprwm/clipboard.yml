@@ -19,17 +19,17 @@
       - clipboard
       - hyprwm
 
-- name: Downloading cliphist package
-  ansible.builtin.shell: 'go install go.senan.xyz/cliphist@latest'
-  tags:
-      - clipboard
-      - hyprwm
-
 - name: Installing wl-clipboard package
   become: true
   ansible.builtin.shell: |
       cd {{ HOME }}/wlclipboard/build
       meson install
+  tags:
+      - clipboard
+      - hyprwm
+
+- name: Downloading cliphist package
+  ansible.builtin.shell: 'go install go.senan.xyz/cliphist@latest'
   tags:
       - clipboard
       - hyprwm

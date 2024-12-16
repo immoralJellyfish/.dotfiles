@@ -23,7 +23,6 @@
       update: false
   tags:
       - audio
-      - nsfv
       - hyprwm
 
 - name: Building noise supressor for voice
@@ -33,7 +32,6 @@
       cmake --build ./build --config Release --target all -j$(nproc)
   tags:
       - audio
-      - nsfv
       - hyprwm
 
 - name: Installing noise supressor for voice
@@ -43,5 +41,17 @@
       cmake --install ./build
   tags:
       - audio
-      - nsfv
       - hyprwm
+
+- name: Enabling audio with systemd
+  ansible.builtin.systemd:
+      name: 'pipewire'
+      scope: 'user'
+      state: 'started'
+      enabled: true
+  tags:
+      - audio
+      - hyprwm
+  loop:
+      - pipewire
+      - wireplumber
