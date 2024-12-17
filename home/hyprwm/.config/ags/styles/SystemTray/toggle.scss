@@ -1,6 +1,6 @@
 .systemtray_toggle {
     background-color: $base;
-    border: 0.04em solid $charcoal;
+    border: 0.06em solid $charcoal;
     border-radius: $bar-height;
     padding: $bar-padding;
 
@@ -19,7 +19,7 @@
         min-width: $bar-inner-height;
         border-radius: $bar-inner-height;
         background-color: $charcoal;
-        border: 0.05em solid $charcoal;
+        border: 0.06em solid $charcoal;
 
         &.active,
         &:hover {
