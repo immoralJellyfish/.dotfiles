@@ -167,7 +167,7 @@ function setup_arch(){
 function setup_ubuntu(){
     if [[ $ISPYTHON == "$ERROR" ]] ; then
         sudo add-apt-repository universe
-        sudo apt-get -y update
+        sudo apt-get -y update<F5><F5>*
         sudo apt-get -y install python3 python-is-python3
     fi
 
