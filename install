@@ -203,7 +203,7 @@ function setup_mac(){
         brew install pipx
     fi
 
-    if [[ $STOW == "$ERROR" ]] ; then
+    if [[ $ISSTOW == "$ERROR" ]] ; then
         brew install stow
     fi
 
