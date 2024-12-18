@@ -23,5 +23,5 @@
       - import_tasks: ./tasks/mac/flameshot.yml
       - import_tasks: ./tasks/mac/browser.yml
 
-      - import_tasks: ./htasks/mac/setting.yml
+      - import_tasks: ./tasks/mac/setting.yml
       - import_tasks: ./tasks/mac/setting.yml
