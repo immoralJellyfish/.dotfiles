@@ -4,17 +4,30 @@
     min-width: calc($font-size * 18);
 
     .head {
-        .back,
-        .setting,
-        .scan {
-            padding: calc($gap-s/2);
-            border-radius: $radius-m;
+        .switch {
+            padding: calc($gap-xs/2);
+            color: $base;
+            background: $base;
+            font-size: $font-size;
+            border: 0.06em solid $charcoal;
 
-            &:hover {
-                background-color: $lavender;
+            slider {
+                min-height: calc($font-size/1.2);
+                min-width: calc($font-size/1.2);
+                box-shadow: none;
+                background: $charcoal;
+            }
 
-                label {
-                    color: $crust;
+            image {
+                color: rgba(0, 0, 0, 0);
+            }
+
+            &:checked {
+                background: $primary;
+                border-color: transparent;
+
+                slider {
+                    background: $base;
                 }
             }
         }
@@ -25,7 +38,7 @@
 
         .list_item {
             padding: $gap-xs $gap-s;
-            border-radius: $radius;
+            border-radius: $radius-m;
             margin-top: $gap-s;
 
             .icon {

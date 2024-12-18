@@ -135,31 +135,20 @@ const NetworkControl = () => {
                             }
                         />
                         <box hexpand />
-                        <button
-                            className="setting"
-                            onClick={() => {
-                                setQuickControlState(false)
-                                setNetworkControlState(false)
-
-                                execAsync([
-                                    'bash',
-                                    '-c',
-                                    'nm-connection-editor',
-                                ])
-                            }}
-                        >
-                            󰒓
-                        </button>
-                        <button
-                            className="scan"
-                            onClick={() => {
+                        <switch
+                            className="switch"
+                            valign={Gtk.Align.CENTER}
+                            state={
+                                WifiService
+                                    ? bind(WifiService, 'enabled')
+                                    : false
+                            }
+                            onButtonPressEvent={(e) => {
                                 if (WifiService) {
-                                    WifiService.scan()
+                                    WifiService.enabled = !WifiService.enabled
                                 }
                             }}
-                        >
-                            󰑐
-                        </button>
+                        />
                     </box>
                     <scrollable>
                         <box vertical vexpand={false}>
@@ -199,6 +188,7 @@ const NetworkControl = () => {
                             )}
                         </box>
                     </scrollable>
+                    <button>Scan</button>
                 </box>
             </box>
         </PopupWindow>

@@ -23,5 +23,5 @@
       - import_tasks: ./tasks/ubuntu/flameshot.yml
       - import_tasks: ./tasks/ubuntu/browser.yml
 
-      - import_tasks: ./home/_common/tasks/setting.yml
+      - import_tasks: ./tasks/ubuntu/setting.yml
       - import_tasks: ./tasks/ubuntu/setting.yml

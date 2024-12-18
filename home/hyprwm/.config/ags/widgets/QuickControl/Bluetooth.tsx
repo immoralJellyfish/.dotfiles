@@ -138,33 +138,21 @@ const BluetoothControl = () => {
                             }
                         />
                         <box hexpand />
-                        <button
-                            className="setting"
-                            onClick={() => {
-                                setQuickControlState(false)
-                                setBluetoothControlState(false)
-                                closeAllWindows()
-                                execAsync(['bash', '-c', 'blueman-manager'])
-                            }}
-                        >
-                            󰒓
-                        </button>
-                        <button
-                            className="scan"
-                            onClick={() => {
+
+                        <switch
+                            className="switch"
+                            valign={Gtk.Align.CENTER}
+                            state={
+                                BluetoothService
+                                    ? bind(BluetoothService, 'isPowered')
+                                    : false
+                            }
+                            onButtonPressEvent={(_) => {
                                 if (BluetoothService) {
-                                    BluetoothService.adapter.start_discovery()
-                                    setTimeout(
-                                        () => {
-                                            BluetoothService.adapter.stop_discovery()
-                                        },
-                                        1000 * 60 * 5,
-                                    )
+                                    BluetoothService.toggle()
                                 }
                             }}
-                        >
-                            󰑐
-                        </button>
+                        />
                     </box>
 
                     <scrollable>
