@@ -19,6 +19,7 @@
           - file-roller
           - nm-connection-editor
           - pavucontrol
+          - gparted
 
           - thunar-archive-plugin
           - xdg-user-dirs

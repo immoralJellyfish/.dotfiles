@@ -5,3 +5,19 @@
       state: 'link'
   tags:
       - personal
+
+- name: Handle logind config
+  ansible.builtin.ini_file:
+      path: '/etc/sddm.conf'
+      create: 'yes'
+      section: 'Autologin'
+      option: '{{ item.option }}'
+      value: '{{ item.value }}'
+      backup: true
+      no_extra_spaces: true
+  loop:
+      - {option: 'HandlePowerKey', value: 'ignore'}
+      - {option: 'HandleLidSwitch', value: 'ignore'}
+  tags:
+      - sddm
+      - hyprwm

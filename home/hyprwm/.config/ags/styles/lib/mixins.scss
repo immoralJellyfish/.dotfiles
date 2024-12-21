@@ -4,7 +4,7 @@
     background-color: rgba($bg-color, 1);
     box-shadow: $box-shadow;
     border-radius: $radius-l;
-    border-width: 0.06em;
+    border-width: 0.1em;
     border-style: solid;
     border-color: $charcoal;
 }
@@ -12,7 +12,7 @@
 @mixin Button($color: $primary, $hover-bg: $base) {
     padding: 0 $gap-s;
     border-radius: $radius-m;
-    border-width: 0.06em;
+    border-width: 0.1em;
     border-style: solid;
     border-color: transparent;
 

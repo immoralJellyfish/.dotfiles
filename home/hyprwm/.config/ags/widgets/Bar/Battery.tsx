@@ -1,8 +1,13 @@
 import AstalBattery from 'gi://AstalBattery'
-import {bind, Variable} from '../../../../../../../../../usr/share/astal/gjs'
+import {
+    bind,
+    execAsync,
+    Variable,
+} from '../../../../../../../../../usr/share/astal/gjs'
 import ToggleButton from '../../components/ToggleButton'
 import {nearest} from '../../lib/helpers'
 import {batteryIcons} from '../../lib/Variables'
+import GLib from 'gi://GLib'
 
 const BatteryService = AstalBattery.get_default()
 
@@ -25,6 +30,25 @@ const Battery = () => {
     const energyRate = bind(BatteryService, 'energyRate').as((energy_rate) => {
         return Math.ceil(energy_rate)
     })
+
+    bind(BatteryService, 'state').subscribe((val) => {
+        if (val === AstalBattery.State.DISCHARGING) {
+            execAsync([
+                'bash',
+                '-c',
+                `canberra-gtk-play -f ${GLib.getenv('HOME')}/.config/ags/assets/discharging.ogg -c volatile -i "discharging"`,
+            ])
+        }
+        if (val === AstalBattery.State.PENDING_CHARGE) {
+            execAsync([
+                'bash',
+                '-c',
+                `canberra-gtk-play -f ${GLib.getenv('HOME')}/.config/ags/assets/charging.ogg -c volatile -i "charging"`,
+            ])
+        }
+    })
+
+    percentage.subscribe((percent) => {})
 
     return (
         <ToggleButton

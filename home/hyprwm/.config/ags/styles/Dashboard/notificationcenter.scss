@@ -16,6 +16,7 @@
             background: $base;
             border: 0.08em solid $charcoal;
             margin-left: $gap-xs;
+            border-radius: $radius-l;
 
             label {
                 font-size: calc($font-size/1.2);

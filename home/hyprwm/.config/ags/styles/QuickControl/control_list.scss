@@ -4,16 +4,25 @@
     min-width: calc($font-size * 18);
 
     .head {
+        .back {
+            border-radius: $radius;
+            min-height: calc($font-size * 1.2);
+            min-width: calc($font-size * 1.5);
+            &:hover {
+                background-color: $primary;
+                label {
+                    color: $crust;
+                }
+            }
+        }
         .switch {
-            padding: calc($gap-xs/2);
             color: $base;
             background: $base;
             font-size: $font-size;
             border: 0.06em solid $charcoal;
 
             slider {
-                min-height: calc($font-size/1.2);
-                min-width: calc($font-size/1.2);
+                border-radius: 50%;
                 box-shadow: none;
                 background: $charcoal;
             }
@@ -64,6 +73,33 @@
                         color: $crust;
                     }
                 }
+            }
+        }
+
+        .scan {
+            margin: $gap 0;
+            padding: $gap-xs;
+            border-radius: $radius-m;
+
+            &:hover,
+            &.active {
+                background-color: $primary;
+                label {
+                    color: $crust;
+                }
+            }
+        }
+    }
+
+    .setting {
+        background-color: $charcoal;
+        padding: $gap-xs;
+        border-radius: $radius-m;
+
+        &:hover {
+            background-color: $primary;
+            label {
+                color: $crust;
             }
         }
     }

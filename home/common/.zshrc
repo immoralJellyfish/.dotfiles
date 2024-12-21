@@ -65,8 +65,6 @@ export XDG_VIDEOS_DIR="$HOME/Videos"
 
 bindkey -s '^f' "sessionaizer\n"
 bindkey -s '^n' "sessionaizer main\n"
-bindkey '^[v' vi-forward-blank-word
-bindkey '^[b' vi-backward-blank-word
 
 #------------------------------------------- Plugins -------------------------------------------#
 ZINIT_HOME="${ZINIT_HOME:-${XDG_DATA_HOME:-${HOME}/.local/share}/zinit}"
@@ -85,7 +83,6 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit light-mode for \
-    hlissner/zsh-autopair \
     Aloxaf/fzf-tab \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
@@ -123,8 +120,10 @@ export PATH="$HOME/.node/bin:$PATH"
 #--------- EndNode ---------#
 
 #--------- StartGO ---------#
-eval $(go env)
-export PATH=$HOME/$GOTPATH/bin:$PATH
+if [ -x "$(which go)" ]; then
+    eval $(go env)
+    export PATH=$HOME/$GOTPATH/bin:$PATH
+fi
 #--------- EndGO ---------#
 
 #--------- StartRust ---------#

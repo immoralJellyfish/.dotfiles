@@ -115,6 +115,7 @@ const BluetoothControl = () => {
                     <box className="head">
                         <button
                             className="back"
+                            valign={Gtk.Align.CENTER}
                             onClick={() => {
                                 setQuickControlState(true)
                                 setBluetoothControlState(false)
@@ -169,7 +170,7 @@ const BluetoothControl = () => {
                                             return (
                                                 <label
                                                     vexpand={true}
-                                                    label="No bluetooth device available"
+                                                    label="No bluetooth device detected"
                                                 />
                                             )
                                         }
@@ -182,8 +183,40 @@ const BluetoothControl = () => {
                                     },
                                 )
                             )}
+                            <button
+                                className={
+                                    BluetoothService && BluetoothService.adapter
+                                        ? bind(
+                                              BluetoothService.adapter,
+                                              'discovering',
+                                          ).as((scanning) =>
+                                              scanning ? 'scan active' : 'scan',
+                                          )
+                                        : 'scan'
+                                }
+                                onClick={() => {
+                                    if (
+                                        BluetoothService &&
+                                        BluetoothService.adapter
+                                    ) {
+                                        BluetoothService.adapter.start_discovery()
+                                    }
+                                }}
+                            >
+                                Scan Blueotooth
+                            </button>
                         </box>
                     </scrollable>
+                    <button
+                        className="setting"
+                        onClick={() => {
+                            execAsync(['bash', '-c', 'blueman-manager'])
+                            setBluetoothControlState(false)
+                            setQuickControlState(false)
+                        }}
+                    >
+                        More Settings
+                    </button>
                 </box>
             </box>
         </PopupWindow>

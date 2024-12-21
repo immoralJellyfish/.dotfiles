@@ -6,13 +6,14 @@
   <property name="last-view" type="string" value="ThunarDetailsView"/>
   <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_75_PERCENT"/>
   <property name="last-window-maximized" type="bool" value="true"/>
-  <property name="last-separator-position" type="int" value="194"/>
+  <property name="last-separator-position" type="int" value="189"/>
   <property name="hidden-devices" type="array">
     <value type="string" value="55C123611083CB20"/>
     <value type="string" value="223C-F3F8"/>
     <value type="string" value="D4D2BF26D2BF0BAC"/>
     <value type="string" value="9CB4B5DEB4B5BADA"/>
     <value type="string" value="9E7ABB157ABAE963"/>
+    <value type="string" value="A2362EE2362EB767"/>
   </property>
   <property name="misc-open-new-window-as-tab" type="bool" value="false"/>
   <property name="misc-show-delete-action" type="bool" value="true"/>
@@ -42,6 +43,6 @@
   <property name="last-splitview-separator-position" type="int" value="855"/>
   <property name="last-menubar-visible" type="bool" value="true"/>
   <property name="last-tabs-left" type="array">
-    <value type="string" value="file:///home/akbarsanihasan"/>
+    <value type="string" value="file:///media/External/Hackintosh/Lenovo.Thinkpad.T480/EFI/EFI"/>
   </property>
 </channel>

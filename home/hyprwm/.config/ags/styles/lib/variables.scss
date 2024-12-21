@@ -8,11 +8,17 @@ $gap: 1em;
 $gap-l: 1.2em;
 $gap-xl: 1.4em;
 
-$radius-xs: 0.1em;
-$radius-s: 0.3em;
-$radius: 0.5em;
-$radius-m: 0.7em;
-$radius-l: 0.9em;
+// $radius-xs: 0.1em;
+// $radius-s: 0.3em;
+// $radius: 0.5em;
+// $radius-m: 0.7em;
+// $radius-l: 0.9em;
+
+$radius-xs: 0.8em;
+$radius-s: 0.22em;
+$radius: 0.36em;
+$radius-m: 0.5em;
+$radius-l: 0.65em;
 
 $bar-height: 1.8em;
 $bar-padding: calc($gap-s/2);

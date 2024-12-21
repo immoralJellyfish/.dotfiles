@@ -116,6 +116,7 @@ const NetworkControl = () => {
                     <box className="head">
                         <button
                             className="back"
+                            valign={Gtk.Align.CENTER}
                             onClick={() => {
                                 setQuickControlState(true)
                                 setNetworkControlState(false)
@@ -155,7 +156,7 @@ const NetworkControl = () => {
                             {!WifiService ? (
                                 <label
                                     vexpand
-                                    label="No WIFI networks are detected"
+                                    label="No WIFI networks are available"
                                 />
                             ) : (
                                 bind(WifiService, 'accessPoints').as(
@@ -186,9 +187,37 @@ const NetworkControl = () => {
                                     },
                                 )
                             )}
+                            <button
+                                className={
+                                    WifiService
+                                        ? bind(WifiService, 'scanning').as(
+                                              (scanning) =>
+                                                  scanning
+                                                      ? 'scan active'
+                                                      : 'scan',
+                                          )
+                                        : 'scan'
+                                }
+                                onClick={() => {
+                                    if (WifiService) {
+                                        WifiService.scan()
+                                    }
+                                }}
+                            >
+                                Scan Wifi
+                            </button>
                         </box>
                     </scrollable>
-                    <button>Scan</button>
+                    <button
+                        className="setting"
+                        onClick={() => {
+                            execAsync(['bash', '-c', 'nm-connection-editor'])
+                            setNetworkControlState(false)
+                            setQuickControlState(false)
+                        }}
+                    >
+                        More Settings
+                    </button>
                 </box>
             </box>
         </PopupWindow>

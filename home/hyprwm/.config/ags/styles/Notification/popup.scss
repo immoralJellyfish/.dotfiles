@@ -56,7 +56,7 @@
 
             .image,
             .icon-image {
-                border: 0.06em solid $charcoal;
+                border: 0.1em solid $charcoal;
                 margin-right: $gap-s;
                 border-radius: $radius;
                 min-width: calc($font-size * 3);
@@ -79,7 +79,7 @@
                     padding: $gap-xs;
                     background-color: $base;
                     border: 0.1em solid $charcoal;
-                    border-radius: $radius;
+                    border-radius: $radius-m;
                     min-width: calc($font-size * 5);
 
                     &:hover {

@@ -54,7 +54,8 @@ const WorkspaceItem = (name: string, id: number) => {
                     const clientsWorkspace = clients.filter(
                         (client: AstalHyprland.Client) =>
                             client.workspace.name.trim() === name,
-                    )
+                    ).length
+
                     self.toggleClassName(
                         'occupied',
                         clientsWorkspace.length > 0,

@@ -5,11 +5,11 @@ mode=$1
 direction=$2
 
 if [ "$direction" == "left" ]; then
-    local monitor_position_operator="<";
-    local next_focused_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $focused_monitor) | .id " | tail -n 1)
+    monitor_position_operator="<"
+    next_focused_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $focused_monitor) | .id " | tail -n 1)
 else
-    local monitor_position_operator=">";
-    local next_focused_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $focused_monitor) | .id " | head -n 1)
+    monitor_position_operator=">"
+    next_focused_monitor=$(hyprctl monitors -j | jq -r ".[] | select(.x $monitor_position_operator $focused_monitor) | .id " | head -n 1)
 fi
 
 function handle(){

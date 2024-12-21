@@ -9,7 +9,7 @@
     min-height: $bar-height;
     margin-top: $gap-xs;
     padding: $bar-padding;
-    border-top-width: 0.05rem;
+    border-top-width: 0.1rem;
 
     @import './system_info.scss';
     @import './workspace';

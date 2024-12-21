@@ -1,6 +1,7 @@
 import {Gtk} from 'astal/gtk3'
 import GLib from 'gi://GLib?version=2.0'
 import {
+    exec,
     execAsync,
     Variable,
 } from '../../../../../../../../../usr/share/astal/gjs'
@@ -122,7 +123,7 @@ export default function Menu() {
                                         summary: 'Suspend PC Now?',
                                     },
                                     () => {
-                                        execAsync([
+                                        exec([
                                             'bash',
                                             '-c',
                                             'systemctl suspend --quiet',
@@ -140,7 +141,7 @@ export default function Menu() {
                                         summary: 'Reboot PC Now?',
                                     },
                                     () => {
-                                        execAsync([
+                                        exec([
                                             'bash',
                                             '-c',
                                             'systemctl reboot --quiet',
@@ -157,7 +158,7 @@ export default function Menu() {
                                         summary: 'Shutdown PC Now?',
                                     },
                                     () => {
-                                        execAsync([
+                                        exec([
                                             'bash',
                                             '-c',
                                             'systemctl poweroff --quiet',

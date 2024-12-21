@@ -11,7 +11,7 @@
 
     .menu_group {
         .menu_item {
-            border-radius: $radius-s;
+            border-radius: $radius;
             label {
                 padding: calc($gap-s/2) $gap-s;
                 &:nth-child(2) {

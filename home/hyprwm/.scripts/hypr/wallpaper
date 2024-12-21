@@ -19,13 +19,13 @@ function get_wpp(){
                 WPP_PATH="monochrome"
                 ;;
             11 | 12 | 13 | 14 | 15 | 16)
-                WPP_PATH="pastel"
+                WPP_PATH="dark"
                 ;;
             17 | 18 | 19 | 20 | 21 | 22)
-                WPP_PATH="green"
+                WPP_PATH="pastel"
                 ;;
             23 | 00 | 01 | 02 | 03 | 04)
-                WPP_PATH="dark"
+                WPP_PATH="green"
                 ;;
         esac
     fi

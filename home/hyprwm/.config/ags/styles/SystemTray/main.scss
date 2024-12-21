@@ -2,9 +2,13 @@
 
 .system_tray {
     @include Window;
+    padding: $gap-xs;
 
-    .systemtray_item {
-        @include Button;
-        padding: $gap-xs;
+    box {
+        margin: $gap-xs;
+        .systemtray_item {
+            @include Button;
+            padding: $gap-xs;
+        }
     }
 }
