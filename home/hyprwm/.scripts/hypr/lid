@@ -4,7 +4,7 @@ monitors_count=$(hyprctl monitors -j | jq length)
 default_monitor=$(hyprctl monitors 0 -j | jq ".[]|.name")
 
 function lid_on(){
-    hyprctl keyword monitor "0,preferred,auto,1"
+    hyprctl reload
     hyprctl dispatch dpms on
 }
 

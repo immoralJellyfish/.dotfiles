@@ -7,6 +7,7 @@
       - personal
 
 - name: Handle logind config
+  become: true
   ansible.builtin.ini_file:
       path: '/etc/systemd/logind.conf'
       create: 'yes'

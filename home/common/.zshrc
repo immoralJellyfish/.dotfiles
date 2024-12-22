@@ -120,10 +120,8 @@ export PATH="$HOME/.node/bin:$PATH"
 #--------- EndNode ---------#
 
 #--------- StartGO ---------#
-if [ -x "$(which go)" ]; then
-    eval $(go env)
-    export PATH=$HOME/$GOTPATH/bin:$PATH
-fi
+eval $(go env)
+export PATH=$HOME/$GOTPATH/bin:$PATH
 #--------- EndGO ---------#
 
 #--------- StartRust ---------#

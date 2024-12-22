@@ -43,6 +43,6 @@
   <property name="last-splitview-separator-position" type="int" value="855"/>
   <property name="last-menubar-visible" type="bool" value="true"/>
   <property name="last-tabs-left" type="array">
-    <value type="string" value="file:///media/External/Hackintosh/Lenovo.Thinkpad.T480/EFI/EFI"/>
+    <value type="string" value="file:///home/akbarsanihasan"/>
   </property>
 </channel>
