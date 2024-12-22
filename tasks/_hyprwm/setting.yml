@@ -22,11 +22,14 @@
       - xdg-user-dirs
       - hyprwm
 
-- name: Setting default audio
+- name: Setting default level
   ansible.builtin.shell: |
-      wpctl set-volume @DEFAULT_SINK@ 20%
-      wpctl set-volume @DEFAULT_SOURCE@ 20%
+      wpctl set-volume @DEFAULT_SINK@ 25%
+
+      wpctl set-volume @DEFAULT_SOURCE@ 25%
       wpctl set-mute @DEFAULT_SOURCE@ 1
+
+      brightnessctl set 25% -n 10
   tags:
       - audio
       - hyprwm
