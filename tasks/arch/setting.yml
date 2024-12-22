@@ -8,9 +8,9 @@
 
 - name: Handle logind config
   ansible.builtin.ini_file:
-      path: '/etc/sddm.conf'
+      path: '/etc/systemd/logind.conf'
       create: 'yes'
-      section: 'Autologin'
+      section: 'Login'
       option: '{{ item.option }}'
       value: '{{ item.value }}'
       backup: true
