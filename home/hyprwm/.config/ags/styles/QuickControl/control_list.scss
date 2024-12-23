@@ -81,6 +81,10 @@
             padding: $gap-xs;
             border-radius: $radius-m;
 
+            label {
+                color: rgba($primary, 0.5);
+            }
+
             &:hover,
             &.active {
                 background-color: $primary;
