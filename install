@@ -1,4 +1,4 @@
-	#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/pipx-venv/bin:$PATH"
@@ -44,14 +44,14 @@ fi
 
 if command -v python > /dev/null 2>&1 || command -v python3 > /dev/null 2>&1; then
     ISPYTHON=$OK
+fi
 
-    if command -v pipx > /dev/null 2>&1; then
-        ISPIPX=$OK
-    fi
+if command -v pipx > /dev/null 2>&1; then
+    ISPIPX=$OK
+fi
 
-    if command -v ansible > /dev/null 2>&1; then
-        ISANSIBLE=$OK
-    fi
+if command -v ansible > /dev/null 2>&1; then
+    ISANSIBLE=$OK
 fi
 
 if command -v stow > /dev/null 2>&1; then

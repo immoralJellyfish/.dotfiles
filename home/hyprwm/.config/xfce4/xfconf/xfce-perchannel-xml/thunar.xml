@@ -45,7 +45,7 @@
   <property name="last-splitview-separator-position" type="int" value="855"/>
   <property name="last-menubar-visible" type="bool" value="true"/>
   <property name="last-tabs-left" type="array">
-    <value type="string" value="file:///home/akbarsanihasan"/>
+    <value type="string" value="computer:///"/>
   </property>
   <property name="last-toolbar-items" type="string" value="menu:0,back:1,forward:1,open-parent:1,open-home:0,zoom-reset:0,view-as-icons:0,view-as-detailed-list:0,view-as-compact-list:0,toggle-split-view:0,reload:1,location-bar:1,search:1,uca-action-1726703696149506-1:0,zoom-out:0,zoom-in:0,undo:1,redo:1,new-tab:0,new-window:0,view-switcher:0"/>
 </channel>
