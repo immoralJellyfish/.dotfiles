@@ -11,7 +11,7 @@
 
 @mixin Button($color: $primary, $hover-bg: $base) {
     padding: 0 $gap-s;
-    border-radius: $radius-m;
+    border-radius: $radius-l;
     border-width: 0.1em;
     border-style: solid;
     border-color: transparent;

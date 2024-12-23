@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/pipx-venv/bin:$PATH"
@@ -8,35 +9,43 @@ export NONINTERACTIVE=1
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC="\033[0m"
-
 OK="${GREEN}Ok${NC}"
 ERROR="${RED}ERROR${NC}"
-
 AUR=yay
 CURRENT_DIR=$(pwd)
-ISPYTHON=$ERROR
-ISPIPX=$ERROR
-ISANSIBLE=$ERROR
-ISGIT=$ERROR
-ISSTOW=$ERROR
-
-set -e
 
 if [[ -f /etc/os-release ]]; then
     . /etc/os-release
-fi
-
-if [[ -n "$ID_LIKE" ]]; then
-    OS=$(echo $ID_LIKE | cut -d " " -f 1 | tr '[:upper:]' '[:lower:]')
 fi
 
 if [[ -n "$ID" ]]; then
     OS=$(echo $ID | tr '[:upper:]' '[:lower:]')
 fi
 
+if [[ -n "$ID_LIKE" ]]; then
+    OS=$(echo $ID_LIKE | cut -d " " -f 1 | tr '[:upper:]' '[:lower:]')
+fi
+
 if [[ $(uname) == 'Darwin' ]]; then
     OS='mac'
 fi
+
+PLAYBOOK="local.$OS.yml"
+ARGS="--ask-become "
+
+if (( $# <= 0 )); then
+    ARGS+="--ask-vault-password "
+fi
+
+if [[ -n "$WSL_DISTRO_NAME" ]]; then
+    ARGS+="--skip-tags apps --skip-tags hyprland "
+fi
+
+ISPYTHON=$ERROR
+ISPIPX=$ERROR
+ISANSIBLE=$ERROR
+ISGIT=$ERROR
+ISSTOW=$ERROR
 
 if command -v git > /dev/null 2>&1; then
     ISGIT=$OK
@@ -58,8 +67,6 @@ if command -v stow > /dev/null 2>&1; then
     ISSTOW=$OK
 fi
 
-PLAYBOOK="local.$OS.yml"
-ARGS="--ask-become "
 
 function clean(){
     files=(
@@ -249,14 +256,6 @@ clear
 if ! command -v ansible > /dev/null 2>&1; then
     pipx install --include-deps ansible
     sleep 1
-fi
-
-if (( $# <= 0 )); then
-    ARGS+="--ask-vault-password "
-fi
-
-if [[ -n "$WSL_DISTRO_NAME" ]]; then
-    ARGS+="--skip-tags apps --skip-tags hyprland "
 fi
 
 clear

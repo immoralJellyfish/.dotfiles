@@ -2,7 +2,6 @@ import {App, Astal, Gdk, Gtk} from 'astal/gtk3'
 import MenuToggle from '../Menu/Toggle'
 import QuickControlToggle from '../QuickControl/Toggle'
 import SystemTrayToggle from '../SystemTray/Toggle'
-import AppLauncherToggle from './AppLauncherToggle'
 import Battery from './Battery'
 import Calendar from './Calendar'
 import SystemInfo from './SystemInfo'
@@ -16,7 +15,7 @@ function BarPanel(monitor: Gdk.Monitor) {
             namespace="astal_bar"
             className="window_bar"
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
-            layer={Astal.Layer.TOP}
+            layer={Astal.Layer.BOTTOM}
             anchor={
                 Astal.WindowAnchor.BOTTOM |
                 Astal.WindowAnchor.LEFT |
