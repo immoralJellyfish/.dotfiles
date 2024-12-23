@@ -48,8 +48,6 @@ const Battery = () => {
         }
     })
 
-    percentage.subscribe((percent) => {})
-
     return (
         <ToggleButton
             className="battery"
@@ -87,9 +85,9 @@ const Battery = () => {
                             [charging, energyRate],
                             (charging: boolean, energy_rate: number) => {
                                 return charging
-                                    ? '󱐌'
+                                    ? '󱐋'
                                     : energy_rate > 0
-                                      ? energy_rate.toString() + 'W'
+                                      ? '~ ' + energy_rate.toString() + 'W'
                                       : '󰚥'
                             },
                         ),

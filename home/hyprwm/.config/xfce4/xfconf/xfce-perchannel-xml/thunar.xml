@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="thunar" version="1.0">
   <property name="last-show-hidden" type="bool" value="true"/>
@@ -14,6 +14,8 @@
     <value type="string" value="9CB4B5DEB4B5BADA"/>
     <value type="string" value="9E7ABB157ABAE963"/>
     <value type="string" value="A2362EE2362EB767"/>
+    <value type="string" value="62462BA0462B73C7"/>
+    <value type="string" value="98a1b00a-e110-4c3d-90e1-ed50fa17daad"/>
   </property>
   <property name="misc-open-new-window-as-tab" type="bool" value="false"/>
   <property name="misc-show-delete-action" type="bool" value="true"/>
@@ -45,4 +47,5 @@
   <property name="last-tabs-left" type="array">
     <value type="string" value="file:///home/akbarsanihasan"/>
   </property>
+  <property name="last-toolbar-items" type="string" value="menu:0,back:1,forward:1,open-parent:1,open-home:0,zoom-reset:0,view-as-icons:0,view-as-detailed-list:0,view-as-compact-list:0,toggle-split-view:0,reload:1,location-bar:1,search:1,uca-action-1726703696149506-1:0,zoom-out:0,zoom-in:0,undo:1,redo:1,new-tab:0,new-window:0,view-switcher:0"/>
 </channel>
