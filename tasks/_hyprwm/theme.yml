@@ -36,11 +36,10 @@
 
 - name: Installing catppuccin theme and icon
   ansible.builtin.shell: |
-      wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="{{ XDG_DATA_HOME }}/icons" sh
-
       cd {{ HOME }}/gtk-theme/
       ./install.sh -d {{ XDG_DATA_HOME }}/themes -t purple -c dark -s compact -l --tweaks catppuccin black
 
+      wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="{{ XDG_DATA_HOME }}/icons" sh
   tags:
       - theme
       - hyprwm
