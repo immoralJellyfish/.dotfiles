@@ -1,3 +1,15 @@
+- name: Downloading Noise supressor for voice repository
+  ansible.builtin.git:
+      repo: 'https://github.com/werman/noise-suppression-for-voice.git'
+      dest: '{{ HOME }}/nsfv'
+      depth: 1
+      recursive: true
+      update: false
+      version: 'v1.10'
+  tags:
+      - audio
+      - hyprwm
+
 - name: Installing audio package for arch
   become: true
   community.general.pacman:
@@ -14,16 +26,7 @@
       - audio
       - hyprwm
 
-- name: Downloading Noise supressor for voice repository
-  ansible.builtin.git:
-      repo: 'https://github.com/werman/noise-suppression-for-voice.git'
-      dest: '{{ HOME }}/nsfv'
-      depth: 1
-      recursive: true
-      update: false
-  tags:
-      - audio
-      - hyprwm
+# --------------------- Building proccess --------------------- #
 
 - name: Building noise supressor for voice
   ansible.builtin.shell: |

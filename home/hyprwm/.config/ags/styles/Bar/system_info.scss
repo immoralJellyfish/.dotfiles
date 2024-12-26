@@ -3,12 +3,12 @@
         margin-right: $gap-s;
 
         .icon {
-            min-height: $bar-height;
-            min-width: $bar-height;
+            min-height: $bar-inner-height;
+            min-width: $bar-inner-height;
             margin-right: $gap-s;
             border-radius: 50%;
             background-color: $base;
-            border: 0.1em solid $charcoal;
+            border: 0.06em solid $charcoal;
             font-size: calc($font-size/1.2);
             font-weight: 600;
             transition: 0.3s;

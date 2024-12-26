@@ -4,11 +4,13 @@ import {setMenuState, menuState} from './Main'
 const MenuToggle = () => {
     return (
         <ToggleButton
-            onClick={() => setMenuState()}
+            onClick={(_) => {
+                setMenuState()
+            }}
             state={menuState()}
             className="menu_toggle"
         >
-           󰼁 
+            󰼁
         </ToggleButton>
     )
 }

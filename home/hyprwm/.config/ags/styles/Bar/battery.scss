@@ -1,6 +1,11 @@
 .battery {
     @include Button;
 
+    &:hover {
+        border-color: transparent;
+        background-color: transparent;
+    }
+
     label {
         animation-timing-function: ease-in-out;
         animation-iteration-count: infinite;

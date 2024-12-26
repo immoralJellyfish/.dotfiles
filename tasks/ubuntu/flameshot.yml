@@ -1,3 +1,14 @@
+- name: Downloading flameshot package repository
+  ansible.builtin.git:
+      repo: 'https://github.com/flameshot-org/flameshot.git'
+      dest: '{{ HOME }}/flameshot'
+      depth: 1
+      recursive: true
+      version: 'v12.1.0'
+  tags:
+      - flameshot
+      - apps
+
 - name: Installing flameshot dependencies
   become: true
   ansible.builtin.apt:
@@ -21,15 +32,7 @@
       - flameshot
       - apps
 
-- name: Downloading flameshot package repository
-  ansible.builtin.git:
-      repo: 'https://github.com/flameshot-org/flameshot.git'
-      dest: '{{ HOME }}/flameshot'
-      depth: 1
-      recursive: true
-  tags:
-      - flameshot
-      - apps
+# --------------------- Building proccess --------------------- #
 
 - name: Building flameshot for linux
   ansible.builtin.shell: |

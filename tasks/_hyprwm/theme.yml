@@ -18,6 +18,7 @@
       dest: '{{ HOME }}/gtk-theme'
       depth: 1
       update: true
+      version: '2024-11-16'
   tags:
       - theme
       - hyprwm

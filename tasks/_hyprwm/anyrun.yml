@@ -9,6 +9,8 @@
       - anyrun_standalone
       - hyprwm
 
+# --------------------- Building proccess --------------------- #
+
 - name: Building anyrun packages
   ansible.builtin.shell: |
       [[ -r "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env" > /dev/null 2> /dev/null || true

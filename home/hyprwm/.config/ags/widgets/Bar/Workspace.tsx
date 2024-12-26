@@ -7,8 +7,8 @@ const HyprlandService = AstalHyprland.get_default()
 
 const workspaces = new Map([
     ['files', 1],
-    ['dev', 2],
-    ['wbrowser', 3],
+    ['wbrowser', 2],
+    ['dev', 3],
     ['term', 4],
     ['design', 5],
     ['office', 6],

@@ -8,13 +8,14 @@
     border-radius: 0;
     border-width: 0;
     min-height: $bar-height;
-    margin-top: $gap-xs;
+    margin-bottom: $gap-xs;
     padding: $bar-padding;
-    border-top-width: 0.1rem;
+    border-bottom-width: 0.06rem;
 
     @import './system_info.scss';
     @import './workspace';
     @import './battery.scss';
     @import './calendar.scss';
     @import './applauncher_toggle.scss';
+    @import './indicator.scss';
 }

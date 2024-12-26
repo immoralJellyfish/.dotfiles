@@ -77,12 +77,6 @@ const disk = Variable<string[][]>([]).poll(
     },
 )
 
-const update = Variable(0).poll(
-    1000 * 60 * 10,
-    ['bash', '-c', 'pacman -Qu | wc -l'],
-    (out) => parseInt(out),
-)
-
 const SystemInfoItem = ({
     icon,
     label,
@@ -211,17 +205,6 @@ const SystemInfo = () => {
 
                     return disks.filter((disk) => disk[5] === '/').flat()[4]
                 })}
-            />
-            <SystemInfoItem
-                icon="󰇚"
-                tooltipMarkup={update(
-                    (update_count) =>
-                        `${update_count} Package need to be update`,
-                )}
-                label={update((update_count) =>
-                    update_count > 9 ? '9+' : update_count.toString(),
-                )}
-                onDestroy={update.drop}
             />
         </box>
     )

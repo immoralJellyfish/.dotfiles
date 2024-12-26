@@ -8,19 +8,13 @@ $gap: 1em;
 $gap-l: 1.2em;
 $gap-xl: 1.4em;
 
-$radius-xs: 0.8em;
-$radius-s: 0.22em;
-$radius: 0.36em;
-$radius-m: 0.5em;
-$radius-l: 0.65em;
+$radius-xs: 0.08em;
+$radius-s: 0.23em;
+$radius: 0.38em;
+$radius-m: 0.53em;
+$radius-l: 0.68em;
 
-// $radius-xs: 0em;
-// $radius-s: 0em;
-// $radius: 0em;
-// $radius-m: 0em;
-// $radius-l: 0em;
-
-$bar-height: 1.8em;
+$bar-height: calc($font-size * 1.8);
 $bar-padding: calc($gap-s/2);
 $bar-inner-height: calc($bar-height - $bar-padding);
 

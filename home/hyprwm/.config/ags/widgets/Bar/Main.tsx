@@ -6,6 +6,7 @@ import Battery from './Battery'
 import Calendar from './Calendar'
 import SystemInfo from './SystemInfo'
 import Workspace from './Workspace'
+import Indicator from './Indicator'
 
 function BarPanel(monitor: Gdk.Monitor) {
     return (
@@ -17,7 +18,7 @@ function BarPanel(monitor: Gdk.Monitor) {
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
             layer={Astal.Layer.BOTTOM}
             anchor={
-                Astal.WindowAnchor.BOTTOM |
+                Astal.WindowAnchor.TOP |
                 Astal.WindowAnchor.LEFT |
                 Astal.WindowAnchor.RIGHT
             }
@@ -38,8 +39,9 @@ function BarPanel(monitor: Gdk.Monitor) {
                     <SystemTrayToggle />
                 </box>
                 <box halign={Gtk.Align.END}>
-                    <QuickControlToggle />
+                    <Indicator />
                     <Battery />
+                    <QuickControlToggle />
                 </box>
             </centerbox>
         </window>

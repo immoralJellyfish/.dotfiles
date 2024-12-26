@@ -1,3 +1,22 @@
+- name: Downloading ags & astal package
+  ansible.builtin.git:
+      repo: 'https://github.com/aylur/{{ item.repo }}.git'
+      dest: '{{ HOME }}/{{ item.repo }}'
+      depth: 1
+      recursive: true
+      refspec: '{{ item.refspec | default(omit) }}'
+      version: '{{ item.version | default(omit) }}'
+  loop:
+      - repo: astal
+        version: '5b2a0e8905fc32ac603437c22fb6eaee6adeafd8'
+        refspec: '5b2a0e8905fc32ac603437c22fb6eaee6adeafd8'
+      - repo: ags
+        version: 'v2.0.1'
+  tags:
+      - ags
+      - ags_standanlone
+      - hyprwm
+
 - name: Installing ags dependencies for arch
   become: true
   community.general.pacman:
@@ -15,6 +34,7 @@
           - libappindicator-gtk3
           - upower
           - wireplumber
+          - luarocks
   when: ansible_facts.distribution == ARCH
   tags:
       - ags
@@ -22,24 +42,6 @@
       - hyprwm
 
 # --------------------- Building proccess --------------------- #
-
-- name: Downloading ags & astal package
-  ansible.builtin.git:
-      repo: 'https://github.com/aylur/{{ item.repo }}.git'
-      dest: '{{ HOME }}/{{ item.repo }}'
-      depth: 1
-      recursive: true
-      refspec: '{{ item.refspec | default(omit) }}'
-      version: '{{ item.version | default(omit) }}'
-  loop:
-      - repo: astal
-        version: '5b2a0e8905fc32ac603437c22fb6eaee6adeafd8'
-        refspec: '5b2a0e8905fc32ac603437c22fb6eaee6adeafd8'
-      - repo: ags
-  tags:
-      - ags
-      - ags_standanlone
-      - hyprwm
 
 # ----- Astal io ----- #
 - name: Building astal io library
@@ -242,7 +244,7 @@
       - hyprwm
 
 # ----- Astal gjs ----- #
-- name: Building astal gjs lang
+- name: Building astal lang
   ansible.builtin.shell: |
       cd {{ HOME }}/astal/lang/gjs
       meson setup --reconfigure --prefix /usr build

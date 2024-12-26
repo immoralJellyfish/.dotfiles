@@ -1,3 +1,35 @@
+- name: Downloading hyprland packages repo
+  ansible.builtin.git:
+      repo: 'https://github.com/{{ item.repo }}.git'
+      dest: '{{ HOME }}/{{ item.dest }}'
+      depth: 1
+      recursive: true
+      update: false
+      version: '{{ item.version | default(omit) }}'
+  loop:
+      - {repo: hyprwm/hyprutils, dest: hyprutils, version: v0.2.6}
+      - {repo: hyprwm/hyprlang, dest: hyprlang, version: v0.6.0}
+      - {
+            repo: hyprwm/hyprwayland-scanner,
+            dest: hyprwayscanner,
+            version: v0.4.2,
+        }
+      - {repo: hyprwm/aquamarine, dest: hypraquamarine, version: v0.5.1}
+      - {repo: hyprwm/hyprgraphics, dest: hyprgraphics, version: v0.1.1}
+      - {repo: hyprwm/hyprcursor, dest: hyprcursor, version: v0.1.11}
+      - {repo: hyprwm/Hyprland, dest: hyprland, version: v0.45.2}
+      - {repo: hyprwm/hyprpaper, dest: hyprpaper, version: v0.7.2}
+      - {repo: hyprwm/hypridle, dest: hypridle, version: v0.1.5}
+      - {repo: hyprwm/hyprlock, dest: hyprlock, version: v0.5.0}
+      - {
+            repo: hyprwm/xdg-desktop-portal-hyprland,
+            dest: hyprxdp,
+            version: v1.3.8,
+        }
+  tags:
+      - hyprwm
+      - hyprland
+
 - name: Installing hyprland build depedencies for arch
   become: true
   community.general.pacman:
@@ -52,37 +84,7 @@
       - hyprwm
       - hyprland
 
-- name: Downloading hyprland packages repo
-  ansible.builtin.git:
-      repo: 'https://github.com/{{ item.repo }}.git'
-      dest: '{{ HOME }}/{{ item.dest }}'
-      depth: 1
-      recursive: true
-      update: false
-      version: '{{ item.version | default(omit) }}'
-  loop:
-      - {repo: hyprwm/hyprutils, dest: hyprutils, version: v0.2.6}
-      - {repo: hyprwm/hyprlang, dest: hyprlang, version: v0.6.0}
-      - {
-            repo: hyprwm/hyprwayland-scanner,
-            dest: hyprwayscanner,
-            version: v0.4.2,
-        }
-      - {repo: hyprwm/aquamarine, dest: hypraquamarine, version: v0.5.1}
-      - {repo: hyprwm/hyprgraphics, dest: hyprgraphics, version: v0.1.1}
-      - {repo: hyprwm/hyprcursor, dest: hyprcursor, version: main}
-      - {repo: hyprwm/Hyprland, dest: hyprland, version: v0.45.2}
-      - {repo: hyprwm/hyprpaper, dest: hyprpaper, version: v0.7.2}
-      - {repo: hyprwm/hypridle, dest: hypridle, version: v0.1.5}
-      - {repo: hyprwm/hyprlock, dest: hyprlock, version: v0.5.0}
-      - {
-            repo: hyprwm/xdg-desktop-portal-hyprland,
-            dest: hyprxdp,
-            version: v1.3.8,
-        }
-  tags:
-      - hyprwm
-      - hyprland
+# --------------------- Building proccess --------------------- #
 
 # --- Hyprutils -- #
 - name: Building hyprutils package

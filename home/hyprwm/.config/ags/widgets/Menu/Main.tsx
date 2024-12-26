@@ -68,7 +68,7 @@ const MenuItem = (props: MenuItemProps) => {
 export default function Menu() {
     return (
         <PopupWindow
-            layout={LayoutOptions.SOUTHWEST}
+            layout={LayoutOptions.NORTHWEST}
             name="menu"
             namespace="menu"
             state={menuState}

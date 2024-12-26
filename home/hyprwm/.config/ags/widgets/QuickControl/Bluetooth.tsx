@@ -97,7 +97,7 @@ const BluetoothControl = () => {
         <PopupWindow
             name="bluetooth-control"
             state={bluetoothControlState}
-            layout={LayoutOptions.SOUTHEAST}
+            layout={LayoutOptions.NORTHEAST}
         >
             <box>
                 <Padding
@@ -116,6 +116,7 @@ const BluetoothControl = () => {
                         <button
                             className="back"
                             valign={Gtk.Align.CENTER}
+                            halign={Gtk.Align.CENTER}
                             onClick={() => {
                                 setQuickControlState(true)
                                 setBluetoothControlState(false)
@@ -139,10 +140,34 @@ const BluetoothControl = () => {
                             }
                         />
                         <box hexpand />
-
+                        <button
+                            valign={Gtk.Align.CENTER}
+                            halign={Gtk.Align.CENTER}
+                            className={
+                                BluetoothService && BluetoothService.adapter
+                                    ? bind(
+                                          BluetoothService.adapter,
+                                          'discovering',
+                                      ).as((scanning) =>
+                                          scanning ? 'scan active' : 'scan',
+                                      )
+                                    : 'scan'
+                            }
+                            onClick={() => {
+                                if (
+                                    BluetoothService &&
+                                    BluetoothService.adapter
+                                ) {
+                                    BluetoothService.adapter.start_discovery()
+                                }
+                            }}
+                        >
+                            
+                        </button>
                         <switch
                             className="switch"
                             valign={Gtk.Align.CENTER}
+                            halign={Gtk.Align.CENTER}
                             state={
                                 BluetoothService
                                     ? bind(BluetoothService, 'isPowered')
@@ -183,28 +208,6 @@ const BluetoothControl = () => {
                                     },
                                 )
                             )}
-                            <button
-                                className={
-                                    BluetoothService && BluetoothService.adapter
-                                        ? bind(
-                                              BluetoothService.adapter,
-                                              'discovering',
-                                          ).as((scanning) =>
-                                              scanning ? 'scan active' : 'scan',
-                                          )
-                                        : 'scan'
-                                }
-                                onClick={() => {
-                                    if (
-                                        BluetoothService &&
-                                        BluetoothService.adapter
-                                    ) {
-                                        BluetoothService.adapter.start_discovery()
-                                    }
-                                }}
-                            >
-                                Scan Blueotooth
-                            </button>
                         </box>
                     </scrollable>
                     <button

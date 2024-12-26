@@ -78,7 +78,7 @@ export default function SystemTray() {
         <PopupWindow
             name="systemtray"
             namespace="systemtray"
-            layout={LayoutOptions.SOUTH}
+            layout={LayoutOptions.NORTH}
             state={systemTrayState}
         >
             <box>

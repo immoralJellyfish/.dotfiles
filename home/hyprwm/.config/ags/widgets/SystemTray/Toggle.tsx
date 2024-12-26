@@ -1,5 +1,5 @@
-import { Gtk } from 'astal/gtk3'
-import { bind, Variable } from '../../../../../../../../../usr/share/astal/gjs'
+import {Gtk} from 'astal/gtk3'
+import {bind, Variable} from '../../../../../../../../../usr/share/astal/gjs'
 import ToggleButton from '../../components/ToggleButton'
 import {
     setSystemTrayState as setSystemTrayState,
@@ -26,14 +26,12 @@ const SystemTrayToggle = () => {
             </ToggleButton>
             {bind(
                 Variable.derive([trayItems, shownTrayItems], (ti, sti) => {
-                    if (sti.length <= 0) {
-                        return ti
-                            .slice(0, 3)
-                            .map((item) => <SystemTrayItem item={item} />)
+                    if (sti.length > 0) {
+                        return sti.map((item) => <SystemTrayItem item={item} />)
                     }
 
-                    return sti.map((item) => <SystemTrayItem item={item} />)
-                })
+                    return ''
+                }),
             )}
         </box>
     )

@@ -6,7 +6,7 @@
   <property name="last-view" type="string" value="ThunarDetailsView"/>
   <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_75_PERCENT"/>
   <property name="last-window-maximized" type="bool" value="true"/>
-  <property name="last-separator-position" type="int" value="189"/>
+  <property name="last-separator-position" type="int" value="193"/>
   <property name="hidden-devices" type="array">
     <value type="string" value="55C123611083CB20"/>
     <value type="string" value="223C-F3F8"/>
@@ -45,7 +45,7 @@
   <property name="last-splitview-separator-position" type="int" value="855"/>
   <property name="last-menubar-visible" type="bool" value="true"/>
   <property name="last-tabs-left" type="array">
-    <value type="string" value="computer:///"/>
+    <value type="string" value="file:///home/akbarsanihasan"/>
   </property>
   <property name="last-toolbar-items" type="string" value="menu:0,back:1,forward:1,open-parent:1,open-home:0,zoom-reset:0,view-as-icons:0,view-as-detailed-list:0,view-as-compact-list:0,toggle-split-view:0,reload:1,location-bar:1,search:1,uca-action-1726703696149506-1:0,zoom-out:0,zoom-in:0,undo:1,redo:1,new-tab:0,new-window:0,view-switcher:0"/>
 </channel>

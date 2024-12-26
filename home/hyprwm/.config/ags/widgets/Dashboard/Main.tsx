@@ -19,7 +19,7 @@ export default function Dashboard() {
         <PopupWindow
             name="dashboard"
             namespace="dashboard"
-            layout={LayoutOptions.SOUTH}
+            layout={LayoutOptions.NORTH}
             state={stateDashboard}
         >
             <box>

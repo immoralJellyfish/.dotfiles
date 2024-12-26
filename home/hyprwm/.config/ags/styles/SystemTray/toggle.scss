@@ -1,6 +1,6 @@
 .systemtray_toggle {
     background-color: $base;
-    border: 0.1em solid $charcoal;
+    border: 0.06em solid $charcoal;
     border-radius: $bar-height;
     padding: $bar-padding;
 
@@ -18,9 +18,11 @@
         min-height: $bar-inner-height;
         min-width: $bar-inner-height;
         border-radius: $bar-inner-height;
+        background-color: $charcoal;
+        border: 0.03em solid $charcoal;
 
         label {
-            font-size: calc($font-size * 1.2);
+            font-size: $font-size;
         }
 
         &.active,

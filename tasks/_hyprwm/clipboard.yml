@@ -5,9 +5,12 @@
       depth: 1
       recursive: true
       update: false
+      version: 'v2.2.1'
   tags:
       - clipboard
       - hyprwm
+
+# --------------------- Building proccess --------------------- #
 
 - name: Building wl-clipboard package
   ansible.builtin.shell: |

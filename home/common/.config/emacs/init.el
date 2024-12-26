@@ -1,5 +1,0 @@
-(tool-bar-mode 0)
-(menu-bar-mode 0)
-(setq inhibit-startup-message t)
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode t)

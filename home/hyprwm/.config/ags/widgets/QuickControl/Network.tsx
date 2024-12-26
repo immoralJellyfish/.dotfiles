@@ -98,7 +98,7 @@ const NetworkControl = () => {
         <PopupWindow
             name="network-control"
             state={networkControlState}
-            layout={LayoutOptions.SOUTHEAST}
+            layout={LayoutOptions.NORTHEAST}
         >
             <box>
                 <Padding
@@ -117,6 +117,7 @@ const NetworkControl = () => {
                         <button
                             className="back"
                             valign={Gtk.Align.CENTER}
+                            halign={Gtk.Align.CENTER}
                             onClick={() => {
                                 setQuickControlState(true)
                                 setNetworkControlState(false)
@@ -136,9 +137,29 @@ const NetworkControl = () => {
                             }
                         />
                         <box hexpand />
+                        <button
+                            className={
+                                WifiService
+                                    ? bind(WifiService, 'scanning').as(
+                                          (scanning) =>
+                                              scanning ? 'scan active' : 'scan',
+                                      )
+                                    : 'scan'
+                            }
+                            onClick={() => {
+                                if (WifiService) {
+                                    WifiService.scan()
+                                }
+                            }}
+                            valign={Gtk.Align.CENTER}
+                            halign={Gtk.Align.CENTER}
+                        >
+                            
+                        </button>
                         <switch
                             className="switch"
                             valign={Gtk.Align.CENTER}
+                            halign={Gtk.Align.CENTER}
                             state={
                                 WifiService
                                     ? bind(WifiService, 'enabled')
@@ -187,25 +208,6 @@ const NetworkControl = () => {
                                     },
                                 )
                             )}
-                            <button
-                                className={
-                                    WifiService
-                                        ? bind(WifiService, 'scanning').as(
-                                              (scanning) =>
-                                                  scanning
-                                                      ? 'scan active'
-                                                      : 'scan',
-                                          )
-                                        : 'scan'
-                                }
-                                onClick={() => {
-                                    if (WifiService) {
-                                        WifiService.scan()
-                                    }
-                                }}
-                            >
-                                Scan Wifi
-                            </button>
                         </box>
                     </scrollable>
                     <button

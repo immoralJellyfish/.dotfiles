@@ -1,7 +1,7 @@
 import AstalBluetooth from 'gi://AstalBluetooth'
 import AstalNetwork from 'gi://AstalNetwork'
 import AstalWp from 'gi://AstalWp'
-import {bind, Variable} from '../../../../../../../../../usr/share/astal/gjs'
+import {bind, Variable} from 'astal'
 import PopupWindow, {
     closeAllWindows,
     LayoutOptions,
@@ -341,7 +341,7 @@ export default function QuickControl() {
         <PopupWindow
             name="quickcontrol"
             state={quickControlState}
-            layout={LayoutOptions.SOUTHEAST}
+            layout={LayoutOptions.NORTHEAST}
         >
             <box>
                 <Padding

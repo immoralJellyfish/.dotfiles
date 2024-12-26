@@ -69,7 +69,7 @@ export class NotifiationMap implements Subscribable {
 
 export default function Notification() {
     const notifs = new NotifiationMap()
-    const {BOTTOM, RIGHT} = Astal.WindowAnchor
+    const {TOP, RIGHT} = Astal.WindowAnchor
 
     return (
         <window
@@ -77,7 +77,7 @@ export default function Notification() {
             namespace="notification"
             className="notification"
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
-            anchor={RIGHT | BOTTOM}
+            anchor={RIGHT | TOP}
             valign={Gtk.Align.END}
             layer={Astal.Layer.TOP}
         >
