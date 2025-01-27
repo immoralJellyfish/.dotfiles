@@ -5,6 +5,7 @@
       mode: 0600
   tags:
       - ssh
+      - personal
 
 - name: Authorizing public ssh key
   ansible.posix.authorized_key:
@@ -18,12 +19,17 @@
 
 - name: Downloading personal repository
   ansible.builtin.git:
-      repo: git@github.com:immoralJellyfish/personal.git
-      dest: '{{ playbook_dir }}/.contents/personal'
+      repo: git@github.com:immoralJellyfish/{{ item.repo }}.git
+      dest: '{{ item.dest }}'
       depth: 1
       update: false
       recursive: true
       accept_hostkey: true
+  loop:
+      - repo: personal
+        dest: '{{ playbook_dir }}/.contents/personal'
+
+      - repo: Notes
+        dest: '{{ HOME }}/Documents/notes'
   tags:
-      - ssh
       - personal
