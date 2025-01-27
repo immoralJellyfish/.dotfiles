@@ -1,0 +1,69 @@
+- name: Checking go installation
+  ansible.builtin.stat:
+      path: '{{ DOTFILES_CACHE }}/go'
+  register: go_installation
+  tags:
+      - go
+      - neovim
+      - ags
+      - clipboard
+
+- name: Downloading go
+  ansible.builtin.uri:
+      url: 'https://go.dev/dl/go{{ GO_VERSION }}.linux-amd64.tar.gz'
+      dest: '{{ DOTFILES_CACHE }}/go'
+  when: not go_installation.stat.exists
+  tags:
+      - go
+      - neovim
+      - ags
+      - clipboard
+
+- name: Preparing go installation
+  become: true
+  ansible.builtin.file:
+      dest: '{{ GOROOT }}'
+      mode: 0755
+      owner: '{{ USER }}'
+      state: '{{ item }}'
+  loop:
+      - absent
+      - directory
+  tags:
+      - go
+      - neovim
+      - ags
+      - clipboard
+
+- name: Installing go
+  ansible.builtin.unarchive:
+      src: '{{ DOTFILES_CACHE }}/go'
+      dest: '{{ GOROOT }}'
+      extra_opts: [--strip-components=1]
+  tags:
+      - go
+      - neovim
+      - ags
+      - clipboard
+
+- name: Adding go to the path
+  ansible.builtin.blockinfile:
+      path: '{{ item }}'
+      create: true
+      prepend_newline: true
+      marker: '#--------- {mark} ---------#'
+      marker_begin: StartGO
+      marker_end: EndGO
+      block: |
+          export GOROOT="{{ GOROOT }}"
+          export GOPATH="{{ GOPATH }}"
+          export PATH="$PATH:$GOROOT/bin"
+          export PATH="$PATH:$GOPATH/bin"
+  loop:
+      - '{{ XDG_CONFIG_HOME }}/zsh/path.zsh'
+      - '{{ HOME }}/.bashrc'
+  tags:
+      - go
+      - neovim
+      - ags
+      - clipboard

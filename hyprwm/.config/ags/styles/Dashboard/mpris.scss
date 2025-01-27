@@ -1,0 +1,80 @@
+@use "../lib/colors";
+@use "../lib/variables";
+
+.mpris {
+    padding: variables.$gap-xs;
+
+    .head {
+        min-height: calc(variables.$font-size * 2);
+        padding-bottom: variables.$gap-xs;
+
+        .title {
+            font-size: calc(variables.$font-size * 1.2);
+        }
+    }
+
+    .players {
+        .media_player {
+            margin-top: variables.$gap-s;
+            background-color: colors.$base;
+            padding: variables.$gap-s;
+            border-radius: variables.$radius-m;
+            border: 0.1em solid colors.$charcoal;
+
+            .cover_art {
+                min-width: calc(variables.$font-size * 5);
+                min-height: calc(variables.$font-size * 5);
+                border-radius: variables.$radius;
+                background-size: cover;
+                background-position: center;
+                margin-right: variables.$gap-s;
+            }
+
+            .title {
+                label {
+                    margin-right: variables.$gap-s;
+                    font-weight: bold;
+                }
+            }
+
+            .artist {
+                color: colors.$overlay0;
+            }
+
+            .actions {
+                button {
+                    background-color: colors.$surface0;
+                    margin: 0 variables.$gap-xs;
+                    label {
+                        font-size: calc(variables.$font-size/1.2);
+                    }
+                    &:hover {
+                        background-color: variables.$primary;
+                        label {
+                            color: colors.$crust;
+                        }
+                    }
+                }
+            }
+
+            scale {
+                padding: 0;
+                margin: 0.4rem 0;
+
+                highlight {
+                    background: variables.$primary;
+                    border-radius: calc(variables.$font-size/2.5);
+                }
+
+                trough {
+                    min-height: calc(variables.$font-size/2.5);
+                    border-radius: calc(variables.$font-size/2.5);
+                }
+
+                slider {
+                    all: unset;
+                }
+            }
+        }
+    }
+}

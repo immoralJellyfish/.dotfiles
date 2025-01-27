@@ -1,0 +1,32 @@
+@use '../lib/colors';
+@use '../lib/variables';
+
+.system-info {
+    .item {
+        margin: 0 variables.$gap-xs;
+
+        .icon {
+            min-height: calc(variables.$bar-inner-height/1.2);
+            min-width: calc(variables.$bar-inner-height/1.2);
+            margin-right: variables.$gap-s;
+            border-radius: 50%;
+            background-color: colors.$base;
+            border: 0.08em solid colors.$charcoal;
+            font-size: calc(variables.$font-size/1.2);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+    }
+
+    eventbox {
+        &:hover {
+            .item {
+                .icon {
+                    background-color: colors.$lavender;
+                    color: colors.$crust;
+                    border-color: colors.$lavender;
+                }
+            }
+        }
+    }
+}

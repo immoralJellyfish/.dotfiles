@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -e
+clear
+source "./header"
+
+echo -e "Cleaning cache"
+rm -rf "$HOME"/.cache/dotfiles/*
+
+clear
+case $OS in
+    "arch")
+        echo "* Upgrading system"
+
+        if ! sudo pacman -Sy >/dev/null 2>"$LOGFILE"; then
+            echo -e "${RED}Error: check ${LOGFILE} or run the script again${NC}"
+        fi
+
+        if ! sudo pacman -Syu --noconfirm >/dev/null 2>"$LOGFILE"; then
+            echo -e "${RED}Error: check ${LOGFILE} or run the script again${NC}"
+            exit 1
+        fi
+        ;;
+    *)
+        echo "Not supported yet"
+        exit 1
+        ;;
+esac
+
+source "./install"

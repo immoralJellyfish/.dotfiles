@@ -1,0 +1,19 @@
+- name: Checking {{ name }} build directory
+  ansible.builtin.stat:
+      path: '{{ dest }}/build'
+  register: ags_build
+  tags: "{{ ['ags'] + (tags | default([])) }}"
+
+- name: Compiling {{ name }} library
+  ansible.builtin.shell: |
+      cd {{ dest }}
+      meson setup --reconfigure --prefix /usr build
+  when: not ags_build.stat.exists
+  tags: "{{ ['ags'] + (tags | default([])) }}"
+
+- name: Installing {{ name }} library
+  become: true
+  ansible.builtin.shell: |
+      cd {{ dest }}
+      meson install -C build
+  tags: "{{ ['ags'] + (tags | default([])) }}"

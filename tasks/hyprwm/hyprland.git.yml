@@ -1,0 +1,158 @@
+- name: Installing hyprland build depedencies
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name:
+          - wayland
+          - wayland-protocols
+          - xorg-xwayland
+          - cpio
+          - mesa
+          - systemd-libs
+          - gcc-libs
+          - glib2
+          - glibc
+          - glslang
+          - cairo
+          - seatd
+          - pixman
+          - tomlplusplus
+          - pango
+          - xcb-proto
+          - xcb-util
+          - xcb-util-errors
+          - xcb-util-image
+          - xcb-util-keysyms
+          - xcb-util-renderutil
+          - xcb-util-wm
+          - libdisplay-info
+          - libdrm
+          - libglvnd
+          - libinput
+          - libliftoff
+          - libx11
+          - libxcb
+          - libxcomposite
+          - libxcursor
+          - libxfixes
+          - libxkbcommon
+          - libxrender
+          - xdg-desktop-portal
+          # aquamarine
+          - pugixml
+          - libglvnd
+          # hyprlock
+          - pam
+          # hypridle
+          - sdbus-cpp
+          # hyprcursor
+          - libzip
+          - librsvg
+  tags:
+      - hyprwm
+
+# --- Hyprland --- #
+- name: Preparing install hyprwm
+  ansible.builtin.include_tasks: ./sub_tasks/build_hyprland.yml
+  vars:
+      name: "{{ item.repo.split('/')[1] }}"
+      repo: 'https://github.com/{{ item.repo }}.git'
+      dest: '{{ DOTFILES_CACHE }}/{{ item.dest }}'
+      version: '{{ item.version }}'
+  loop:
+      - repo: hyprwm/hyprutils
+        dest: hyprutils
+        version: '{{ HYPRUTILS_VERSION }}'
+
+      - repo: hyprwm/hyprlang
+        dest: hyprlang
+        version: '{{ HYPRLANG_VERSION }}'
+
+      - repo: hyprwm/hyprwayland-scanner
+        dest: hyprwayscanner
+        version: '{{ HYPRWAYLAND_SCANNER_VERSION }}'
+
+      - repo: hyprwm/aquamarine
+        dest: hypraquamarine
+        version: '{{ HYPRAQUAMARINE_VERSION }}'
+
+      - repo: hyprwm/hyprgraphics
+        dest: hyprgraphics
+        version: '{{ HYPRGRAPHICS_VERSION }}'
+
+      - repo: hyprwm/hyprcursor
+        dest: hyprcursor
+        version: '{{ HYPRCURSOR_VERSION }}'
+
+      - repo: hyprwm/hyprland-qtutils
+        dest: hyprlandqt
+        version: '{{ HYPRLANDQT_VERSION }}'
+
+      - repo: hyprwm/Hyprland
+        dest: hyprland
+        version: '{{ HYPRLAND_VERSION }}'
+
+      - repo: hyprwm/xdg-desktop-portal-hyprland
+        dest: hyprxdp
+        version: '{{ XDG_PORTAL_HYPRLAND_VERSION }}'
+
+      - repo: hyprwm/hyprpaper
+        dest: hyprpaper
+        version: '{{ HYPRPAPER_VERSION }}'
+
+      - repo: hyprwm/hypridle
+        dest: hypridle
+        version: '{{ HYPRIDLE_VERSION }}'
+
+      - repo: hyprwm/hyprlock
+        dest: hyprlock
+        version: '{{ HYPRLOCK_VERSION }}'
+
+      - repo: hyprwm/hyprpicker
+        dest: hyprpicker
+        version: '{{ HYPRPICKER_VERSION }}'
+  loop_control:
+      label: "{{ item.repo.split('/')[1] }}"
+  tags:
+      - hyprwm
+
+# --- Hyprland Plugins --- #
+- name: Downloading hyprland plugin
+  ansible.builtin.git:
+      repo: https://github.com/hyprwm/hyprland-plugins
+      dest: '{{ DOTFILES_CACHE }}/hyprland_plugins'
+      version: '{{ HYPRPLUGINS_VERSION }}'
+      depth: 1
+      recursive: true
+      update: false
+  tags:
+      - hyprwm
+
+- name: Checking hyprland plugins
+  ansible.builtin.find:
+      path: '{{ DOTFILES_CACHE }}/hyprland_plugins'
+      patterns: '*.so'
+      hidden: true
+      recurse: true
+      file_type: file
+  register: plugins
+  tags:
+      - hyprwm
+
+- name: Compiling hyprland plugins
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/hyprland_plugins
+      make -C borders-plus-plus all
+      make -C hyprbars all
+  when: plugins.matched < 2
+  tags:
+      - hyprwm
+
+- name: Installing hyprland plugins
+  ansible.builtin.copy:
+      src: '{{ DOTFILES_CACHE }}/hyprland_plugins/'
+      dest: '{{ HOME }}/.plugins'
+  when: plugins.matched < 2
+  tags:
+      - hyprwm

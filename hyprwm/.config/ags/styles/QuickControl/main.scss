@@ -1,0 +1,212 @@
+@use 'sass:color';
+
+@use 'toggle.scss';
+@use 'control_list.scss';
+@use "../lib/colors";
+@use "../lib/mixins";
+@use "../lib/variables";
+
+.quickcontrol {
+    @include mixins.Window;
+    min-width: calc(variables.$font-size * 18);
+    padding: 0;
+    padding-bottom: variables.$gap-xs;
+
+    .toggler {
+        padding: variables.$gap-s variables.$gap-s variables.$gap-xs variables.$gap-s;
+        .toggle {
+            &:nth-child(1) {
+                > box {
+                    margin-right: calc(variables.$gap-xs / 2);
+                }
+            }
+
+            &:nth-child(2) {
+                > box {
+                    margin-left: calc(variables.$gap-xs / 2);
+                }
+            }
+            > box {
+                border-radius: variables.$radius-m;
+                transition: 0.3s;
+
+                > button {
+                    background-color: colors.$base;
+                    border-top: 0.08em solid colors.$charcoal;
+                    border-right: 0.08em solid colors.$charcoal;
+                    border-bottom: 0.08em solid colors.$charcoal;
+                    border-radius: 0;
+
+                    box {
+                        label {
+                            color: variables.$primary;
+                            &:nth-child(1) {
+                                font-size: calc(variables.$font-size * 1.2);
+                            }
+                            &:nth-child(2) {
+                                font-size: calc(variables.$font-size / 1.2);
+                            }
+                        }
+                    }
+
+                    &:nth-child(1) {
+                        padding: variables.$gap-s;
+                        border-right: 0.08em solid colors.$charcoal;
+                        border-top-left-radius: variables.$radius-m;
+                        border-bottom-left-radius: variables.$radius-m;
+
+                        &:hover {
+                            background-color: color.adjust(
+                                variables.$primary,
+                                $lightness: -8%
+                            );
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        padding: calc(variables.$gap-xs / 2);
+                        border-top-right-radius: variables.$radius-m;
+                        border-bottom-right-radius: variables.$radius-m;
+
+                        &:hover {
+                            background-color: color.adjust(
+                                variables.$primary,
+                                $lightness: -8%
+                            );
+                        }
+                    }
+                }
+            }
+
+            &.active,
+            &:hover {
+                > box {
+                    button {
+                        background-color: variables.$primary;
+                        label {
+                            color: colors.$crust;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .slider_control {
+        margin: variables.$gap-xs variables.$gap-s;
+        background-color: colors.$base;
+        border: 0.05em solid colors.$charcoal;
+        border-radius: variables.$radius-m;
+
+        .control {
+            border-radius: variables.$radius-m;
+
+            > box {
+                min-height: calc(variables.$font-size * 3.5);
+                padding-right: variables.$gap-l;
+
+                .icon {
+                    border-radius: variables.$radius-m;
+                    margin-right: variables.$gap-xs;
+                    min-width: calc(variables.$font-size * 3.5);
+
+                    label {
+                        padding: 0 variables.$gap-xs;
+
+                        &:nth-child(1) {
+                            font-size: calc(variables.$font-size * 1.2);
+                        }
+
+                        &:nth-child(2) {
+                            font-size: calc(variables.$font-size / 1.2);
+                        }
+
+                        &.disconnected {
+                            color: rgba(variables.$primary, 0.5);
+                        }
+                    }
+
+                    &:hover {
+                        background-color: colors.$lavender;
+
+                        label {
+                            color: colors.$crust;
+                        }
+                    }
+                }
+
+                .indicator {
+                    margin-bottom: calc(variables.$gap-xs / 2);
+                }
+
+                scale {
+                    margin-bottom: variables.$gap-xs;
+                    trough {
+                        min-height: calc(variables.$font-size/1.8);
+                        border-radius: variables.$font-size;
+                        background-color: colors.$charcoal;
+                    }
+
+                    highlight {
+                        background: variables.$primary;
+                        border-radius: calc(variables.$font-size/1.8);
+                    }
+
+                    slider {
+                        border-radius: 50%;
+                        border: none;
+                        background: transparent;
+                        box-shadow: none;
+                        min-height: calc(variables.$font-size/1.8);
+                        min-width: calc(variables.$font-size/1.8);
+                    }
+
+                    &:hover {
+                        slider {
+                            transition: 0.3s;
+                            background-color: variables.$primary;
+                            box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.5);
+                            border: 0.2em solid variables.$primary;
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                background-color: colors.$charcoal;
+                box {
+                    scale {
+                        trough {
+                            background-color: colors.$overlay0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .control_sublist {
+            margin: 0 variables.$gap-l;
+
+            button {
+                margin: variables.$gap-s 0;
+                padding: variables.$gap-xs;
+                border-radius: variables.$radius-m;
+                background-color: colors.$charcoal;
+
+                &.active,
+                &:hover {
+                    background-color: variables.$primary;
+                    label {
+                        color: colors.$crust;
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            > box {
+                background-color: colors.$charcoal;
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+@use '../lib/colors';
+@use '../lib/variables';
+
+.workspace {
+    margin: 0 variables.$gap-xs;
+
+    .workspace_item {
+        min-height: variables.$bar-inner-height;
+        min-width: variables.$bar-inner-height;
+        border-radius: variables.$bar-inner-height;
+        label {
+            color: rgba(variables.$primary, 0.5);
+            font-size: calc(variables.$font-size/1.1);
+        }
+
+        &.occupied {
+            label {
+                color: variables.$primary;
+            }
+        }
+
+        &:hover,
+        &.focused {
+            background-color: variables.$primary;
+            label {
+                color: colors.$crust;
+            }
+        }
+    }
+}

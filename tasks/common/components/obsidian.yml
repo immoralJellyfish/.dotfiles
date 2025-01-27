@@ -1,0 +1,27 @@
+- name: Installing obsidian
+  community.general.flatpak:
+      method: user
+      name: md.obsidian.Obsidian
+      state: present
+  tags:
+      - obisidian
+
+- name: Configuring obsidian
+  ansible.builtin.shell: |
+      flatpak override --user --env=OBSIDIAN_DISABLE_GPU=1 md.obsidian.Obsidian
+
+      flatpak override --user \
+          --filesystem=home \
+          --filesystem=/run/media \
+          --filesystem=/mnt \
+          --filesystem=/media \
+          --filesystem=xdg-run/app/com.discordapp.Discord \
+          md.obsidian.Obsidian
+  tags:
+      - obisidian
+
+- name: Configuring obsidian wayland
+  ansible.builtin.shell: |
+      flatpak override --user --socket=wayland md.obsidian.Obsidian
+  tags:
+      - obisidian

@@ -1,0 +1,26 @@
+- name: Installing browsers
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name: ['firefox', 'chromium']
+  tags:
+      - browser
+
+- name: Ensuring firefox directory exist
+  ansible.builtin.file:
+      dest: '{{ HOME }}/.mozilla'
+      state: directory
+  tags:
+      - browser
+      - personal
+
+- name: Link mozilla firefox config
+  ansible.builtin.file:
+      src: '{{ playbook_dir }}/.contents/personal/firefox'
+      dest: '{{ HOME }}/.mozilla/firefox'
+      state: link
+      force: true
+  tags:
+      - browser
+      - personal

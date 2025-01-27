@@ -1,0 +1,27 @@
+- name: Preparing to install common config
+  ansible.builtin.include_tasks: ./sub_tasks/install_config.yml
+  vars:
+      name: common
+      config_path: common
+      tags:
+          - common
+  tags:
+      - common
+
+- name: Preparing to install hyprwm config
+  ansible.builtin.include_tasks: ./sub_tasks/install_config.yml
+  vars:
+      name: hyprwm
+      config_path: hyprwm
+      tags:
+          - hyprwm
+  tags:
+      - hyprwm
+
+- name: Installing wallpaper
+  ansible.builtin.file:
+      src: '{{ playbook_dir }}/.contents/wallpapers/'
+      dest: '{{ HOME }}/.wallpapers'
+      state: link
+  tags:
+      - hyprwm

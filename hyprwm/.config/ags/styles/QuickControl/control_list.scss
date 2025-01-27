@@ -1,0 +1,136 @@
+@use '../lib/colors';
+@use '../lib/mixins';
+@use '../lib/variables';
+
+.control_list {
+    @include mixins.Window;
+    padding: 0;
+    min-width: calc(variables.$font-size * 18);
+
+    .head {
+        margin-bottom: variables.$gap-xs;
+        margin: variables.$gap-m variables.$gap-s;
+
+        .back {
+            border-radius: variables.$radius;
+            min-width: calc(variables.$font-size * 1.4);
+            min-height: calc(variables.$font-size * 1.4);
+
+            &:hover {
+                background-color: variables.$primary;
+                label {
+                    color: colors.$crust;
+                }
+            }
+        }
+
+        .switch {
+            margin: 0;
+            padding: 0;
+            color: colors.$base;
+            background-color: colors.$base;
+            min-height: calc(variables.$font-size * 1);
+            min-width: calc(variables.$font-size * 2);
+            padding: calc(
+                (variables.$font-size * 1.4) - (variables.$font-size * 1.2)
+            );
+            border: 0.06em solid colors.$charcoal;
+
+            slider {
+                margin: 0;
+                padding: 0;
+                border-radius: 50%;
+                box-shadow: none;
+                background-color: colors.$charcoal;
+                min-height: calc(variables.$font-size * 1);
+                min-width: calc(variables.$font-size * 1);
+            }
+
+            image {
+                color: rgba(0, 0, 0, 0);
+            }
+
+            &:checked {
+                background: variables.$primary;
+
+                slider {
+                    background: colors.$base;
+                }
+            }
+        }
+    }
+
+    scrollable {
+        min-height: calc(variables.$font-size * 20);
+        padding: 0 variables.$gap-s;
+
+        box {
+            .list_item {
+                padding: variables.$gap-xs variables.$gap-s;
+                border-radius: variables.$radius-m;
+                margin-top: variables.$gap-s;
+
+                .icon {
+                    font-size: calc(variables.$font-size * 1.2);
+                    margin-right: variables.$gap-xs;
+                }
+
+                box {
+                    label {
+                        &:nth-child(3),
+                        &:nth-child(4) {
+                            margin-left: variables.$gap-s;
+                        }
+                    }
+                }
+
+                &:hover,
+                &.active {
+                    background-color: colors.$lavender;
+
+                    box {
+                        label {
+                            color: colors.$crust;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .setting {
+        background-color: colors.$base;
+        padding: variables.$gap-s variables.$gap-xs;
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
+
+        .more {
+            label {
+                color: rgba(variables.$primary, 0.5);
+            }
+
+            &:hover {
+                label {
+                    color: rgba(variables.$primary, 1);
+                }
+            }
+        }
+
+        .scan {
+            border-radius: variables.$radius-m;
+            min-height: calc(variables.$font-size * 1.4);
+            min-width: calc(variables.$font-size * 1.4);
+
+            label {
+                color: rgba(variables.$primary, 0.5);
+            }
+
+            &.active,
+            &:hover {
+                label {
+                    color: rgba(variables.$primary, 1);
+                }
+            }
+        }
+    }
+}

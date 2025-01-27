@@ -1,0 +1,12 @@
+- name: Installing common apps
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name:
+          - kitty
+          - mpv
+          - android-file-transfer
+          - gparted
+  tags:
+      - gui_app

@@ -1,0 +1,9 @@
+html {
+    --custom-bg: #11111b;
+}
+
+@-moz-document url("about:newtab"), url(about:home), url(about:newtab), url(about:privatebrowsing) {
+    body {
+        background: var(--custom-bg) !important;
+    }
+}

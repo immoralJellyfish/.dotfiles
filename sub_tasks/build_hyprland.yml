@@ -1,0 +1,39 @@
+- name: Checking {{ name }} build
+  ansible.builtin.stat:
+      path: '{{ dest }}/build'
+  register: hyprland_build
+  tags: "{{ ['hyprland'] + (tags | default([])) }}"
+
+- name: Downloading {{ name }}
+  ansible.builtin.git:
+      repo: '{{ repo }}'
+      dest: '{{ dest }}'
+      depth: 1
+      recursive: true
+      update: false
+      version: '{{ version | default(omit) }}'
+  tags: "{{ ['hyprland'] + (tags | default([])) }}"
+
+- name: Compiling {{ name }}
+  ansible.builtin.shell: |
+      cd {{ dest }}
+
+      cmake --no-warn-unused-cli \
+            -DCMAKE_BUILD_TYPE:STRING=Release \ 
+            -DCMAKE_INSTALL_PREFIX:PATH=/usr \
+            -S . \
+            -B ./build
+
+      cmake --build ./build \
+            --config Release \
+            --target all \
+            -j$(($(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)/2))
+  when: not hyprland_build.stat.exists
+  tags: "{{ ['hyprland'] + (tags | default([])) }}"
+
+- name: Installing {{ name }}
+  become: true
+  ansible.builtin.shell: |
+      cd {{ dest }}
+      cmake --install ./build
+  tags: "{{ ['hyprland'] + (tags | default([])) }}"

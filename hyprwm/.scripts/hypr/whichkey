@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+mainMod=SUPER
+mainMod2=ALT
+mainMod3=CTRL
+mainMod4=SHIFT
+
+killall wofi || grep -oP '(?<=bind = ).*' $HOME/.config/hypr/keybind.conf \
+    | sed "s/\$mainMod2/$mainMod2/g" \
+    | sed "s/\$mainMod3/$mainMod3/g" \
+    | sed "s/\$mainMod4/$mainMod4/g" \
+    | sed "s/\$mainMod/$mainMod/g" \
+    | wofi --dmenu -W 60%

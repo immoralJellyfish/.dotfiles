@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+STR="$1"
+LEN=$2
+
+if [[ ! $STR =~ / && $LEN != "basename" ]]; then
+    echo " $STR" | tail -c $LEN
+    exit 1
+fi
+
+if [[ "$LEN" == "basename" ]]; then
+    echo "@/$(basename $STR)"
+    exit 1
+fi
+
+if ((${#STR} > $LEN)); then
+    STR=$(echo "$STR" | tail -c $LEN)
+
+    STR="@/${STR#*/}"
+fi
+
+echo $STR

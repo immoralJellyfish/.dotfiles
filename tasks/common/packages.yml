@@ -1,0 +1,25 @@
+- name: Installing common packages
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name:
+          - zsh
+          - tmux
+          - btop
+          - fastfetch
+          - bat
+          - eza
+          - fzf
+          - trash-cli
+          - less
+          - tldr
+          - man
+  tags:
+      - common
+
+- name: Common package configuration
+  ansible.builtin.shell: |
+      bat cache --build
+  tags:
+      - common

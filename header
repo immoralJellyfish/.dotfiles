@@ -1,0 +1,75 @@
+# vim:ft=bash
+
+export PATH="$HOME"/.local/bin:$PATH
+export PATH="$HOME"/.local/pipx-venv/bin:$PATH
+
+OS="none"
+SUPPORTED_OS=(arch ubuntu mac)
+ANSIBLE_VERSION='11.1.0'
+LOGFILE="$HOME/dotfiles.log"
+ANSIBLE_ARGS=(--ask-become)
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC="\033[0m"
+
+OK="${GREEN}Ok${NC}"
+ERROR="${RED}ERROR${NC}"
+
+ISPYTHON=$ERROR
+ISPIPX=$ERROR
+ISANSIBLE=$ERROR
+ISGIT=$ERROR
+
+if [[ -f /etc/os-release ]]; then
+    . /etc/os-release
+fi
+
+if [[ -n "$ID" ]]; then
+    OS=$(echo "$ID" | tr '[:upper:]' '[:lower:]')
+fi
+
+if command -v git >/dev/null 2>&1; then
+    ISGIT=$OK
+fi
+
+if command -v python >/dev/null 2>&1 || command -v python3 > /dev/null 2>&1; then
+    ISPYTHON=$OK
+fi
+
+if command -v pipx >/dev/null 2>&1; then
+    ISPIPX=$OK
+fi
+
+if command -v ansible >/dev/null 2>&1; then
+    ISANSIBLE=$OK
+fi
+
+if (($# > 0)); then
+    ANSIBLE_ARGS+=(--tags "build,directory")
+else
+    ANSIBLE_ARGS+=(--ask-vault-password)
+fi
+
+if ! ls /sys/class/power_supply/BAT* >/dev/null 2>&1; then
+    ANSIBLE_ARGS+=(--skip-tags tlp)
+fi
+
+if ! sudo dmesg | grep -i "bluetooth" >/dev/null; then
+    ANSIBLE_ARGS+=(--skip-tags bluetooth)
+fi
+
+if [[ -n "$WSL_DISTRO_NAME" ]]; then
+    ANSIBLE_ARGS+=(--skip-tags "gui_apps,hyprwm")
+fi
+
+if [[ ! -f /etc/default/grub ]]; then
+    ANSIBLE_ARGS+=(--skip-tags grub)
+fi
+
+for SKIP_OS in "${SUPPORTED_OS[@]}"; do
+    if [[ $SKIP_OS != "$OS" ]]; then
+        ANSIBLE_ARGS+=(--skip-tags "$SKIP_OS")
+    fi
+done
+

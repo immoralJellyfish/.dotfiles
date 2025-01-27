@@ -1,0 +1,18 @@
+@use 'toggle.scss';
+@use '../lib/mixins';
+@use '../lib/variables';
+
+.system_tray {
+    @include mixins.Window;
+    padding: 0;
+
+    box {
+        margin: variables.$gap-xs;
+
+        .systemtray_item {
+            @include mixins.Button;
+            padding: variables.$gap-s;
+            font-size: calc(variables.$font-size * 1.2);
+        }
+    }
+}

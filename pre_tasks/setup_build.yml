@@ -1,0 +1,26 @@
+- name: Installing common build packages
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name:
+          - base-devel
+          - make
+          - cmake
+          - meson
+          - ninja
+          - ccache
+          - git
+          - curl
+          - wget
+          - zip
+          - tar
+          - unzip
+          - unrar
+          - p7zip
+          - fd
+          - jq
+          - ripgrep
+          - awk
+  tags:
+      - build

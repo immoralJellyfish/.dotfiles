@@ -1,0 +1,59 @@
+- name: Installing flameshot dependencies
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name:
+          - qt5-base
+          - qt5-tools
+          - qt5-svg
+          - kguiaddons
+          - kguiaddons5
+          - grim
+          - slurp
+  tags:
+      - flameshot
+
+- name: Checking flameshot build
+  ansible.builtin.stat:
+      path: '{{ DOTFILES_CACHE }}/flameshot/build'
+  register: flameshot_build
+  tags:
+      - flameshot
+
+- name: Downloading flameshot
+  ansible.builtin.git:
+      repo: https://github.com/flameshot-org/flameshot.git
+      dest: '{{ DOTFILES_CACHE }}/flameshot'
+      version: '{{ FLAMESHOT_VERSION }}'
+      depth: 1
+      recursive: true
+      update: false
+  tags:
+      - flameshot
+
+- name: Compiling flameshot
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/flameshot 
+
+      cmake -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=/usr/local \
+            -DUSE_WAYLAND_CLIPBOARD=true -DUSE_WAYLAND_GRIM=ON ../ \
+            -S . \
+            -B ./build
+
+      cmake --build ./build \
+            --config Release \
+            --target all \
+            -j$(($(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)/2))
+  when: not flameshot_build.stat.exists
+  tags:
+      - flameshot
+
+- name: Installing flameshot
+  become: true
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/flameshot 
+      cmake --install build
+  tags:
+      - flameshot

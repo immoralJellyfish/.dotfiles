@@ -1,0 +1,62 @@
+- name: Installing neovim dependencies
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name: ['gettext', 'tree-sitter-cli', 'luarocks']
+  tags:
+      - neovim
+
+- name: Downloading neovim repository
+  ansible.builtin.git:
+      repo: '{{ item.repo }}'
+      dest: '{{ item.dest }}'
+      version: '{{ item.version | default(omit) }}'
+      recursive: true
+      depth: 1
+      update: false
+      accept_hostkey: true
+  loop:
+      - repo: 'https://github.com/immoralJellyfish/Nvimrc.git'
+        dest: '{{ playbook_dir }}/.contents/nvimrc'
+
+      - repo: 'https://github.com/neovim/neovim'
+        dest: '{{ DOTFILES_CACHE }}/neovim'
+        version: '{{ NEOVIM_VERSION }}'
+  tags:
+      - neovim
+
+- name: Checking neovim build
+  ansible.builtin.stat:
+      path: '{{ DOTFILES_CACHE }}/neovim/build'
+  register: neovim_build
+  tags:
+      - neovim
+
+- name: Compiling neovim
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/neovim
+      make deps
+      make CMAKE_BUILD_TYPE=Release \
+           -j$(($(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)/2))
+  when: not neovim_build.stat.exists
+  tags:
+      - neovim
+
+- name: Installing neovim
+  become: true
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/neovim
+      make install
+  tags:
+      - neovim
+
+- name: Installing nvimrc
+  ansible.builtin.file:
+      src: '{{ playbook_dir }}/.contents/nvimrc'
+      dest: '{{ XDG_CONFIG_HOME }}/nvim'
+      state: 'link'
+      follow: false
+      force: true
+  tags:
+      - neovim

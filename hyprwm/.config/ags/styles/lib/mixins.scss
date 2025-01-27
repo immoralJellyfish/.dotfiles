@@ -1,0 +1,31 @@
+@use "colors";
+@use "variables";
+
+@mixin Window($bg-color: colors.$crust, $box-shadow: variables.$shadow) {
+    padding: variables.$gap-s;
+    margin: variables.$gap-xs;
+    background-color: rgba($bg-color, 1);
+    box-shadow: $box-shadow;
+    border-radius: variables.$radius-l;
+    border-width: 0.08em;
+    border-style: solid;
+    border-color: colors.$charcoal;
+}
+
+@mixin Button($color: variables.$primary, $hover-bg: colors.$base) {
+    padding: 0 variables.$gap-s;
+    border-radius: variables.$radius-m;
+    border-width: 0.08em;
+    border-style: solid;
+    border-color: transparent;
+
+    label {
+        color: $color;
+    }
+
+    &:hover,
+    &.active {
+        background-color: $hover-bg;
+        border-color: colors.$charcoal;
+    }
+}

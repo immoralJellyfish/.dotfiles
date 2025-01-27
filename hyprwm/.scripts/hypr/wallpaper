@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+MODE=$1
+WPP_PATH=$2
+WPP_DEFAULT_DIR=$HOME/.wallpaper
+
+CHECK_HYPRPAPER=$(pgrep -x hyprpaper)
+CHECK_DAEMON=$(pgrep -fic "bash $HOME/.scripts/hypr/wallpaper daemon*")
+
+
+if [[ -z "$CHECK_HYPRPAPER" ]]; then
+    hyprpaper &
+fi
+
+function get_wpp(){
+    local WALLPAPER=$WPP_PATH
+    local IMG=$WALLPAPER
+
+    if [[ $WPP_PATH == '' ]]; then
+        case $(date +%H) in
+            05 | 06 | 07 | 08 | 09 | 10)
+                WALLPAPER="$WPP_DEFAULT_DIR/monochrome"
+                ;;
+            11 | 12 | 13 | 14 | 15 | 16)
+                WALLPAPER="$WPP_DEFAULT_DIR/dark"
+                ;;
+            17 | 18 | 19 | 20 | 21 | 22)
+                WALLPAPER="$WPP_DEFAULT_DIR/pastel"
+                ;;
+            23 | 00 | 01 | 02 | 03 | 04)
+                WALLPAPER="$WPP_DEFAULT_DIR/green"
+                ;;
+        esac
+    fi
+
+    if [[ -d "$WPP_DEFAULT_DIR/$WPP_PATH"  ]]; then
+        WALLPAPER="$WPP_DEFAULT_DIR/$WPP_PATH"
+    fi
+
+    if [[ -d $WALLPAPER ]]; then
+        IMG="$(fd -t f . --full-path $WALLPAPER | shuf -n1)"
+    else
+        IMG=$WALLPAPER
+    fi
+
+    echo $IMG
+}
+
+function apply(){
+    local monitors=($(hyprctl monitors -j | jq -r ".[].name"))
+
+    IMG=$(get_wpp)
+
+    for t in ${monitors[@]}; do
+        hyprctl hyprpaper unload all
+
+        hyprctl hyprpaper preload $IMG
+        hyprctl hyprpaper wallpaper "$t,$IMG"
+    done
+}
+
+function daemon(){
+    if (( "$CHECK_DAEMON" <= "1" )); then
+        while true; do
+            apply
+            sleep 599
+        done
+    fi
+}
+
+case $MODE in
+    "apply") apply ;;
+    "daemon") daemon ;;
+    "get_wpp") get_wpp ;;
+esac

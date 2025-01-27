@@ -1,0 +1,16 @@
+USER: "{{ lookup('env', 'USER') }}"
+HOME: "{{ lookup('env', 'HOME') }}"
+XDG_CONFIG_HOME: '{{ HOME }}/.config'
+XDG_CACHE_HOME: '{{ HOME }}/.cache'
+XDG_DATA_HOME: '{{ HOME }}/.local/share'
+DOTFILES_CACHE: '{{ XDG_CACHE_HOME }}/dotfiles'
+
+GOROOT: '/usr/local/go'
+GOPATH: '{{ HOME }}/.go'
+
+N_PREFIX: '/usr/local/node'
+NPM_PREFIX: '{{ HOME }}/.node'
+
+CARGO_HOME: '{{ HOME }}/.cargo'
+
+EMACS_CONFIG: '{{ XDG_CONFIG_HOME }}/emacs'

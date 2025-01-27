@@ -1,0 +1,11 @@
+@use '../lib/variables';
+@use '../lib/colors';
+@use 'sass:color';
+
+.indicator {
+    margin-right: variables.$gap-xs;
+    > * {
+        margin: 0 variables.$gap-xs;
+        color: rgba(variables.$primary, 0.8);
+    }
+}

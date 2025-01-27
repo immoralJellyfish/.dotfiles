@@ -1,0 +1,42 @@
+@use 'colors';
+
+$font-size: 1rem;
+$gap-xs: 0.4em;
+$gap-s: 0.6em;
+$gap-m: 0.8em;
+$gap: 1em;
+$gap-l: 1.2em;
+$gap-xl: 1.4em;
+
+$radius-xs: 0.08em;
+$radius-s: 0.23em;
+$radius: 0.38em;
+$radius-m: 0.53em;
+$radius-l: 0.68em;
+
+$bar-height: calc($font-size * 1.6);
+$bar-padding: calc($gap-xs/2);
+$bar-inner-height: calc($bar-height - $bar-padding);
+
+$shadow: 0 0 $gap-xs rgba(#000000, 0.6);
+$primary: colors.$lavender;
+
+@keyframes warning {
+    from {
+        color: rgba($color: colors.$yellow, $alpha: 0.5);
+    }
+
+    to {
+        color: rgba($color: colors.$yellow, $alpha: 1);
+    }
+}
+
+@keyframes critical {
+    from {
+        color: rgba($color: colors.$red, $alpha: 0.5);
+    }
+
+    to {
+        color: rgba($color: colors.$red, $alpha: 1);
+    }
+}

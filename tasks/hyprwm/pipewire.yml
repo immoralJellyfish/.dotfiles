@@ -1,0 +1,78 @@
+- name: Installing pipewire
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name:
+          - pipewire
+          - pipewire-audio
+          - pipewire-pulse
+          - pipewire-alsa
+          - wireplumber
+          - xwaylandvideobridge
+          - rtkit
+          - webkit2gtk
+  tags:
+      - pipewire
+      - hyprwm
+
+- name: Downloading Noise supressor for voice
+  ansible.builtin.git:
+      repo: https://github.com/werman/noise-suppression-for-voice.git
+      dest: '{{ DOTFILES_CACHE }}/nsfv'
+      depth: 1
+      recursive: true
+      update: false
+      version: '{{ NSFV_VERSION }}'
+  tags:
+      - pipewire
+      - hyprwm
+
+- name: Checking noise suppression build
+  ansible.builtin.stat:
+      path: '{{ DOTFILES_CACHE }}/nsfv/build'
+  register: nsfv
+  tags:
+      - pipewire
+      - hyprwm
+
+- name: Compiling noise supressor for voice
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/nsfv
+
+      cmake -Bbuild \
+            -H. \
+            -GNinja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX:PATH=/usr
+
+      cmake --build ./build \
+            --config Release \
+            --target all \
+            -j$(($(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)/2))
+  when: not nsfv.stat.exists
+  tags:
+      - pipewire
+      - hyprwm
+
+- name: Installing noise supressor for voice
+  become: true
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/nsfv
+      cmake --install ./build
+  tags:
+      - pipewire
+      - hyprwm
+
+- name: Enabling pipewire with systemd
+  ansible.builtin.systemd:
+      name: '{{ item }}'
+      scope: user
+      state: started
+      enabled: true
+  loop:
+      - pipewire
+      - wireplumber
+  tags:
+      - pipewire
+      - hyprwm

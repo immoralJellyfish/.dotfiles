@@ -1,0 +1,36 @@
+@use "../lib/colors";
+@use "../lib/mixins";
+@use "../lib/variables";
+
+.quickcontrol_toggle {
+    @include mixins.Button;
+
+    label {
+        font-weight: 800;
+
+        &.low,
+        &.disconnected {
+            color: rgba(variables.$primary, 0.6);
+        }
+
+        &.medium {
+            color: rgba(variables.$primary, 0.8);
+        }
+
+        &.high {
+            color: rgba(variables.$primary, 1);
+        }
+
+        &.warning {
+            color: colors.$yellow;
+        }
+
+        &.overamplified {
+            color: colors.$red;
+        }
+
+        &:nth-child(2) {
+            margin: 0 variables.$gap-xs;
+        }
+    }
+}

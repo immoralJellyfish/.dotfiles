@@ -1,0 +1,66 @@
+- name: Downloading nodejs version manager
+  ansible.builtin.git:
+      repo: https://github.com/tj/n.git
+      dest: '{{ DOTFILES_CACHE }}/nvm'
+      version: '{{ N_VERSION }}'
+      update: false
+      depth: 1
+      recursive: true
+  tags:
+      - nodejs
+      - neovim
+      - ags
+
+- name: Preparing nodejs installation
+  become: true
+  ansible.builtin.file:
+      dest: '{{ N_PREFIX }}'
+      mode: 0755
+      owner: '{{ ansible_user_id }}'
+      state: '{{ item }}'
+  loop:
+      - absent
+      - directory
+  tags:
+      - nodejs
+      - neovim
+      - ags
+
+- name: Installing nodejs
+  ansible.builtin.shell: |
+      export PREFIX={{ N_PREFIX }} 
+      export N_PREFIX={{ N_PREFIX }}
+      export N_CACHE_PREFIX={{ XDG_CACHE_HOME }}
+      export PATH="$PATH:{{ N_PREFIX }}/bin"
+
+      cd {{ DOTFILES_CACHE }}/nvm
+      make install
+
+      n lts
+      npm config set prefix {{ NPM_PREFIX }}
+      npm config set cache {{ XDG_CACHE_HOME }}
+  tags:
+      - nodejs
+      - neovim
+      - ags
+
+- name: Adding nodejs to the path
+  ansible.builtin.blockinfile:
+      path: '{{ item }}'
+      create: true
+      prepend_newline: true
+      marker: '#--------- {mark} ---------#'
+      marker_begin: StartNode
+      marker_end: EndNode
+      block: |
+          export N_PREFIX="{{ N_PREFIX }}"
+          export N_CACHE_PREFIX="{{ XDG_CACHE_HOME }}"
+          export PATH="$PATH:$N_PREFIX/bin"
+          export PATH="$PATH:$N_PREFIX/npm/bin"
+  loop:
+      - '{{ XDG_CONFIG_HOME }}/zsh/path.zsh'
+      - '{{ HOME }}/.bashrc'
+  tags:
+      - nodejs
+      - neovim
+      - ags

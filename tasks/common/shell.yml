@@ -1,0 +1,24 @@
+- name: Setting shell environment
+  ansible.builtin.shell: |
+      zsh -c "source {{ XDG_CONFIG_HOME }}/zsh/.zshrc"
+      bash -c "source {{ HOME }}/.bashrc"
+  tags:
+      - shell
+      - common
+
+- name: Detecting zsh binary path
+  ansible.builtin.shell: which zsh
+  register: zsh_path
+  tags:
+      - shell
+      - common
+
+- name: Changing default shell to zsh
+  become: true
+  ansible.builtin.user:
+      shell: '{{ zsh_path.stdout }}'
+      name: '{{ ansible_user_id }}'
+  when: zsh_path != ''
+  tags:
+      - shell
+      - common

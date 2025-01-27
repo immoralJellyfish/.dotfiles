@@ -1,0 +1,32 @@
+@use '../lib/colors';
+@use '../lib/variables';
+
+.calendar {
+    padding: 0 variables.$gap-xs;
+    border-radius: variables.$radius-m;
+    border: 0.08em solid transparent;
+
+    .notification {
+        margin-left: variables.$gap-s;
+        .count {
+            margin-left: variables.$gap-xs;
+        }
+    }
+
+    .date {
+        color: rgba(variables.$primary, 0.8);
+    }
+
+    .separator {
+        margin: 0 variables.$gap-l;
+        font-size: calc(variables.$font-size/2);
+        font-weight: 800;
+        color: rgba(variables.$primary, 0.8);
+    }
+
+    &.active,
+    &:hover {
+        background-color: colors.$base;
+        border-color: colors.$charcoal;
+    }
+}

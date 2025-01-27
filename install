@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+set -e
+clear
+source "./header"
+
+function setup_arch(){
+    clear
+    if [[ $ISGIT == "$ERROR" ]]; then
+        echo "* Installing git"
+        if ! sudo pacman -Sy --noconfirm git >/dev/null 2>"$LOGFILE"; then
+            echo -e "${RED}Error: check ${LOGFILE} or run the script again${NC}"
+            exit 1
+        fi
+        sleep 1
+    fi
+
+    if [[ $ISPYTHON == "$ERROR" ]]; then
+        echo "* Installing python"
+        if ! sudo pacman -Sy --noconfirm python >/dev/null 2>"$LOGFILE"; then
+            echo -e "${RED}Error: check ${LOGFILE} or run the script again${NC}"
+            exit 1
+        fi
+        sleep 1
+    fi
+
+    if [[ $ISPIPX == "$ERROR" ]]; then
+        echo "* Installing pipx"
+        if ! sudo pacman -Sy --noconfirm python-pipx >/dev/null 2>"$LOGFILE"; then
+            echo -e "${RED}Error: check ${LOGFILE} or run the script again${NC}"
+            exit 1
+        fi
+        sleep 1
+    fi
+}
+
+case $OS in
+    "arch") setup_arch ;;
+    *)
+        echo "Not supported yet"
+        exit 1
+        ;;
+esac
+
+if [[ $ISANSIBLE == "$ERROR" ]]; then
+    echo "* Installing ansible"
+    if ! pipx install --include-deps ansible==$ANSIBLE_VERSION >/dev/null 2>"$LOGFILE"; then
+        echo -e "${RED}Error: check ${LOGFILE} or run the script again${NC}"
+        exit 1
+    fi
+    sleep 1
+fi
+
+
+if [[ $OS != "none" ]];then
+    clear
+    ansible-playbook local.yml "${ANSIBLE_ARGS[@]}" "${@}"
+fi

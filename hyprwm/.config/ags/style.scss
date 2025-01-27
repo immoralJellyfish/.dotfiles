@@ -1,0 +1,8 @@
+@use 'styles/lib/reset.scss';
+
+@use 'styles/SystemTray/main.scss' as systemtray;
+@use 'styles/QuickControl/main.scss' as quickcontrol;
+@use 'styles/Menu/main.scss' as menu;
+@use 'styles/Notification/main.scss' as notification;
+@use 'styles/Dashboard/main.scss' as dashboard;
+@use 'styles/Bar/main.scss' as bar;

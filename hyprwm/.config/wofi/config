@@ -1,0 +1,13 @@
+matching=fuzzy
+allow_images=true
+allow_markup=true
+insensitive=true
+exec_search=true
+hide_scroll=true
+width=35%
+height=50%
+location=top
+y=120
+key_up=Ctrl-p
+key_down=Ctrl-n
+key_submit=Ctrl-y

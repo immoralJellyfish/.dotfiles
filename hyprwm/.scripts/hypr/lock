@@ -1,0 +1,7 @@
+#!/bin/env bash
+
+if [[ -z "$(pidof hyprlock)" ]]; then
+    brightnessctl -r
+    wpctl set-mute @DEFAULT_SINK@ 1
+    hyprlock && loginctl unlock-session
+fi

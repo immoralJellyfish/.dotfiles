@@ -1,0 +1,21 @@
+- name: Installing flatpak
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name: flatpak
+  tags:
+      - flatpak
+      - obsidian
+      - hyprwm
+
+- name: Adding the flathub for flatpak
+  community.general.flatpak_remote:
+      name: flathub
+      state: present
+      flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+      method: user
+  tags:
+      - flatpak
+      - obsidian
+      - hyprwm

@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=Visual Studio Code
+Comment=Code Editing. Redefined.
+GenericName=Text Editor
+Exec=/opt/vscode/code --no-sandbox %F
+Icon=code
+Type=Application
+StartupNotify=true
+Categories=Development;IDE;TextEditor;
+MimeType=text/plain;inode/directory;
+Keywords=vscode;code;editor;
+Actions=new-window;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=/opt/vscode/code --new-window
+Icon=code

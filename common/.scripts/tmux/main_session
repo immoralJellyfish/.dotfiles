@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s $selected_name -c $selected -n main
+    exit 0
+fi
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s main -c $HOME -n main
+    exit 0
+fi
+
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    tmux new-session -ds main -c $HOME -n main
+fi
+
+tmux switch-client -t main

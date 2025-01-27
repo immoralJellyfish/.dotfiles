@@ -1,0 +1,37 @@
+@use "../lib/colors";
+@use "../lib/mixins";
+@use "../lib/variables";
+
+.dialog {
+    @include mixins.Window;
+    min-width: calc(variables.$font-size * 24);
+    padding: variables.$gap;
+
+    .summary {
+        margin-bottom: variables.$gap-xs;
+        font-size: calc(variables.$font-size * 1.4);
+    }
+
+    .desc {
+        margin-bottom: variables.$gap-xs;
+        color: colors.$overlay0;
+    }
+
+    .action {
+        margin-top: variables.$gap-s;
+
+        button {
+            background-color: colors.$base;
+            padding: variables.$gap-xs 0;
+            border-radius: variables.$radius-m;
+            border: 0.05em solid colors.$charcoal;
+
+            &:hover {
+                background-color: colors.$lavender;
+                label {
+                    color: colors.$crust;
+                }
+            }
+        }
+    }
+}

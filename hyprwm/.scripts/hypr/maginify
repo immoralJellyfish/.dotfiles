@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+IN_VALUE=0.03
+OUT_VALUE=0.03
+ZOOM_MODE=$1
+
+CURRENT_ZOOM=$(hyprctl -j getoption cursor:zoom_factor | jq -r '.float')
+CURRENT_SENSITIVITY=$(hyprctl -j getoption input:sensitivity | jq -r '.float')
+
+if [[ "$1" == "in" ]]; then
+    zoom_value=$(awk "BEGIN {printf \"%.2f\", $CURRENT_ZOOM + $IN_VALUE}")
+    sensitivity_value=$(awk "BEGIN {printf \"%.2f\", $CURRENT_SENSITIVITY + ($IN_VALUE + 0.05)}")
+fi
+
+if [[ "$ZOOM_MODE" == "out" ]]; then
+    if awk -v n1="$CURRENT_ZOOM" -v n2="1" 'BEGIN { if (n1 > n2) exit 0; else exit 1 }'; then
+        zoom_value=$(awk "BEGIN {printf \"%.2f\", $CURRENT_ZOOM - $IN_VALUE}")
+        sensitivity_value=$(awk "BEGIN {printf \"%.2f\", $CURRENT_SENSITIVITY - ($IN_VALUE + 0.05)}")
+    else
+        zoom_value=$CURRENT_ZOOM
+        sensitivity_value=$CURRENT_SENSITIVITY
+    fi
+fi
+
+case $1 in
+    "in" | "out")
+        hyprctl keyword cursor:zoom_factor $zoom_value
+        hyprctl keyword input:sensitivity $sensitivity_value
+        ;;
+    "reset")
+        hyprctl reload
+        ;;
+    *)
+        echo -e "Usage: "
+        echo -e "magnify <in|out>";
+        echo -e "magnify reset";
+        ;;
+esac

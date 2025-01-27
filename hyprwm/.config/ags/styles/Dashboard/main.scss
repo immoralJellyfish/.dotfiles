@@ -1,0 +1,31 @@
+@use 'sass:meta';
+@use '../lib/mixins';
+@use '../lib/variables';
+
+.dashboard {
+    @include mixins.Window;
+    @include meta.load-css('mpris.scss');
+    @include meta.load-css('notificationcenter.scss');
+
+    & {
+        min-height: calc(variables.$font-size * 30);
+    }
+
+    scrollable {
+        min-width: calc(variables.$font-size * 20);
+
+        scrollbar {
+            background-color: transparent;
+        }
+
+        slider {
+            background-color: variables.$primary;
+            background: transparent;
+        }
+    }
+
+    .separator {
+        border-radius: 0.1em;
+        margin: 0 variables.$gap-l;
+    }
+}

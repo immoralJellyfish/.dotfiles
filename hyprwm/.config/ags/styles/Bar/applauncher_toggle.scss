@@ -1,0 +1,11 @@
+@use "../lib/mixins";
+@use "../lib/variables";
+
+.applauncher_toggle {
+    @include mixins.Button;
+
+    label {
+        font-size: calc(variables.$font-size * 1.2);
+        font-weight: 800;
+    }
+}

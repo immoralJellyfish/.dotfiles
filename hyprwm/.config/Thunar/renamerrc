@@ -1,0 +1,16 @@
+[Configuration]
+LastActiveMode=THUNAR_RENAMER_MODE_NAME
+LastActiveRenamer=ThunarSbrNumberRenamer
+
+[ThunarSbrReplaceRenamer]
+CaseSensitive=TRUE
+Replacement=.jpg
+Pattern=$
+Regexp=TRUE
+
+[ThunarSbrNumberRenamer]
+TextMode=THUNAR_SBR_TEXT_MODE_TN
+Text=wpp-
+Mode=THUNAR_SBR_NUMBER_MODE_010203
+Start=1
+

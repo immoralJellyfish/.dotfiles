@@ -1,0 +1,88 @@
+- name: Installing theme packages
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name:
+          - gtk3
+          - gtk4
+          - qt5ct
+          - qt6ct
+          - kvantum
+          - nwg-look
+          - adwaita-cursors
+          - sassc
+  tags:
+      - theme
+      - hyprwm
+
+- name: Downloading gtk theme
+  ansible.builtin.git:
+      repo: https://github.com/vinceliuice/Colloid-gtk-theme.git
+      dest: '{{ DOTFILES_CACHE }}/gtk-theme'
+      depth: 1
+      update: false
+      version: '{{ COLLOID_THEME_VERSION }}'
+  tags:
+      - theme
+      - hyprwm
+
+- name: Ensuring necessary theme directory
+  ansible.builtin.file:
+      dest: '{{ item }}'
+      state: directory
+  loop:
+      - '{{ XDG_DATA_HOME }}/themes'
+      - '{{ XDG_DATA_HOME }}/icons'
+      - '{{ XDG_CONFIG_HOME }}/gtk-4.0'
+  tags:
+      - theme
+      - hyprwm
+
+- name: Installing gtk theme and icon
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/gtk-theme/
+
+      ./install.sh --dest {{ XDG_DATA_HOME }}/themes \
+                   --theme purple \
+                   --color dark \
+                   --size compact \
+                   --libadwaita \
+                   --tweaks catppuccin black
+
+      wget -qO- https://git.io/papirus-icon-theme-install \
+                | env DESTDIR="{{ XDG_DATA_HOME }}/icons" sh
+  tags:
+      - theme
+      - hyprwm
+
+- name: Applying gtk theme
+  ansible.builtin.shell: |
+      gsettings set org.gnome.desktop.interface gtk-theme 'Colloid-Purple-Dark-Compact-Catppuccin'
+      gsettings set org.gnome.desktop.wm.preferences theme 'Colloid-Purple-Dark-Compact-Catppuccin'
+      gsettings set org.gnome.desktop.interface color-scheme prefer-dark 
+      gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+      gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+      gsettings set org.gnome.desktop.interface font-name 'Inter Display Semi-Bold 14'
+      gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font 14'
+  tags:
+      - theme
+      - hyprwm
+
+- name: Checking flatpak
+  ansible.builtin.shell: |
+      command -v flatpak
+  register: flatpak
+  tags:
+      - theme
+      - hyprwm
+
+- name: Configuring gtk theme flatpak
+  become: true
+  ansible.builtin.shell: |
+      flatpak override --filesystem=xdg-config/gtk-3.0 
+      flatpak override --filesystem=xdg-config/gtk-4.0
+  when: flatpak.stdout != ''
+  tags:
+      - theme
+      - hyprwm

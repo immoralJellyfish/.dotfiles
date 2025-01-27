@@ -1,0 +1,45 @@
+- name: Installing php for arch
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: 'latest'
+      name: [php, php-cgi]
+  tags:
+      - php
+      - neovim
+
+- name: Installing composer package manager
+  ansible.builtin.shell: |
+      mkdir -p {{ HOME }}/.composer/vendor/bin
+      HASH=`curl -sS https://composer.github.io/installer.sig`
+
+      php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');"
+      php -r "if (hash_file('sha384', '/tmp/composer-setup.php') === '$HASH') {
+          echo 'Installer verified';
+      } else {
+          echo 'Installer corrupt'; unlink('composer-setup.php');
+          exit();
+      } echo PHP_EOL;"
+
+      php /tmp/composer-setup.php --install-dir={{ HOME }}/.composer/vendor/bin --filename=composer
+  tags:
+      - php
+      - neovim
+
+- name: Configuring composer environment
+  ansible.builtin.blockinfile:
+      path: '{{ item }}'
+      create: true
+      prepend_newline: true
+      marker: '#--------- {mark} ---------#'
+      marker_begin: 'StartPHP'
+      marker_end: 'EndComPHP'
+      block: |
+          export COMPOSER_HOME=$HOME/.composer
+          export PATH=$COMPOSER_HOME/vendor/bin:$PATH
+  loop:
+      - '{{ XDG_CONFIG_HOME }}/zsh/path.zsh'
+      - '{{ HOME }}/.bashrc'
+  tags:
+      - php
+      - neovim

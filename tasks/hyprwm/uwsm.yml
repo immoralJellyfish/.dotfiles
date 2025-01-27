@@ -1,0 +1,50 @@
+- name: Installing uwsm build dependencies
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name: ['python-dbus', 'python-pyxdg', 'scdoc', libnewt]
+  tags:
+      - uwsm
+      - hyprwm
+
+- name: Checking uwsm build directory
+  ansible.builtin.stat:
+      path: '{{ DOTFILES_CACHE }}/uwsm/build'
+  register: uwsm_build
+  tags:
+      - uwsm
+      - hyprwm
+
+- name: Downloading uwsm repo
+  ansible.builtin.git:
+      repo: https://github.com/Vladimir-csp/uwsm.git
+      dest: '{{ DOTFILES_CACHE }}/uwsm'
+      version: '{{ UWSM_VERSION }}'
+      depth: 1
+      recursive: true
+      update: false
+  tags:
+      - uwsm
+      - hyprwm
+
+- name: Compiling uwsm
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/uwsm
+      meson setup --prefix=/usr/local \
+                  -Duuctl=enabled \
+                  -Dfumon=enabled \
+                  -Duwsm-app=enabled build
+  when: not uwsm_build.stat.exists
+  tags:
+      - uwsm
+      - hyprwm
+
+- name: Installing uwsm
+  become: true
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/uwsm
+      meson install -C build
+  tags:
+      - uwsm
+      - hyprwm

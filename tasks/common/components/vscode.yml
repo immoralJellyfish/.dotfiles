@@ -1,0 +1,49 @@
+- name: Checking vscode build
+  ansible.builtin.stat:
+      path: '{{ DOTFILES_CACHE }}/vscode'
+  register: vscode_build
+  tags:
+      - vscode
+
+- name: Downloading vscode
+  ansible.builtin.uri:
+      url: https://code.visualstudio.com/sha/download?build=stable&os=linux-x64
+      dest: '{{ DOTFILES_CACHE }}/vscode'
+  when: not vscode_build.stat.exists
+  tags:
+      - vscode
+
+- name: Preparing vscode installation
+  become: true
+  ansible.builtin.file:
+      dest: '/opt/vscode'
+      state: '{{ item }}'
+  loop:
+      - absent
+      - directory
+  tags:
+      - vscode
+
+- name: Installing vscode
+  become: true
+  ansible.builtin.unarchive:
+      src: '{{ DOTFILES_CACHE }}/vscode'
+      dest: '/opt/vscode'
+      extra_opts: [--strip-components=1]
+  tags:
+      - vscode
+
+- name: Configuring vscode installation
+  become: true
+  ansible.builtin.copy:
+      src: '{{ item.src }}'
+      dest: '{{ item.dest}}'
+      mode: 0755
+  loop:
+      - src: '{{ playbook_dir }}/.contents/code'
+        dest: /usr/local/bin/
+
+      - src: '{{ playbook_dir }}/.contents/vscode.desktop'
+        dest: /usr/local/share/applications/
+  tags:
+      - vscode

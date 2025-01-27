@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if ! pgrep -x emacs; then
+    emacs --daemon
+fi
+
+emacsclient -c &

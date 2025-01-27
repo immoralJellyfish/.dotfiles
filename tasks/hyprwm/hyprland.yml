@@ -1,0 +1,19 @@
+- name: Installing hyprland
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name:
+          - hyprutils
+          - hyprlang
+          - hyprwayland-scanner
+          - hyprcursor
+          - aquamarine
+          - hyprland
+          - hyprpaper
+          - hypridle
+          - hyprlock
+          - xdg-desktop-portal-hyprland
+          - cpio
+  tags:
+      - hyprwm

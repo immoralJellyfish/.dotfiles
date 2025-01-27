@@ -1,0 +1,18 @@
+- name: Installing bluetooth
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name: [bluez, blueman]
+  tags:
+      - bluetooth
+      - hyprwm
+
+- name: Enabling bluetooth with systemd
+  become: true
+  ansible.builtin.systemd:
+      enabled: true
+      name: bluetooth
+  tags:
+      - bluetooth
+      - hyprwm

@@ -1,0 +1,32 @@
+@use 'toggle.scss';
+@use 'dialog.scss';
+@use "../lib/colors";
+@use "../lib/mixins";
+@use "../lib/variables";
+
+.menu {
+    @include mixins.Window;
+
+    .line {
+        margin: variables.$gap-s 0;
+        border: 0.03em solid colors.$charcoal;
+    }
+
+    .menu_group {
+        .menu_item {
+            border-radius: variables.$radius;
+            label {
+                padding: calc(variables.$gap-s/2) variables.$gap-s;
+                &:nth-child(2) {
+                    color: colors.$surface1;
+                }
+            }
+            &:hover {
+                background-color: variables.$primary;
+                label {
+                    color: colors.$crust;
+                }
+            }
+        }
+    }
+}

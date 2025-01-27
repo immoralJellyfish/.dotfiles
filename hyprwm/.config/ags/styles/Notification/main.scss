@@ -1,0 +1,7 @@
+@use 'popup.scss';
+
+window {
+    &.notification {
+        all: unset;
+    }
+}

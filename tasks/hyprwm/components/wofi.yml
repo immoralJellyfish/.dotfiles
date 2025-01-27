@@ -1,0 +1,52 @@
+- name: Installing wofi dependencies
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name: ['wofi', 'libqalculate', wtype]
+  tags:
+      - wofi
+      - hyprwm
+
+- name: Downloading wofi additional package
+  ansible.builtin.git:
+      repo: 'https://github.com/{{ item.repo }}.git'
+      dest: '{{ DOTFILES_CACHE }}/{{ item.dest }}'
+      version: '{{ item.version | default(omit) }}'
+      recursive: true
+      update: false
+      depth: 1
+  loop:
+      - repo: Zeioth/wofi-calc
+        dest: wofi-calc
+        version: '{{ WOFI_CALC_VERSION }}'
+
+      - repo: Zeioth/wofi-emoji
+        dest: wofi-emoji
+        version: '{{ WOFI_EMOJI_VERSION }}'
+  tags:
+      - wofi
+      - hyprwm
+
+- name: Compiling wofi additional package
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/wofi-emoji
+      ./build.sh
+  tags:
+      - wofi
+      - hyprwm
+
+- name: Installing wofi additional package
+  become: true
+  ansible.builtin.copy:
+      src: '{{ item.src }}'
+      dest: '{{ item.dest }}'
+      mode: 0755
+  loop:
+      - src: '{{ DOTFILES_CACHE }}/wofi-calc/wofi-calc.sh'
+        dest: /usr/local/bin/wofi-calc
+      - src: '{{ DOTFILES_CACHE }}/wofi-emoji/wofi-emoji'
+        dest: /usr/local/bin/wofi-emoji
+  tags:
+      - wofi
+      - hyprwm

@@ -1,0 +1,39 @@
+- name: Installing emacs
+  become: true
+  ansible.builtin.pacman:
+      update_cache: true
+      state: present
+      name: emacs-wayland
+  tags:
+      - emacs
+      - hyprwm
+
+- name: Downloading doom emacs
+  ansible.builtin.git:
+      repo: https://github.com/doomemacs/doomemacs.git
+      dest: '{{ EMACS_CONFIG }}'
+      recursive: true
+      update: false
+      depth: 1
+  tags:
+      - emacs
+      - hyprwm
+
+- name: Installing doom personal config
+  ansible.builtin.file:
+      src: '{{ playbook_dir }}/.contents/doom'
+      dest: '{{ XDG_CONFIG_HOME }}/doom'
+      state: link
+  tags:
+      - emacs
+      - hyprwm
+
+- name: Installing doom emacs
+  ansible.builtin.shell: |
+      PATH="$PATH:{{ XDG_CONFIG_HOME }}/emacs/bin"
+
+      doom sync
+      doom env
+  tags:
+      - emacs
+      - hyprwm

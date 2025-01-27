@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+HYPRIDLE_PID=$(pidof hypridle)
+
+if [[ -n "$HYPRIDLE_PID" ]]; then
+    notify-send -a "idle" -h string:x-canonical-private-synchronous:sys-notify "Hypridle turned off" "Device will not sleep"
+    pkill hypridle
+else
+    notify-send -a "idle" -h string:x-canonical-private-synchronous:sys-notify "Hypridle turned on" "Device will sleep"
+    hypridle
+fi

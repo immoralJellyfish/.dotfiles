@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+MODE=$1
+MAIN_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.x == 0) | .id')
+ACTIVE_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .x')
+
+ACTIVE_SPECIAL_WORKSPACE=$(hyprctl -j monitors | jq --raw-output '.[] | select(.focused==true).specialWorkspace.name | if length > 0 then . else "" end')
+ACTIVE_SPECIAL_WORKSPACE_NAME=$(echo $ACTIVE_SPECIAL_WORKSPACE | cut -d ":" -f 2)
+
+WORKSPACE=$2
+WORKSPACE_NAME=$(echo $WORKSPACE | cut -d ":" -f 2)
+WORKSPACE_IDENTIFIER=$(echo $WORKSPACE | cut -d ":" -f 1)
+
+shift 2
+
+function toworkspace() {
+    local workspace_name=$1
+
+    hyprctl dispatch workspace $workspace_name
+
+    if [[ ${#ACTIVE_SPECIAL_WORKSPACE} -gt 0 ]]; then
+        hyprctl dispatch togglespecialworkspace $ACTIVE_SPECIAL_WORKSPACE_NAME
+    fi
+}
+
+function onworkspace(){
+    local window_selector=$1
+    local window_program=$2
+    local selector_key=$(echo $window_selector | cut -d ":" -f 1)
+    local selector_value=$(echo $window_selector | cut -d ":" -f 2)
+
+    if [[ $WORKSPACE_IDENTIFIER == "special" ]]; then
+        local windows_count=$(hyprctl -j clients | jq ".[] | select(.$selector_key==\"$selector_value\") | select(.workspace.name==\"$WORKSPACE\" ) | .pid" | wc -l)
+    else
+        local windows_count=$(hyprctl -j clients | jq ".[] | select(.$selector_key==\"$selector_value\") | select(.workspace.name==\"$WORKSPACE_NAME\" or .workspace.id==try (\"$WORKSPACE_NAME\" | tonumber) catch false) | .pid" | wc -l)
+    fi
+
+    shift 2
+
+    echo $windows_count
+
+    if (( $windows_count <= 0 )); then
+        nohup "$window_program" "${@}" >/dev/null 2>&1 &
+        local program_pid=$!
+
+        if [[ $WORKSPACE_IDENTIFIER == "special" ]]; then
+            hyprctl dispatch togglespecialworkspace $WORKSPACE_NAME
+        else
+            hyprctl dispatch movetoworkspacesilent $WORKSPACE_NAME,pid:$program_pid
+        fi
+
+        toworkspace $WORKSPACE_NAME
+    else
+        if [[ $WORKSPACE_NAME == $SPECIAL_WORKSPACE_NAME ]]; then
+            hyprctl dispatch togglespecialworkspace $WORKSPACE_NAME
+        else
+            if [[ $WORKSPACE_IDENTIFIER == "special" ]]; then
+                hyprctl dispatch togglespecialworkspace $WORKSPACE_NAME
+            else
+                toworkspace $WORKSPACE_NAME
+            fi
+        fi
+    fi
+}
+
+focuscurrenttolast() {
+    hyprctl dispatch focuscurrentorlast
+
+    local next_active=$(hyprctl -j monitors | jq --raw-output '.[] | select(.focused==true).specialWorkspace.name | split(":") | if length > 0 then .[1] else "" end')
+
+    if [[ -n $next_active && -n $ACTIVE_SPECIAL_WORKSPACE_NAME && "$next_active" == "$ACTIVE_SPECIAL_WORKSPACE_NAME" ]]; then
+        hyprctl dispatch togglespecialworkspace $ACTIVE_SPECIAL_WORKSPACE_NAME
+    fi
+}
+
+case "$MODE" in
+    "toworkspace")
+        toworkspace $WORKSPACE_NAME
+        ;;
+    "onworkspace")
+        onworkspace ${@}
+        ;;
+    "focuscurrenttolast")
+        focuscurrenttolast
+        ;;
+esac

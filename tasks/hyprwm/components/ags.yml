@@ -1,0 +1,89 @@
+- name: Installing ags dependencies
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name:
+          - vala
+          - valadoc
+          - dart-sass
+          - gjs
+          - gtk3
+          - gtk-layer-shell
+          - gobject-introspection
+          - json-glib
+          - gvfs
+          - libnm
+          - gdk-pixbuf2
+          - glib2
+          - glib2-devel
+  tags:
+      - ags
+
+- name: Downloading ags & astal repo
+  ansible.builtin.git:
+      repo: 'https://github.com/{{ item.repo }}.git'
+      dest: '{{ DOTFILES_CACHE }}/{{ item.dest }}'
+      depth: 1
+      recursive: true
+      update: false
+      version: '{{ item.version | default(omit) }}'
+  loop:
+      - repo: aylur/astal
+        dest: astal
+        version: '{{ ASTAL_VERSION }}'
+
+      - repo: aylur/ags
+        version: '{{ AGS_VERSION }}'
+        dest: ags
+
+      - repo: rilian-la-te/vala-panel-appmenu
+        version: '{{ APP_MENU_VALA_VERSION }}'
+        dest: appmenuvala
+  tags:
+      - ags
+
+# ----- Astal libraries ----- #
+- name: Preparing install astal & ags
+  ansible.builtin.include_tasks: './sub_tasks/build_ags.yml'
+  vars:
+      name: "{{ item.replace('\/', ' ') }}"
+      dest: '{{ DOTFILES_CACHE }}/{{ item }}'
+  loop:
+      - appmenuvala/subprojects/appmenu-glib-translator
+      - astal/lib/astal/io
+      - astal/lib/astal/gtk3
+      - astal/lib/battery
+      - astal/lib/bluetooth
+      - astal/lib/network
+      - astal/lib/wireplumber
+      - astal/lib/hyprland
+      - astal/lib/notifd
+      - astal/lib/tray
+      - astal/lib/mpris
+      - astal/lang/gjs
+  loop_control:
+      label: "{{ item.replace('\/', ' ') }}"
+  tags:
+      - ags
+
+# ----- Ags ----- #
+- name: Downloading ags
+  ansible.builtin.shell: |
+      export GOPATH={{ GOPATH }}
+
+      cd {{ DOTFILES_CACHE }}/ags
+      {{ GOROOT }}/bin/go install -ldflags "\
+          -X 'main.gtk4LayerShell=$(pkg-config --variable=libdir gtk4-layer-shell-0)/libgtk4-layer-shell.so' \
+          -X 'main.astalGjs=$(pkg-config --variable=srcdir astal-gjs)'"
+  tags:
+      - ags
+
+- name: Installing ags
+  become: true
+  ansible.builtin.copy:
+      src: '{{ GOPATH }}/bin/ags'
+      dest: /usr/local/bin
+      mode: 0755
+  tags:
+      - ags

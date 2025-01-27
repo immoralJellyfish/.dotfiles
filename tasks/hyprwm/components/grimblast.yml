@@ -1,0 +1,74 @@
+- name: Installing grimblast dependencies
+  become: true
+  community.general.pacman:
+      update_cache: true
+      state: present
+      name:
+          - grim
+          - slurp
+          - cairo
+          - pango
+          - gtk3
+          - gtk4
+          - glib2
+          - scdoc
+  tags:
+      - grimblast
+
+- name: Downloading grimblast
+  ansible.builtin.git:
+      repo: https://github.com/{{ item.repo }}
+      dest: '{{ DOTFILES_CACHE }}/{{ item.dest }}'
+      version: '{{ item.version | default(omit) }}'
+      depth: 1
+      recursive: true
+      update: false
+  loop:
+      - repo: hyprwm/contrib
+        dest: contrib
+        version: '{{ CONTRIB_HYPRLAND_VERSION }}'
+
+      - repo: jtheoof/swappy
+        dest: swappy
+        version: '{{ SWAPPY_VERSION }}'
+  tags:
+      - grimblast
+
+- name: Compiling grimblast
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/contrib/grimblast
+      make
+  tags:
+      - grimblast
+
+- name: Installing grimblast
+  become: true
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/contrib/grimblast
+      make install
+  tags:
+      - grimblast
+
+- name: Checking swappy build directory
+  ansible.builtin.stat:
+      path: '{{ DOTFILES_CACHE }}/swappy/build'
+  register: build_dir
+  tags:
+      - grimblast
+
+- name: Compiling swappy
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/swappy
+      meson setup build
+      ninja -C build
+  when: not build_dir.stat.exists
+  tags:
+      - grimblast
+
+- name: Installing swappy
+  become: true
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/swappy
+      meson install -C ./build
+  tags:
+      - grimblast

@@ -1,0 +1,32 @@
+- name: Checking nerdfonts
+  ansible.builtin.stat:
+      path: '{{ DOTFILES_CACHE }}/nerdfonts'
+  register: nerdfonts
+  tags:
+      - nerdfonts
+      - common
+
+- name: Downloading nerdfonts
+  ansible.builtin.shell: |
+      git clone --filter=blob:none --sparse \
+          https://github.com/ryanoasis/nerd-fonts.git \
+          {{ DOTFILES_CACHE }}/nerdfonts
+
+      cd {{ DOTFILES_CACHE }}/nerdfonts
+
+      git sparse-checkout add patched-fonts/JetBrainsMono
+      git sparse-checkout add patched-fonts/FiraCode
+      git sparse-checkout add patched-fonts/NerdFontsSymbolsOnly
+  tags:
+      - nerdfonts
+      - common
+
+- name: Installing nerdfonts
+  ansible.builtin.shell: |
+      cd {{ DOTFILES_CACHE }}/nerdfonts
+
+      ./install.sh JetBrainsMono FiraCode NerdFontsSymbolsOnly
+      ./install.sh -p JetBrainsMono FiraCode NerdFontsSymbolsOnly
+  tags:
+      - nerdfonts
+      - common

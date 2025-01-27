@@ -1,0 +1,33 @@
+- name: Generating xdg-user-dirs
+  ansible.builtin.shell: xdg-user-dirs-update --force
+  tags:
+      - hyprwm
+
+- name: Creating bookmarks xdg-user-dirs
+  ansible.builtin.lineinfile:
+      path: '{{ XDG_CONFIG_HOME }}/gtk-3.0/bookmarks'
+      state: present
+      create: yes
+      line: '{{ item }}'
+      regexp: "^{{ item.replace('/', '\\/') }}$"
+  loop:
+      - 'file:///home/{{ USER }}/Documents'
+      - 'file:///home/{{ USER }}/Downloads'
+      - 'file:///home/{{ USER }}/Music'
+      - 'file:///home/{{ USER }}/Pictures'
+      - 'file:///home/{{ USER }}/Public'
+      - 'file:///home/{{ USER }}/Templates'
+      - 'file:///home/{{ USER }}/Videos'
+  tags:
+      - hyprwm
+
+- name: Configuring default level
+  ansible.builtin.shell: |
+      wpctl set-volume @DEFAULT_SINK@ 25%
+
+      wpctl set-volume @DEFAULT_SOURCE@ 25%
+      wpctl set-mute @DEFAULT_SOURCE@ 1
+
+      brightnessctl set 25% -n 10
+  tags:
+      - hyprwm

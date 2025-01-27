@@ -1,0 +1,12 @@
+@use '../lib/mixins';
+@use '../lib/variables';
+
+.menu_toggle {
+    @include mixins.Button;
+    padding: 0 variables.$gap-s;
+    margin-right: 0;
+
+    label {
+        font-size: calc(variables.$font-size * 1.4);
+    }
+}

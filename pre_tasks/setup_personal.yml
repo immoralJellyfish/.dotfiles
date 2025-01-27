@@ -1,0 +1,29 @@
+- name: Copying ssh keys
+  ansible.builtin.copy:
+      src: '{{ playbook_dir }}/.ssh/'
+      dest: '{{ HOME }}/.ssh'
+      mode: 0600
+  tags:
+      - ssh
+
+- name: Authorizing public ssh key
+  ansible.posix.authorized_key:
+      user: '{{ USER }}'
+      key: "{{ lookup('file', item) }}"
+      state: 'present'
+  loop: "{{ lookup('fileglob', '{{ HOME }}/.ssh/*.pub', wantlist=True) }}"
+  tags:
+      - ssh
+      - personal
+
+- name: Downloading personal repository
+  ansible.builtin.git:
+      repo: git@github.com:immoralJellyfish/personal.git
+      dest: '{{ playbook_dir }}/.contents/personal'
+      depth: 1
+      update: false
+      recursive: true
+      accept_hostkey: true
+  tags:
+      - ssh
+      - personal

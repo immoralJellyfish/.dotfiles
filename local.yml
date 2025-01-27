@@ -1,0 +1,46 @@
+- hosts: localhost
+  gather_facts: true
+  vars_files:
+      - ./versions.yml
+      - ./variables.yml
+  pre_tasks:
+      - import_tasks: ./pre_tasks/setup_directory.yml
+      - import_tasks: ./pre_tasks/setup_personal.yml
+      - import_tasks: ./pre_tasks/setup_build.yml
+  tasks:
+      - import_tasks: ./tasks/config.yml
+      - import_tasks: ./tasks/node.yml
+      - import_tasks: ./tasks/php.yml
+      - import_tasks: ./tasks/go.yml
+      - import_tasks: ./tasks/rust.yml
+
+      - import_tasks: ./tasks/common/packages.yml
+      - import_tasks: ./tasks/common/app.yml
+      - import_tasks: ./tasks/common/nerdfonts.yml
+      - import_tasks: ./tasks/common/shell.yml
+      - import_tasks: ./tasks/common/components/flatpak.yml
+      - import_tasks: ./tasks/common/components/git.yml
+      - import_tasks: ./tasks/common/components/neovim.yml
+      - import_tasks: ./tasks/common/components/vscode.yml
+      - import_tasks: ./tasks/common/components/browser.yml
+      - import_tasks: ./tasks/common/components/obsidian.yml
+      # - import_tasks: ./tasks/common/components/emacs.yml (skill issue)
+      # - import_tasks: ./tasks/common/components/flameshot.yml (wayland broken)
+
+      - import_tasks: ./tasks/hyprwm/pipewire.yml
+      - import_tasks: ./tasks/hyprwm/bluetooth.yml
+      - import_tasks: ./tasks/hyprwm/packages.yml
+      - import_tasks: ./tasks/hyprwm/clipboard.yml
+      - import_tasks: ./tasks/hyprwm/hyprland.git.yml
+      - import_tasks: ./tasks/hyprwm/uwsm.yml
+      - import_tasks: ./tasks/hyprwm/systemfont.yml
+      - import_tasks: ./tasks/hyprwm/theme.yml
+      - import_tasks: ./tasks/hyprwm/sddm.yml
+      - import_tasks: ./tasks/hyprwm/setting.yml
+      - import_tasks: ./tasks/hyprwm/components/ags.yml
+      - import_tasks: ./tasks/hyprwm/components/wofi.yml
+      - import_tasks: ./tasks/hyprwm/components/grimblast.yml
+      - import_tasks: ./tasks/hyprwm/components/fcitx.yml
+      - import_tasks: ./tasks/hyprwm/components/udiskie.yml
+      - import_tasks: ./tasks/hyprwm/components/tlp.yml
+      - import_tasks: ./tasks/hyprwm/components/grub.yml

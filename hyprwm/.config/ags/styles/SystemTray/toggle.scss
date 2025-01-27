@@ -1,0 +1,36 @@
+@use '../lib/colors';
+@use '../lib/variables';
+
+.systemtray_toggle {
+    margin: 0 variables.$gap-xs;
+    .systemtray_item {
+        min-height: variables.$bar-inner-height;
+        min-width: variables.$bar-inner-height;
+        margin-left: calc(variables.$gap-xs / 2);
+
+        icon {
+            font-size: calc(variables.$font-size/1.1);
+        }
+    }
+
+    .toggle {
+        min-height: calc(variables.$bar-inner-height/1.2);
+        min-width: calc(variables.$bar-inner-height/1.2);
+        border-radius: variables.$bar-inner-height;
+        background-color: colors.$base;
+        border: 0.08em solid colors.$charcoal;
+
+        label {
+            font-size: calc(variables.$font-size/1.2);
+        }
+
+        &.active,
+        &:hover {
+            background-color: variables.$primary;
+
+            label {
+                color: colors.$crust;
+            }
+        }
+    }
+}
